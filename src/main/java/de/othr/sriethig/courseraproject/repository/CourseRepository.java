@@ -23,6 +23,36 @@ public class CourseRepository<Long, Course> extends SingleIdEntityRepository {
     
     /**
      * 
+     * @param title
+     * @return 
+     */
+    public Course findCourseByTitle(String title) {
+        TypedQuery query = this.getEntityManager().createQuery("SELECT c FROM "
+                + "Courses WHERE c.title = :parametername", 
+                this.getType()
+        );
+        query.setParameter("parametername", title);
+        Course course = (Course) query.getSingleResult();
+        return course;
+    }
+    
+    /**
+     * 
+     * @param tag
+     * @return 
+     */
+    public List<Course> findCoursesWithTag(String tag) {
+        TypedQuery query = this.getEntityManager().createQuery("SELECT c FROM "
+                + "Courses WHERE c.description LIKE :parametername", 
+                this.getType()
+        );
+        query.setParameter("parametername", tag);
+        List<Course> courses = query.getResultList();
+        return courses;
+    }
+    
+    /**
+     * 
      * @param professor
      * @return 
      */

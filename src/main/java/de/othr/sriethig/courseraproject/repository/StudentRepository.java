@@ -30,36 +30,6 @@ public class StudentRepository<Long, Student> extends SingleIdEntityRepository {
      * @param name
      * @return 
      */
-    public int updateStudentName(String name) {
-        TypedQuery query = this.getEntityManager().createQuery("UPDATE Student s "
-                + "SET s.name=':parametername'", 
-                this.getType()
-        );
-        query.setParameter("parametername", name);
-        int result = query.executeUpdate();
-        return result;
-    }
-    
-    /**
-     * 
-     * @param firstName
-     * @return 
-     */
-    public int updateStudentFirstName(String firstName) {
-        TypedQuery query = this.getEntityManager().createQuery("UPDATE Student s "
-                + "SET s.firstname=':parametername'", 
-                this.getType()
-        );
-        query.setParameter("parametername", firstName);
-        int result = query.executeUpdate();
-        return result;
-    }
-    
-    /**
-     * 
-     * @param name
-     * @return 
-     */
     public Student findStudentByName(String name) {
         TypedQuery query = this.getEntityManager().createQuery("SELECT s FROM "
                 + "Student AS s WHERE s.name = :parametername", 

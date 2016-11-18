@@ -10,6 +10,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -66,6 +70,16 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
     
     /**
      * 
+     * @param entities 
+     */
+    public void persist(List<E> entities) {
+        for(E entity : entities) {
+            this.getEntityManager().persist(entity);
+        }
+    }
+    
+    /**
+     * 
      * @param entity
      * @return 
      */
@@ -78,6 +92,7 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
      * @param entity 
      */
     public void remove(E entity) {
+        entity = this.getEntityManager().merge(entity);
         this.entityManager.remove(entity);
     }
     
@@ -95,16 +110,13 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
      * @return 
      */
     public List<E> findAll() {
-        return null;
+        CriteriaBuilder criteriaBuilder = 
+                this.entityManager.getCriteriaBuilder();
+        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(type);
+        Root<E> rootEntry = criteriaQuery.from(type);
+        CriteriaQuery<E> all = criteriaQuery.select(rootEntry);
+        TypedQuery<E> allQuery = this.entityManager.createQuery(all);
+
+        return (List<E>) allQuery.getResultList();
     }
-    
-    /**
-     * 
-     * @param from
-     * @param to
-     * @return 
-     */
-    public List<E> findByRange(int from, int to) {
-        return null;
-    }  
 }

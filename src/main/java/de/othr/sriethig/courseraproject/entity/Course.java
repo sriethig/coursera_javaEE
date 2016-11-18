@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 public class Course extends SingleIdEntity {
 
     private String courseTitle;
+    private String courseDescription;
     
     @ManyToOne
     private Professor courseProfessor;
@@ -52,6 +53,24 @@ public class Course extends SingleIdEntity {
     public void setCourseTitle(String courseTitle) {
         this.courseTitle = courseTitle;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public String getCourseDescription() {
+        return courseDescription;
+    }
+
+    /**
+     * 
+     * @param courseDescription 
+     */
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
+    
+    
 
     /**
      * 

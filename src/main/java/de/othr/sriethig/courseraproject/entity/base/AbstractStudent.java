@@ -82,4 +82,20 @@ public class AbstractStudent extends SingleIdEntity {
     public void setAddress(Address address) {
         this.address = address;
     }
+    
+    /**
+     * 
+     * @return 
+     */
+    public Collection<Course> getCourses() {
+        return courses;
+    }
+
+    /**
+     * 
+     * @param courses 
+     */
+    public void setCourses(Collection<Course> courses) {
+        this.courses = courses;
+    }
 }
