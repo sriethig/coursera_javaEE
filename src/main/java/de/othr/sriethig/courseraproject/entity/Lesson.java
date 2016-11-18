@@ -30,18 +30,34 @@ public class Lesson extends SingleIdEntity {
     public Lesson() {
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getLessonTitle() {
         return lessonTitle;
     }
 
+    /**
+     * 
+     * @param lessonTitle 
+     */
     public void setLessonTitle(String lessonTitle) {
         this.lessonTitle = lessonTitle;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Course getCourse() {
         return course;
     }
 
+    /**
+     * 
+     * @param course 
+     */
     public void setCourse(Course course) {
         this.course = course;
     }

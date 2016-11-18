@@ -2,6 +2,7 @@ package de.othr.sriethig.courseraproject.entity.base;
 
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Course;
+import de.othr.sriethig.courseraproject.entity.ExamResult;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -27,6 +29,9 @@ public class AbstractStudent extends SingleIdEntity {
     
     @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST})
     private Collection<Course> courses;
+    
+    @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST})
+    private Collection<ExamResult> results;
     
     /**
      * 
@@ -98,4 +103,13 @@ public class AbstractStudent extends SingleIdEntity {
     public void setCourses(Collection<Course> courses) {
         this.courses = courses;
     }
+
+    public Collection<ExamResult> getResults() {
+        return results;
+    }
+
+    public void setResults(Collection<ExamResult> results) {
+        this.results = results;
+    }
+    
 }

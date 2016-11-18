@@ -7,10 +7,8 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Lesson;
-import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
-import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;

@@ -6,8 +6,11 @@
 package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
+import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -20,86 +23,85 @@ public class Exam extends SingleIdEntity {
     private String examTitle;
     
     private List<String> questions;
-    private List<String> answers;
-    private List<Integer> possiblePointsForAnswers;
-    private List<Integer> pointsForAnswers;
     
-    @OneToOne(mappedBy="exam")
+    @OneToOne(mappedBy="exam", cascade={CascadeType.PERSIST})
     private Lesson lesson;
+    
+    @OneToMany(mappedBy="exam", cascade={CascadeType.PERSIST})
+    private Collection<ExamResult> results;
 
     public Exam() {
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getExamTitle() {
         return examTitle;
     }
 
+    /**
+     * 
+     * @param examTitle 
+     */
     public void setExamTitle(String examTitle) {
         this.examTitle = examTitle;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<String> getQuestions() {
         return questions;
     }
 
+    /**
+     * 
+     * @param questions 
+     */
     public void setQuestion(List<String> questions) {
         this.questions = questions;
     }
     
+    /**
+     * 
+     * @param question 
+     */
     public void addQuestion(String question) {
         this.questions.add(question);
     }
 
-    public List<String> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
-    }
-    
-    public void addAnswer(String answer) {
-        this.answers.add(answer);
-    }
-
+    /**
+     * 
+     * @return 
+     */
     public Lesson getLesson() {
         return lesson;
     }
 
+    /**
+     * 
+     * @param lesson 
+     */
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
-    
-    public List<Integer> getPossiblePointsForAnswers() {
-        return possiblePointsForAnswers;
-    }
-    
-    public int getPossiblePointsForAnswersAt(int index) {
-        return possiblePointsForAnswers.get(index);
+
+    /**
+     * 
+     * @return 
+     */
+    public Collection<ExamResult> getResults() {
+        return results;
     }
 
-    public void setPossiblePointsForAnswers(List<Integer> possiblePointsForAnswers) {
-        this.possiblePointsForAnswers = possiblePointsForAnswers;
+    /**
+     * 
+     * @param results 
+     */
+    public void setResults(Collection<ExamResult> results) {
+        this.results = results;
     }
-    
-    public void setPossiblePointsForAnswerAt(int index, int possiblePointsForAnswer) {
-        this.possiblePointsForAnswers.set(index, possiblePointsForAnswer);
-    }
-    
-    public List<Integer> getPointsForAnswers() {
-        return pointsForAnswers;
-    }
-    
-    public int getPointsForAnswersAt(int index) {
-        return this.pointsForAnswers.get(index);
-    }
-
-    public void setPointsForAnswers(List<Integer> pointsForAnswers) {
-        this.pointsForAnswers = pointsForAnswers;
-    }
-    
-    public void setPointsForAnswerAt(int index, int pointsForAnswer) {
-        this.pointsForAnswers.set(index, pointsForAnswer);
-    }
-    
 }
