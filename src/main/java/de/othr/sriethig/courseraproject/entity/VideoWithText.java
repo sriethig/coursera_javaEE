@@ -19,45 +19,80 @@ import javax.persistence.OneToOne;
 @Entity
 public class VideoWithText extends SingleIdEntity {
 
-    private String videoTitle;
+    private String title;
     
-    private String videoDescription;
-    private String videoURL;
+    private String description;
+    private String url;
     
     @OneToOne(mappedBy="videoWithText")
     private Lesson lesson;
 
+    /**
+     * 
+     */
     public VideoWithText() {
     }
 
-    public String getVideoTitle() {
-        return videoTitle;
+    /**
+     * 
+     * @return 
+     */
+    public String getTitle() {
+        return title;
     }
 
-    public void setVideoTitle(String videoTitle) {
-        this.videoTitle = videoTitle;
+    /**
+     * 
+     * @param title 
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getVideoDescription() {
-        return videoDescription;
+    /**
+     * 
+     * @return 
+     */
+    public String getDescription() {
+        return description;
     }
 
-    public void setVideoDescription(String videoDescription) {
-        this.videoDescription = videoDescription;
+    /**
+     * 
+     * @param description 
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getVideoURL() {
-        return videoURL;
+    /**
+     * 
+     * @return 
+     */
+    public String getUrl() {
+        return url;
     }
 
-    public void setVideoURL(String videoURL) {
-        this.videoURL = videoURL;
+    /**
+     * 
+     * @param url 
+     */
+    public void setUrl(String url) {
+        this.url = url;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Lesson getLesson() {
         return lesson;
     }
 
+    /**
+     * 
+     * @param lesson 
+     */
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     } 

@@ -9,13 +9,13 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-18T18:11:45")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-19T22:17:19")
 @StaticMetamodel(Exam.class)
 public class Exam_ extends SingleIdEntity_ {
 
-    public static volatile SingularAttribute<Exam, String> examTitle;
     public static volatile SingularAttribute<Exam, List> questions;
     public static volatile SingularAttribute<Exam, Lesson> lesson;
+    public static volatile SingularAttribute<Exam, String> title;
     public static volatile CollectionAttribute<Exam, ExamResult> results;
 
 }

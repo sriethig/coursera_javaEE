@@ -5,7 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.entity;
 
-import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
+import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -15,68 +15,15 @@ import javax.persistence.OneToMany;
  * @author sonja
  */
 @Entity
-public class Professor extends SingleIdEntity {
+public class Professor extends AbstractUser {
 
-    private String name;
-    private String firstName;
-    
-    private Address address;
-    
-    @OneToMany(mappedBy="courseProfessor")
+    @OneToMany(mappedBy="professor")
     private Collection<Course> courses;
 
     /**
      * 
      */
     public Professor() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 
-     * @param name 
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * 
-     * @param firstName 
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * 
-     * @param address 
-     */
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     /**

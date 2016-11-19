@@ -8,8 +8,10 @@ package de.othr.sriethig.courseraproject.control;
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
+import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
-import de.othr.sriethig.courseraproject.repository.StudentRepository;
+import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
+import de.othr.sriethig.courseraproject.repository.base.StudentRepository;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -23,6 +25,9 @@ public class StudentService {
     
     @Inject
     StudentRepository studentRepository;
+    
+    @Inject 
+    AbstractUserRepository abstractUserRepository;
     
     @Inject
     CourseRepository courseRepository;
@@ -51,6 +56,26 @@ public class StudentService {
     //TODO
     public AbstractStudent loginStudent(AbstractStudent student) {
         return null;
+    }
+    
+    /**
+     * 
+     * @param firstName
+     * @return 
+     */
+    public List<AbstractUser> findStudentByFirstName(String firstName) {
+        List<AbstractUser> students = abstractUserRepository.findByFirstName(firstName);
+        return students;
+    }
+    
+    /**
+     * 
+     * @param name
+     * @return 
+     */
+    public List<AbstractUser> findStudentByName(String name) {
+        List<AbstractUser> students = abstractUserRepository.findByName(name);
+        return students;
     }
     
     /**

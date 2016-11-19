@@ -54,6 +54,9 @@ public class CourseService {
     
     /**
      * 
+     * use case: user is looking for a list of courses addressing a field of
+     * interest, which is specified by a keyword (e.g. 'data science)
+     * solution: query all course descriptions for the tag
      * @param tag
      * @return 
      */
@@ -167,7 +170,7 @@ public class CourseService {
      * @param lesson
      * @return 
      */
-        public List<Lesson> removeLesson(Course course, Lesson lesson) {
+    public List<Lesson> removeLesson(Course course, Lesson lesson) {
         course = (Course) courseRepository.merge(course);
         lesson = (Lesson) courseRepository.merge(lesson);
         
@@ -178,5 +181,14 @@ public class CourseService {
             //TODO ask about removing non-existent objects
         }
         return lessons;
+    }
+    
+    /**
+     * 
+     * @param course 
+     */
+    public void removeCourse(Course course) {
+        course = (Course) courseRepository.merge(course);
+        courseRepository.remove(course);
     }
 }

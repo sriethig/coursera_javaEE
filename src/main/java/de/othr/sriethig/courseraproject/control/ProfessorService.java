@@ -9,6 +9,7 @@ import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
+import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -25,10 +26,35 @@ public class ProfessorService {
     @Inject
     ProfessorRepository professorRepository;
     
+    @Inject
+    AbstractUserRepository abstractUserRepository;
+    
     /**
      * 
      */
     public ProfessorService() {
+    }
+    
+    /**
+     * 
+     * @param firstName
+     * @return 
+     */
+    public Professor findProfessorByFirstName(String firstName) {
+        Professor professor = (Professor) abstractUserRepository
+                .findByFirstName(firstName);
+        return professor;
+    }
+    
+    /**
+     * 
+     * @param name
+     * @return 
+     */
+    public Professor findProfessorByName(String name) {
+        Professor professor = (Professor) abstractUserRepository
+                .findByName(name);
+        return professor;
     }
     
     /**
@@ -101,4 +127,11 @@ public class ProfessorService {
         return courses;
     }
     
+    /**
+     * 
+     * @param professor 
+     */
+    public void removeProfessor(Professor professor) {
+        professorRepository.remove(professor);
+    }
 }

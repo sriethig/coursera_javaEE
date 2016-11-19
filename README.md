@@ -12,4 +12,4 @@ The internal structure is derived from the Boundary-Control-Entity pattern. The 
 
 ## Entity class diagram
 
-![](target/site/courseraUML.png)
+![](courseraUML.png)

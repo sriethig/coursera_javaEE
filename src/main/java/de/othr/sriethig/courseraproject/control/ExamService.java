@@ -6,7 +6,12 @@
 package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Exam;
+import de.othr.sriethig.courseraproject.entity.ExamResult;
+import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.repository.ExamRepository;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -20,11 +25,127 @@ public class ExamService {
     @Inject
     ExamRepository examRepository;
     
+    /**
+     * 
+     */
     public ExamService() {
     }
     
+    /**
+     * 
+     * @param exam
+     * @return 
+     */
     public Exam createExam(Exam exam) {
         examRepository.persist(exam);
         return exam;
+    }
+    
+    /**
+     * 
+     * @param title
+     * @return 
+     */
+    public Exam findExamByTitle(String title) {
+        Exam exam = (Exam) examRepository.findExamByTitle(title);
+        return exam;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @param title
+     * @return 
+     */
+    public Exam updateTitle(Exam exam, String title) {
+        exam = (Exam) examRepository.merge(exam);
+        exam.setTitle(title);
+        return exam;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @return 
+     */
+    public Lesson getLesson(Exam exam) {
+        exam = (Exam) examRepository.merge(exam);
+        Lesson lesson = exam.getLesson();
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @return 
+     */
+    public List<String> getQuestion(Exam exam) {
+        exam = (Exam) examRepository.merge(exam);
+        List<String> questions = exam.getQuestions();
+        return questions;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @param question
+     * @return 
+     */
+    public List<String> addQuestion(Exam exam, String question) {
+        exam = (Exam) examRepository.merge(exam);
+        List<String> questions = exam.getQuestions();
+        if(!questions.contains(question)) {
+            questions.add(question);
+        }
+        return questions;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @param question
+     * @return 
+     */
+    public List<String> removeQuestion(Exam exam, String question) {
+        exam = (Exam) examRepository.merge(exam);
+        List<String> questions = exam.getQuestions();
+        if(questions.contains(question)) {
+            questions.remove(question);
+        }
+        return questions;
+    }
+    
+    /**
+     * 
+     * @param exam
+     * @return 
+     */
+    public List<ExamResult> getResults(Exam exam) {
+        exam = (Exam) examRepository.merge(exam);
+        List<ExamResult> results = (List) exam.getResults();
+        return results;
+    }
+    
+    //TODO statistics function -> lambda?!
+    /*public HashMap<String, Double> getExamStatistics(Exam exam) {
+        exam = (Exam) examRepository.merge(exam);
+        List<ExamResult> results = (List) exam.getResults();
+        
+        List<Integer> singleResults = new ArrayList<>();
+        for(ExamResult result : results) {
+            singleResults.add(result.getResult());
+        }
+        
+        HashMap<String, Double> statistics = new HashMap<>();
+        //statistics.add("Average", singleResults.stream().mapToDouble(a->a.average()));
+    }*/
+    
+    /**
+     * 
+     * @param exam 
+     */
+    public void removeExam(Exam exam) {
+        exam = (Exam) examRepository.merge(exam);
+        examRepository.remove(exam);
     }
 }

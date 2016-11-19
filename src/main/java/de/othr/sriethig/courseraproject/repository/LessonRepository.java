@@ -5,7 +5,9 @@
  */
 package de.othr.sriethig.courseraproject.repository;
 
+import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -15,5 +17,20 @@ public class LessonRepository extends SingleIdEntityRepository {
     
     public LessonRepository(Class type) {
         super(type);
-    }    
+    }  
+    
+    /**
+     * 
+     * @param title
+     * @return 
+     */
+    public Lesson findLessonByTitle(String title) {
+        TypedQuery query = this.getEntityManager().createQuery("SELECT l FROM "
+                + "Lesson WHERE l.title = :parametername", 
+                this.getType()
+        );
+        query.setParameter("parametername", title);
+        Lesson lesson = (Lesson) query.getSingleResult();
+        return lesson;
+    }
 }

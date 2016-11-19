@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Exam extends SingleIdEntity {
 
-    private String examTitle;
+    private String title;
     
     private List<String> questions;
     
@@ -37,16 +37,16 @@ public class Exam extends SingleIdEntity {
      * 
      * @return 
      */
-    public String getExamTitle() {
-        return examTitle;
+    public String getTitle() {
+        return title;
     }
 
     /**
      * 
      * @param examTitle 
      */
-    public void setExamTitle(String examTitle) {
-        this.examTitle = examTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**

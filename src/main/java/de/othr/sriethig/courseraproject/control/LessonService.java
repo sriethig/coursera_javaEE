@@ -37,6 +37,16 @@ public class LessonService {
     
     /**
      * 
+     * @param title
+     * @return 
+     */
+    public Lesson findLessonByTitle(String title) {
+        Lesson lesson = lessonRepository.findLessonByTitle(title);
+        return lesson;
+    }
+    
+    /**
+     * 
      * @param lesson
      * @param title
      * @return 
@@ -62,6 +72,17 @@ public class LessonService {
     /**
      * 
      * @param lesson
+     * @return 
+     */
+    public Lesson removeVideoWithText(Lesson lesson) {
+        lesson = (Lesson) lessonRepository.merge(lesson);
+        lesson.setVideoWithText(null);
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param lesson
      * @param exam
      * @return 
      */
@@ -69,5 +90,24 @@ public class LessonService {
         lesson = (Lesson) lessonRepository.merge(lesson);
         lesson.setExam(exam);
         return lesson;
+    }
+    
+    /**
+     * 
+     * @param lesson
+     * @return 
+     */
+    public Lesson removeExam(Lesson lesson) {
+        lesson = (Lesson) lessonRepository.merge(lesson);
+        lesson.setExam(null);
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param lesson 
+     */
+    public void removeLesson(Lesson lesson) {
+        lessonRepository.remove(lesson);
     }
 }
