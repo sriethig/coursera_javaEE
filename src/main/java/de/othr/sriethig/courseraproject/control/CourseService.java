@@ -7,8 +7,11 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Lesson;
+import de.othr.sriethig.courseraproject.entity.Professor;
+import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
+import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -22,6 +25,9 @@ public class CourseService {
     
     @Inject
     CourseRepository courseRepository;
+    
+    @Inject
+    ProfessorRepository professorRepository;
 
     @Inject
     LessonRepository lessonRepository;
@@ -84,6 +90,63 @@ public class CourseService {
     /**
      * 
      * @param course
+     * @param professor
+     * @return 
+     */
+    public Course updateProfessor(Course course, Professor professor) {
+        course = (Course) courseRepository.merge(course);
+        professor = (Professor) professorRepository.merge(professor);
+        
+        course.setProfessor(professor);
+        return course;
+    }
+    
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public List<AbstractStudent> getStudents(Course course) {
+        course = (Course) courseRepository.merge(course);
+        List<AbstractStudent> students = (List) course.getStudents();
+        return students;
+    }
+    
+    /**
+     * 
+     * @param course
+     * @param student
+     * @return 
+     */
+    public List<AbstractStudent> addStudent(Course course,
+            AbstractStudent student) {
+        course = (Course) courseRepository.merge(course);
+        List<AbstractStudent> students = (List) course.getStudents();
+        if(!students.contains(student)) {
+            students.add(student);
+        }
+        return students;
+    }
+    
+    /**
+     * 
+     * @param course
+     * @param student
+     * @return 
+     */
+    public List<AbstractStudent> removeStudent(Course course,
+            AbstractStudent student) {
+        course = (Course) courseRepository.merge(course);
+        List<AbstractStudent> students = (List) course.getStudents();
+        if(students.contains(student)) {
+            students.remove(student);
+        }
+        return students;
+    } 
+    
+    /**
+     * 
+     * @param course
      * @param lesson
      * @return 
      */
@@ -92,7 +155,9 @@ public class CourseService {
         lesson = (Lesson) courseRepository.merge(lesson);
         
         List<Lesson> lessons = (List) course.getLessons();
-        lessons.add(lesson);
+        if(!lessons.contains(lesson)) {
+            lessons.add(lesson);
+        }
         return lessons;
     }
     

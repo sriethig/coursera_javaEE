@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Lesson extends SingleIdEntity {
 
-    private String lessonTitle;
+    private String title;
     
     @ManyToOne
     private Course course;
@@ -34,16 +34,16 @@ public class Lesson extends SingleIdEntity {
      * 
      * @return 
      */
-    public String getLessonTitle() {
-        return lessonTitle;
+    public String getTitle() {
+        return title;
     }
 
     /**
      * 
-     * @param lessonTitle 
+     * @param title
      */
-    public void setLessonTitle(String lessonTitle) {
-        this.lessonTitle = lessonTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -61,5 +61,37 @@ public class Lesson extends SingleIdEntity {
     public void setCourse(Course course) {
         this.course = course;
     }
-    
+
+    /**
+     * 
+     * @return 
+     */
+    public VideoWithText getVideoWithText() {
+        return videoWithText;
+    }
+
+    /**
+     * 
+     * @param videoWithText 
+     */
+    public void setVideoWithText(VideoWithText videoWithText) {
+        this.videoWithText = videoWithText;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Exam getExam() {
+        return exam;
+    }
+
+    /**
+     * 
+     * @param exam 
+     */
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+  
 }

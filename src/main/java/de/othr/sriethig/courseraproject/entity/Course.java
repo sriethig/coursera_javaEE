@@ -24,7 +24,7 @@ public class Course extends SingleIdEntity {
     private String courseDescription;
     
     @ManyToOne
-    private Professor courseProfessor;
+    private Professor professor;
     
     @ManyToMany
     private Collection<AbstractStudent> students;
@@ -76,16 +76,16 @@ public class Course extends SingleIdEntity {
      * 
      * @return 
      */
-    public Professor getCourseProfessor() {
-        return courseProfessor;
+    public Professor getProfessor() {
+        return professor;
     }
 
     /**
      * 
-     * @param CourseProfessor 
+     * @param professor 
      */
-    public void setCourseProfessor(Professor CourseProfessor) {
-        this.courseProfessor = CourseProfessor;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     /**
