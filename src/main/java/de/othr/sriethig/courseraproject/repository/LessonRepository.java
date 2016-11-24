@@ -13,10 +13,10 @@ import javax.persistence.TypedQuery;
  *
  * @author sonja
  */
-public class LessonRepository extends SingleIdEntityRepository {
+public class LessonRepository extends SingleIdEntityRepository<Long, Lesson> {
     
-    public LessonRepository(Class type) {
-        super(type);
+    public LessonRepository() {
+        super(Lesson.class);
     }  
     
     /**
@@ -25,7 +25,7 @@ public class LessonRepository extends SingleIdEntityRepository {
      * @return 
      */
     public Lesson findLessonByTitle(String title) {
-        TypedQuery query = this.getEntityManager().createQuery("SELECT l FROM "
+        TypedQuery<Lesson> query = this.getEntityManager().createQuery("SELECT l FROM "
                 + "Lesson WHERE l.title = :parametername", 
                 this.getType()
         );

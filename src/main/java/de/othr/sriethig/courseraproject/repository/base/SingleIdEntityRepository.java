@@ -46,14 +46,6 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
 
     /**
      * 
-     * @param entityManager 
-     */
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    /**
-     * 
      * @return 
      */
     public Class<E> getType() {
@@ -74,7 +66,7 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
      */
     public void persist(List<E> entities) {
         for(E entity : entities) {
-            this.getEntityManager().persist(entity);
+            this.persist(entity);
         }
     }
     
@@ -118,5 +110,11 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> impl
         TypedQuery<E> allQuery = this.entityManager.createQuery(all);
 
         return (List<E>) allQuery.getResultList();
+    }
+    
+    public TypedQuery<E> createTypedQuery(String queryString) {
+        TypedQuery<E> query = this.entityManager.createQuery(queryString, 
+                this.type);
+        return query;
     }
 }

@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.repository;
 
+import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 import javax.persistence.TypedQuery;
 
@@ -14,10 +15,10 @@ import javax.persistence.TypedQuery;
  * @param <Long>
  * @param <Exam>
  */
-public class ExamRepository<Long, Exam> extends SingleIdEntityRepository {
+public class ExamRepository extends SingleIdEntityRepository<Long, Exam> {
     
-    public ExamRepository(Class type) {
-        super(type);
+    public ExamRepository() {
+        super(Exam.class);
     }
     
     /**
@@ -26,7 +27,7 @@ public class ExamRepository<Long, Exam> extends SingleIdEntityRepository {
      * @return 
      */
     public Exam findExamByTitle(String title) {
-        TypedQuery query = this.getEntityManager().createQuery("SELECT e FROM "
+        TypedQuery<Exam> query = this.getEntityManager().createQuery("SELECT e FROM "
                 + "Exam WHERE e.title = :parametername", 
                 this.getType()
         );

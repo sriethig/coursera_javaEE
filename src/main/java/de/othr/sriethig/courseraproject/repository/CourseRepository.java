@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.repository;
 
+import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -12,13 +13,12 @@ import javax.persistence.TypedQuery;
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <Course>
  */
-public class CourseRepository<Long, Course> extends SingleIdEntityRepository {
+
+public class CourseRepository extends SingleIdEntityRepository<Long, Course> {
     
-    public CourseRepository(Class type) {
-        super(type);
+    public CourseRepository() {
+        super(Course.class);
     }
     
     /**
@@ -27,7 +27,7 @@ public class CourseRepository<Long, Course> extends SingleIdEntityRepository {
      * @return 
      */
     public Course findCourseByTitle(String title) {
-        TypedQuery query = this.getEntityManager().createQuery("SELECT c FROM "
+        TypedQuery<Course> query = this.getEntityManager().createQuery("SELECT c FROM "
                 + "Courses WHERE c.title = :parametername", 
                 this.getType()
         );
@@ -42,7 +42,7 @@ public class CourseRepository<Long, Course> extends SingleIdEntityRepository {
      * @return 
      */
     public List<Course> findCoursesWithTag(String tag) {
-        TypedQuery query = this.getEntityManager().createQuery("SELECT c FROM "
+        TypedQuery<Course> query = this.getEntityManager().createQuery("SELECT c FROM "
                 + "Courses WHERE c.description LIKE :parametername", 
                 this.getType()
         );

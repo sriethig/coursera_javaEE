@@ -6,6 +6,7 @@
 package de.othr.sriethig.courseraproject.repository.base;
 
 import de.othr.sriethig.courseraproject.entity.Country;
+import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -18,10 +19,10 @@ import javax.transaction.Transactional;
  */
 
 @Transactional
-public abstract class StudentRepository<Long, Student> extends AbstractUserRepository {
+public abstract class StudentRepository extends AbstractUserRepository<Long, AbstractStudent> {
     
-    public StudentRepository(Class type) {
-        super(type);
+    public StudentRepository() {
+        super(AbstractStudent.class);
     }
     
     /**
@@ -30,13 +31,13 @@ public abstract class StudentRepository<Long, Student> extends AbstractUserRepos
      * @return 
      */
     //TODO: resolve country
-    public List<Student> findStudentByCountry(Country country) {
-        TypedQuery query = this.getEntityManager().createQuery("SELECT s FROM "
+    public List<AbstractStudent> findStudentByCountry(Country country) {
+        TypedQuery<AbstractStudent> query = this.getEntityManager().createQuery("SELECT s FROM "
             + "Student AS s WHERE s.country = :paramertername",
             this.getType()    
         );
         query.setParameter("parametername", country);
-        List<Student> students = query.getResultList();
+        List<AbstractStudent> students = query.getResultList();
         return students;
     }
 }

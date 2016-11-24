@@ -5,19 +5,18 @@
  */
 package de.othr.sriethig.courseraproject.repository;
 
-import de.othr.sriethig.courseraproject.entity.ExamResult;
+import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <ExamResult>
  */
-public class ExamResultRepository extends SingleIdEntityRepository<Long, ExamResult> {
+public class AddressRepository extends
+        SingleIdEntityRepository<Long, Address> {
     
-    public ExamResultRepository() {
-        super(ExamResult.class);
+    public AddressRepository() {
+        super(Address.class);
     }
     
 }

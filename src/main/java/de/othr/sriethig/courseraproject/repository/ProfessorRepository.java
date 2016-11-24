@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.repository;
 
+import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 
 /**
@@ -13,10 +14,10 @@ import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
  * @param <Long>
  * @param <Professor>
  */
-public class ProfessorRepository<Long, Professor> extends AbstractUserRepository {
+public class ProfessorRepository extends AbstractUserRepository<Long, Professor> {
     
-    public ProfessorRepository(Class type) {
-        super(type);
+    public ProfessorRepository() {
+        super(Professor.class);
     }
     
 }
