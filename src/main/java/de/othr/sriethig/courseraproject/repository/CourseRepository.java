@@ -27,11 +27,9 @@ public class CourseRepository extends SingleIdEntityRepository<Long, Course> {
      * @return 
      */
     public Course findCourseByTitle(String title) {
-        TypedQuery<Course> query = this.getEntityManager().createQuery("SELECT c FROM "
-                + "Courses WHERE c.title = :parametername", 
-                this.getType()
-        );
-        query.setParameter("parametername", title);
+        TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
+                + "Courses WHERE c.title = :1");
+        query.setParameter("1", title);
         Course course = (Course) query.getSingleResult();
         return course;
     }

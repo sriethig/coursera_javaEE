@@ -26,11 +26,9 @@ public class VideoWithTextRepository extends
      * @return 
      */
     public VideoWithText findVideoWithTextByTitle(String title) {
-        TypedQuery<VideoWithText> query = this.getEntityManager().createQuery("SELECT v FROM "
-                + "VideoWithText WHERE v.title = :parametername", 
-                this.getType() 
-        );
-        query.setParameter("parametername", title);
+        TypedQuery<VideoWithText> query = this.createTypedQuery("SELECT v FROM "
+                + "VideoWithText WHERE v.title = :1");
+        query.setParameter("1", title);
         VideoWithText videoWithText = (VideoWithText) query.getSingleResult();
         return videoWithText;
     }

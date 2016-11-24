@@ -19,9 +19,9 @@ import javax.persistence.ManyToOne;
 public class ExamResult extends SingleIdEntity {
     
     private List<String> answers;
-    //result of the exam: can reach from 0 to 100 points
-    //where 100 points is the best result
-    private int result;
+    //score of the exam: can reach from 0 to 100 points
+    //where 100 points is the best score
+    private int score;
     
     @ManyToOne
     private Exam exam;
@@ -69,17 +69,17 @@ public class ExamResult extends SingleIdEntity {
      * 
      * @return 
      */
-    public int getResult() {
-        return result;
+    public int getScore() {
+        return score;
     }
 
     /**
      * 
-     * result has to be between 0 and 100
-     * @param result
+     * score has to be between 0 and 100
+     * @param score
      */
-    public void setResult(int result) {
-        this.result = result;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     /**

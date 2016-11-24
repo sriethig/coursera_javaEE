@@ -25,11 +25,9 @@ public class LessonRepository extends SingleIdEntityRepository<Long, Lesson> {
      * @return 
      */
     public Lesson findLessonByTitle(String title) {
-        TypedQuery<Lesson> query = this.getEntityManager().createQuery("SELECT l FROM "
-                + "Lesson WHERE l.title = :parametername", 
-                this.getType()
-        );
-        query.setParameter("parametername", title);
+        TypedQuery<Lesson> query = this.createTypedQuery("SELECT l FROM "
+                + "Lesson WHERE l.title = :1");
+        query.setParameter("1", title);
         Lesson lesson = (Lesson) query.getSingleResult();
         return lesson;
     }

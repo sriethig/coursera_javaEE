@@ -11,8 +11,6 @@ import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <Professor>
  */
 public class ProfessorRepository extends AbstractUserRepository<Long, Professor> {
     

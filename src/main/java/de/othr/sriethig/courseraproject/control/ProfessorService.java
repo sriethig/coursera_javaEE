@@ -37,6 +37,26 @@ public class ProfessorService {
     
     /**
      * 
+     * @param professor
+     * @return 
+     */
+    public Professor registerProfessor(Professor professor) {
+        professorRepository.persist(professor);
+        return professor;
+    }    
+    
+    /**
+     * 
+     * @param professor
+     * @return 
+     */
+    //TODO
+    public Professor loginProfessor(Professor professor) {
+        return null;
+    }
+    
+    /**
+     * 
      * @param firstName
      * @return 
      */
@@ -55,26 +75,6 @@ public class ProfessorService {
         Professor professor = (Professor) abstractUserRepository
                 .findByName(name);
         return professor;
-    }
-    
-    /**
-     * 
-     * @param professor
-     * @return 
-     */
-    public Professor registerProfessor(Professor professor) {
-        professorRepository.persist(professor);
-        return professor;
-    }    
-    
-    /**
-     * 
-     * @param professor
-     * @return 
-     */
-    //TODO
-    public Professor loginProfessor(Professor professor) {
-        return null;
     }
      
     /**

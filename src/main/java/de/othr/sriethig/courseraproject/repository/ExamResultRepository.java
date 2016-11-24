@@ -11,8 +11,6 @@ import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <ExamResult>
  */
 public class ExamResultRepository extends SingleIdEntityRepository<Long, ExamResult> {
     

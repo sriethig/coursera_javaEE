@@ -155,7 +155,7 @@ public class CourseService {
      */
     public List<Lesson> addLesson(Course course, Lesson lesson) {
         course = (Course) courseRepository.merge(course);
-        lesson = (Lesson) courseRepository.merge(lesson);
+        lesson = (Lesson) lessonRepository.merge(lesson);
         
         List<Lesson> lessons = (List) course.getLessons();
         if(!lessons.contains(lesson)) {
@@ -172,7 +172,7 @@ public class CourseService {
      */
     public List<Lesson> removeLesson(Course course, Lesson lesson) {
         course = (Course) courseRepository.merge(course);
-        lesson = (Lesson) courseRepository.merge(lesson);
+        lesson = (Lesson) lessonRepository.merge(lesson);
         
         List<Lesson> lessons = (List) course.getLessons();
         if(lessons.contains(lesson)) {

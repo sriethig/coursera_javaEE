@@ -126,19 +126,24 @@ public class ExamService {
         return results;
     }
     
-    //TODO statistics function -> lambda?!
-    /*public HashMap<String, Double> getExamStatistics(Exam exam) {
+    public HashMap<String, Double> getExamStatistics(Exam exam) {
         exam = (Exam) examRepository.merge(exam);
         List<ExamResult> results = (List) exam.getResults();
         
         List<Integer> singleResults = new ArrayList<>();
         for(ExamResult result : results) {
-            singleResults.add(result.getResult());
+            singleResults.add(result.getScore());
         }
         
         HashMap<String, Double> statistics = new HashMap<>();
-        //statistics.add("Average", singleResults.stream().mapToDouble(a->a.average()));
-    }*/
+        statistics.put("Average", singleResults.stream().mapToDouble(a->a)
+                .average().getAsDouble());
+        statistics.put("Min", singleResults.stream().mapToDouble(a->a)
+                .min().getAsDouble());
+        statistics.put("Max", singleResults.stream().mapToDouble(a->a)
+                .max().getAsDouble());
+        return statistics;
+    }
     
     /**
      * 
