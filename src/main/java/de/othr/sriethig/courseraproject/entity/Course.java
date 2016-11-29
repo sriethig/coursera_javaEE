@@ -20,8 +20,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Course extends SingleIdEntity {
 
-    private String courseTitle;
-    private String courseDescription;
+    private String title;
+    private String description;
     
     @ManyToOne
     private Professor professor;
@@ -42,36 +42,34 @@ public class Course extends SingleIdEntity {
      * 
      * @return 
      */
-    public String getCourseTitle() {
-        return courseTitle;
+    public String getTitle() {
+        return title;
     }
 
     /**
      * 
-     * @param courseTitle 
+     * @param title 
      */
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
      * 
      * @return 
      */
-    public String getCourseDescription() {
-        return courseDescription;
+    public String getDescription() {
+        return description;
     }
 
     /**
      * 
-     * @param courseDescription 
+     * @param description 
      */
-    public void setCourseDescription(String courseDescription) {
-        this.courseDescription = courseDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
     
-    
-
     /**
      * 
      * @return 
@@ -103,14 +101,6 @@ public class Course extends SingleIdEntity {
     public void setStudents(Collection<AbstractStudent> students) {
         this.students = students;
     }
-    
-    /**
-     * 
-     * @param student 
-     */
-    public void addStudent(AbstractStudent student) {
-        this.students.add(student);
-    }
 
     /**
      * 
@@ -126,14 +116,6 @@ public class Course extends SingleIdEntity {
      */
     public void setLessons(Collection<Lesson> lessons) {
         this.lessons = lessons;
-    }
-    
-    /**
-     * 
-     * @param lesson 
-     */
-    public void addLesson(Lesson lesson) {
-        this.lessons.add(lesson);
     }
     
 }

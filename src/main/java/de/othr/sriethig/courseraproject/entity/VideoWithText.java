@@ -7,9 +7,6 @@ package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
@@ -19,8 +16,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class VideoWithText extends SingleIdEntity {
 
-    private String title;
-    
+    private String title;  
     private String description;
     private String url;
     

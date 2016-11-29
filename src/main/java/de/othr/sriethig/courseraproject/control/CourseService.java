@@ -68,25 +68,25 @@ public class CourseService {
     /**
      * 
      * @param course
-     * @param courseTitle
+     * @param title
      * @return 
      */
-    public Course updateCourseTitle(Course course, String courseTitle) {
+    public Course updateCourseTitle(Course course, String title) {
         course = (Course) courseRepository.merge(course);
-        course.setCourseTitle(courseTitle);
+        course.setTitle(title);
         return course;
     }
     
     /**
      * 
      * @param course
-     * @param courseDescription
+     * @param description
      * @return 
      */
     public Course updateCourseDescription(Course course, 
-            String courseDescription) {
+            String description) {
         course = (Course) courseRepository.merge(course);
-        course.setCourseTitle(courseDescription);
+        course.setDescription(description);
         return course;
     }
     

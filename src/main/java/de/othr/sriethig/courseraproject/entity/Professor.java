@@ -41,5 +41,4 @@ public class Professor extends AbstractUser {
     public void setCourses(Collection<Course> courses) {
         this.courses = courses;
     }
-    
 }

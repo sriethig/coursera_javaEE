@@ -43,7 +43,7 @@ public class Exam extends SingleIdEntity {
 
     /**
      * 
-     * @param examTitle 
+     * @param title 
      */
     public void setTitle(String title) {
         this.title = title;
@@ -63,14 +63,6 @@ public class Exam extends SingleIdEntity {
      */
     public void setQuestion(List<String> questions) {
         this.questions = questions;
-    }
-    
-    /**
-     * 
-     * @param question 
-     */
-    public void addQuestion(String question) {
-        this.questions.add(question);
     }
 
     /**
@@ -104,4 +96,5 @@ public class Exam extends SingleIdEntity {
     public void setResults(Collection<ExamResult> results) {
         this.results = results;
     }
+    
 }
