@@ -9,6 +9,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Lesson.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/ExamRepository.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/AddressRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/ExamResultRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/ProfessorRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/SNStudent.java

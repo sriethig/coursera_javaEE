@@ -9,6 +9,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
@@ -16,50 +20,14 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractStudent extends AbstractUser {
     
     @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST})
-    private Collection<Course> courses;
+    @Getter @Setter private Collection<Course> courses;
     
     @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST})
-    private Collection<ExamResult> results;
-    
-    /**
-     * 
-     */
-    public AbstractStudent() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Collection<Course> getCourses() {
-        return courses;
-    }
-
-    /**
-     * 
-     * @param courses 
-     */
-    public void setCourses(Collection<Course> courses) {
-        this.courses = courses;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Collection<ExamResult> getResults() {
-        return results;
-    }
-
-    /**
-     * 
-     * @param results 
-     */
-    public void setResults(Collection<ExamResult> results) {
-        this.results = results;
-    }
+    @Getter @Setter private Collection<ExamResult> results;
     
 }

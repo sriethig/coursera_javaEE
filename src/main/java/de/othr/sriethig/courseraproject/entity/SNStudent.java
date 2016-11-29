@@ -7,6 +7,8 @@ package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -15,22 +17,6 @@ import javax.persistence.Entity;
 @Entity
 public class SNStudent extends AbstractStudent {
     
-    private String socialMediaId;
-
-    /**
-     * 
-     * @return 
-     */
-    public String getSocialMediaId() {
-        return socialMediaId;
-    }
-
-    /**
-     * 
-     * @param socialMediaId 
-     */
-    public void setSocialMediaId(String socialMediaId) {
-        this.socialMediaId = socialMediaId;
-    }
+    @Getter @Setter private String socialMediaId;
 
 }

@@ -4,6 +4,7 @@ de/othr/sriethig/courseraproject/entity/VideoWithText_.class
 de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
 de/othr/sriethig/courseraproject/entity/Address.class
 de/othr/sriethig/courseraproject/entity/Professor_.class
+de/othr/sriethig/courseraproject/repository/AddressRepository.class
 de/othr/sriethig/courseraproject/entity/VideoWithText.class
 de/othr/sriethig/courseraproject/entity/ExamResult.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class

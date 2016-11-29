@@ -12,89 +12,27 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author sonja
  */
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Exam extends SingleIdEntity {
 
-    private String title;
-    
-    private List<String> questions;
+    @Getter @Setter private String title;    
+    @Getter @Setter private List<String> questions;
     
     @OneToOne(mappedBy="exam", cascade={CascadeType.PERSIST})
-    private Lesson lesson;
+    @Getter @Setter private Lesson lesson;
     
     @OneToMany(mappedBy="exam", cascade={CascadeType.PERSIST})
-    private Collection<ExamResult> results;
-
-    public Exam() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * 
-     * @param title 
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public List<String> getQuestions() {
-        return questions;
-    }
-
-    /**
-     * 
-     * @param questions 
-     */
-    public void setQuestion(List<String> questions) {
-        this.questions = questions;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Lesson getLesson() {
-        return lesson;
-    }
-
-    /**
-     * 
-     * @param lesson 
-     */
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Collection<ExamResult> getResults() {
-        return results;
-    }
-
-    /**
-     * 
-     * @param results 
-     */
-    public void setResults(Collection<ExamResult> results) {
-        this.results = results;
-    }
+    @Getter @Setter private Collection<ExamResult> results;
     
 }

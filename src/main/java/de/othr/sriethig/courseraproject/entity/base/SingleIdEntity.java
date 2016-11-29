@@ -10,6 +10,8 @@ import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -19,23 +21,9 @@ import javax.persistence.MappedSuperclass;
 abstract public class SingleIdEntity<T> implements Serializable {
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private T Id;
-
-    /**
-     * 
-     * @return 
-     */
-    public T getId() {
-        return Id;
-    }
-
-    /**
-     * 
-     * @param Id 
-     */
-    public void setId(T Id) {
-        this.Id = Id;
-    }
 
     /**
      * 

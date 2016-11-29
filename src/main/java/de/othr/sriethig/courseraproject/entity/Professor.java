@@ -9,36 +9,21 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author sonja
  */
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Professor extends AbstractUser {
 
     @OneToMany(mappedBy="professor")
-    private Collection<Course> courses;
-
-    /**
-     * 
-     */
-    public Professor() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Collection<Course> getCourses() {
-        return courses;
-    }
-
-    /**
-     * 
-     * @param courses 
-     */
-    public void setCourses(Collection<Course> courses) {
-        this.courses = courses;
-    }
+    @Getter @Setter private Collection<Course> courses;
+    
 }

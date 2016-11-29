@@ -11,6 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -18,68 +22,14 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractUser extends SingleIdEntity {
     
-    private String firstName;
-    private String name;
+    @Getter @Setter private String firstName;
+    @Getter @Setter private String name;
     
     @OneToOne(cascade = {CascadeType.PERSIST})
-    private Address address;
+    @Getter @Setter private Address address;
 
-    /**
-     * 
-     */
-    public AbstractUser() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * 
-     * @param firstName 
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 
-     * @param name 
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * 
-     * @param address 
-     */
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-    
-    
-    
 }

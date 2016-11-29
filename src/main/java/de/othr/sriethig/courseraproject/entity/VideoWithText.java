@@ -8,88 +8,25 @@ package de.othr.sriethig.courseraproject.entity;
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author sonja
  */
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class VideoWithText extends SingleIdEntity {
 
-    private String title;  
-    private String description;
-    private String url;
+    @Getter @Setter private String title;  
+    @Getter @Setter private String description;
+    @Getter @Setter private String url;
     
     @OneToOne(mappedBy="videoWithText")
-    private Lesson lesson;
+    @Getter @Setter private Lesson lesson;
 
-    /**
-     * 
-     */
-    public VideoWithText() {
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * 
-     * @param title 
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * 
-     * @param description 
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * 
-     * @param url 
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public Lesson getLesson() {
-        return lesson;
-    }
-
-    /**
-     * 
-     * @param lesson 
-     */
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    } 
 }
