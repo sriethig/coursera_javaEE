@@ -24,8 +24,8 @@ import lombok.NoArgsConstructor;
  * @author sonja
  */
 @SessionScoped
-@Transactional
 @NoArgsConstructor
+@Transactional(Transactional.TxType.REQUIRED)
 public class CourseService implements Serializable {
     
     @Inject

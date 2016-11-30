@@ -19,7 +19,8 @@
                              value="#{loginModel.password}"/>
                 <b:commandButton look="primary btn-block" 
                                  value="Sign In" icon="log-in" 
-                                 size="lg"/>
+                                 size="lg" 
+                                 action="#{loginModel.login()}"/>
             </h:form>
         </b:container>
         
@@ -29,6 +30,10 @@
                                  value="Testaccount" 
                                  icon="log-in" size="lg"
                                  action="#{loginModel.loginWithTestAccount()}"/>
+                <b:commandButton look="defaul btn-block"
+                                 value="Prof Test"
+                                 size="lg"
+                                 action="#{loginModel.testAllProfessors()}" />
             </h:form>
         </b:container>
     </h:body>

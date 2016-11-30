@@ -6,9 +6,11 @@
 package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Professor;
-import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
+import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -16,10 +18,20 @@ import javax.enterprise.context.SessionScoped;
  */
 @SessionScoped
 public class ProfessorRepository extends 
-        AbstractUserRepository<Professor> implements Serializable {
+        SingleIdEntityRepository<Long, Professor> implements Serializable {
     
     public ProfessorRepository() {
         super(Professor.class);
     }
     
+    /**
+     * 
+     * @return 
+     */
+    public List<Professor> getAllProfessors() {
+        TypedQuery<Professor> query = this.createTypedQuery("SELECT p FROM "
+                + "Professor AS p");
+        List<Professor> professors = query.getResultList();
+        return professors;
+    }
 }

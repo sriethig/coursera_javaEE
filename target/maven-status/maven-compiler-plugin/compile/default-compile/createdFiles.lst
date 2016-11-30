@@ -1,4 +1,5 @@
 de/othr/sriethig/courseraproject/boundary/DummyDataServlet.class
+de/othr/sriethig/courseraproject/control/StudentService.class
 de/othr/sriethig/courseraproject/entity/SNStudent.class
 de/othr/sriethig/courseraproject/entity/VideoWithText_.class
 de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
@@ -7,13 +8,13 @@ de/othr/sriethig/courseraproject/control/LoginService.class
 de/othr/sriethig/courseraproject/entity/Professor_.class
 de/othr/sriethig/courseraproject/repository/AddressRepository.class
 de/othr/sriethig/courseraproject/entity/VideoWithText.class
+de/othr/sriethig/courseraproject/repository/StudentRepository.class
 de/othr/sriethig/courseraproject/entity/ExamResult.class
 de/othr/sriethig/courseraproject/model/LoginModel.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class
 de/othr/sriethig/courseraproject/repository/ExamResultRepository.class
 de/othr/sriethig/courseraproject/repository/LessonRepository.class
 de/othr/sriethig/courseraproject/entity/ExamResult_.class
-de/othr/sriethig/courseraproject/repository/SCStudentRepository.class
 de/othr/sriethig/courseraproject/entity/Exam.class
 de/othr/sriethig/courseraproject/repository/base/SingleIdEntityRepository.class
 de/othr/sriethig/courseraproject/control/LessonService.class
@@ -25,10 +26,8 @@ de/othr/sriethig/courseraproject/entity/Professor.class
 de/othr/sriethig/courseraproject/repository/VideoWithTextRepository.class
 de/othr/sriethig/courseraproject/entity/Course.class
 de/othr/sriethig/courseraproject/repository/CourseRepository.class
-de/othr/sriethig/courseraproject/control/AbstractStudentService.class
 de/othr/sriethig/courseraproject/entity/Course_.class
 de/othr/sriethig/courseraproject/entity/Lesson.class
-de/othr/sriethig/courseraproject/repository/base/StudentRepository.class
 de/othr/sriethig/courseraproject/entity/SNStudent_.class
 de/othr/sriethig/courseraproject/entity/Address_.class
 de/othr/sriethig/courseraproject/repository/ProfessorRepository.class

@@ -10,18 +10,35 @@ import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 /**
  *
  * @author sonja
  */
-@Transactional
-public abstract class AbstractUserRepository<T extends AbstractUser> extends 
-        SingleIdEntityRepository<Long, T> implements Serializable {
+@SessionScoped
+public class AbstractUserRepository extends 
+        SingleIdEntityRepository<Long, AbstractUser> implements Serializable {
     
-    public AbstractUserRepository(Class<T> type) {
-        super(type);
+    public AbstractUserRepository() {
+        super(AbstractUser.class);
+    }
+    
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return 
+     */
+    public AbstractUser authenticateAbstractUser(String email, String password) {
+        System.out.println("in authenticate(AbstractUser)");
+        TypedQuery<AbstractUser> query = this.createTypedQuery(
+                "SELECT u FROM AbstractUser AS u WHERE u.email = :parameter1 AND "
+                        + "u.password = :parameter2"
+        );
+        query.setParameter("parameter1", email);
+        query.setParameter("parameter2", password);
+        AbstractUser abstractUser = query.getSingleResult();
+        return abstractUser;
     }
     
     /**

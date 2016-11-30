@@ -5,7 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.boundary;
 
-import de.othr.sriethig.courseraproject.control.AbstractStudentService;
+import de.othr.sriethig.courseraproject.control.StudentService;
 import de.othr.sriethig.courseraproject.control.CourseService;
 import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Address;
@@ -42,7 +42,7 @@ public class DummyDataServlet extends HttpServlet {
      */
     
     @Inject
-    AbstractStudentService abstractStudentService;
+    StudentService studentService;
     
     @Inject
     CourseService courseService;
@@ -86,7 +86,7 @@ public class DummyDataServlet extends HttpServlet {
                 s.setPassword(firstNames[i]);
                 s.setAddress(new Address("Galgenbergstr. " + i, 93049, 
                         "Regensburg", Country.GER));
-                abstractStudentService.registerStudent(s);
+                studentService.registerStudent(s);
             }
                         
             String[] courseTitles = {
@@ -116,17 +116,19 @@ public class DummyDataServlet extends HttpServlet {
             String profFirstNames[] = {
                 "David",
                 "Mark",
-                "Flo"
+                "Flo",
+                "test"
             };
             String profNames[] = {
                 "Obst",
                 "Busch",
-                "Yd"
+                "Yd", 
+                "prof"
             };
             for(int i = 0; i < profFirstNames.length; i++) {
                 Professor p = new Professor();
                 p.setFirstName(profFirstNames[i]);
-                p.setFirstName(profNames[i]);
+                p.setName(profNames[i]);
                 p.setAddress(new Address("Gelehrtengasse " + i, 93049, 
                         "Regensburg", Country.GER));
                 p.setEmailAddress(profFirstNames[i] + "." + profNames[i] +

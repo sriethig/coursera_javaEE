@@ -5,12 +5,13 @@
  */
 package de.othr.sriethig.courseraproject.control;
 
-import de.othr.sriethig.courseraproject.repository.SCStudentRepository;
+import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
+import de.othr.sriethig.courseraproject.repository.StudentRepository;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
+import javax.transaction.Transactional;
 import lombok.NoArgsConstructor;
 
 /**
@@ -19,10 +20,14 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @SessionScoped
+@Transactional(Transactional.TxType.REQUIRED)
 public class LoginService implements Serializable {
     
     @Inject
-    SCStudentRepository scStudentRepository;
+    AbstractUserRepository abstractUserRepository;
+    
+    @Inject
+    StudentRepository studentRepository;
     
     /**
      * 
@@ -30,9 +35,13 @@ public class LoginService implements Serializable {
      * @param password
      * @return 
      */
-    public boolean authenticateStudent(String emailAddress, String password) {
-        
-           return true;
+    public AbstractUser authenticate(String emailAddress, String password) {
+        System.out.println("in authenticate(LoginService)");
+        AbstractUser abstractUser = 
+                (AbstractUser)abstractUserRepository.authenticateAbstractUser(
+                        emailAddress, password
+                );
+        return abstractUser;
     }
     
 }

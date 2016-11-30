@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-30T20:25:38")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-30T22:01:50")
 @StaticMetamodel(AbstractStudent.class)
 public abstract class AbstractStudent_ extends AbstractUser_ {
 

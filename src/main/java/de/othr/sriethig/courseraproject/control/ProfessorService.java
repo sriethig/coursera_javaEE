@@ -9,7 +9,6 @@ import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
-import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -24,8 +23,8 @@ import lombok.NoArgsConstructor;
  * @author sonja
  */
 @SessionScoped
-@Transactional
 @NoArgsConstructor
+@Transactional(Transactional.TxType.REQUIRED)
 public class ProfessorService implements Serializable {
     
     @Inject
@@ -49,6 +48,11 @@ public class ProfessorService implements Serializable {
     //TODO
     public Professor loginProfessor(Professor professor) {
         return null;
+    }
+    
+    public List<Professor> getProfessors() {
+        List<Professor> professors = professorRepository.getAllProfessors();
+        return professors;
     }
      
     /**
