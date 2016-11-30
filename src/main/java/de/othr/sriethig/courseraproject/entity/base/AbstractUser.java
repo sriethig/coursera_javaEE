@@ -31,5 +31,8 @@ public abstract class AbstractUser extends SingleIdEntity {
     
     @OneToOne(cascade = {CascadeType.PERSIST})
     @Getter @Setter private Address address;
+    
+    @Getter @Setter private String emailAddress;
+    @Getter @Setter private String password;
 
 }

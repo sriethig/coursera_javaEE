@@ -7,15 +7,17 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
 
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <Exam>
  */
-public class ExamRepository extends SingleIdEntityRepository<Long, Exam> {
+@SessionScoped
+public class ExamRepository extends 
+        SingleIdEntityRepository<Long, Exam> implements Serializable {
     
     public ExamRepository() {
         super(Exam.class);

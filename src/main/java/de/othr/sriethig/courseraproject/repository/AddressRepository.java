@@ -7,13 +7,16 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author sonja
  */
+@RequestScoped
 public class AddressRepository extends
-        SingleIdEntityRepository<Long, Address> {
+        SingleIdEntityRepository<Long, Address> implements Serializable {
     
     public AddressRepository() {
         super(Address.class);

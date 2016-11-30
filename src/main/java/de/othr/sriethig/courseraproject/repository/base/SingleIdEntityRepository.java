@@ -21,7 +21,8 @@ import javax.persistence.criteria.Root;
  * @param <K>
  * @param <E>
  */
-public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> implements Serializable {
+public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity> 
+        implements Serializable {
     
     @PersistenceContext(unitName="courseraPU")
     private EntityManager entityManager;

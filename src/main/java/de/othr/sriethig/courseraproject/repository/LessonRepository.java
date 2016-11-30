@@ -7,13 +7,17 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
 
 /**
  *
  * @author sonja
  */
-public class LessonRepository extends SingleIdEntityRepository<Long, Lesson> {
+@SessionScoped
+public class LessonRepository extends 
+        SingleIdEntityRepository<Long, Lesson> implements Serializable {
     
     public LessonRepository() {
         super(Lesson.class);

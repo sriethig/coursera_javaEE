@@ -7,12 +7,16 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.ExamResult;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author sonja
  */
-public class ExamResultRepository extends SingleIdEntityRepository<Long, ExamResult> {
+@RequestScoped
+public class ExamResultRepository extends 
+        SingleIdEntityRepository<Long, ExamResult> implements Serializable {
     
     public ExamResultRepository() {
         super(ExamResult.class);

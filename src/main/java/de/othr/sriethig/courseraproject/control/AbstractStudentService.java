@@ -11,7 +11,7 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
-import de.othr.sriethig.courseraproject.repository.base.StudentRepository;
+import de.othr.sriethig.courseraproject.repository.base.AbstractStudentRepository;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -21,10 +21,10 @@ import javax.transaction.Transactional;
  * @author sonja
  */
 @Transactional
-public class StudentService {
+public class AbstractStudentService {
     
     @Inject
-    StudentRepository studentRepository;
+    AbstractStudentRepository studentRepository;
     
     @Inject 
     AbstractUserRepository abstractUserRepository;
@@ -35,7 +35,7 @@ public class StudentService {
     /**
      * 
      */
-    public StudentService() {   
+    public AbstractStudentService() {   
     }
     
     /**

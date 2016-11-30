@@ -7,12 +7,16 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author sonja
  */
-public class ProfessorRepository extends AbstractUserRepository<Long, Professor> {
+@SessionScoped
+public class ProfessorRepository extends 
+        AbstractUserRepository<Long, Professor> implements Serializable {
     
     public ProfessorRepository() {
         super(Professor.class);

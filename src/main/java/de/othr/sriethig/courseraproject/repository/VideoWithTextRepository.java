@@ -7,14 +7,17 @@ package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.VideoWithText;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.TypedQuery;
 
 /**
  *
  * @author sonja
  */
+@RequestScoped
 public class VideoWithTextRepository extends
-        SingleIdEntityRepository<Long, VideoWithText> {
+        SingleIdEntityRepository<Long, VideoWithText> implements Serializable {
     
     public VideoWithTextRepository() {
         super(VideoWithText.class);

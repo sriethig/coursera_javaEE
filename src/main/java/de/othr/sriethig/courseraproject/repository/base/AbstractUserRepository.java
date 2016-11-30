@@ -5,22 +5,23 @@
  */
 package de.othr.sriethig.courseraproject.repository.base;
 
+import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
+import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <AbstractUser>
  */
 @Transactional
-public abstract class AbstractUserRepository<Long, AbstractUser> extends 
-        SingleIdEntityRepository {
+public abstract class AbstractUserRepository<Long, U extends AbstractUser> extends 
+        SingleIdEntityRepository implements Serializable {
     
-    public AbstractUserRepository(Class type) {
-        super(type);
+    public AbstractUserRepository() {
+        super(AbstractUser.class);
     }
     
     /**

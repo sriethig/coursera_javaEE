@@ -13,7 +13,4 @@ import lombok.Setter;
 @Entity
 public class SCStudent extends AbstractStudent {
     
-    @Getter @Setter private String emailAddress;
-    @Getter @Setter private String password;
-    
 }

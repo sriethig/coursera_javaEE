@@ -5,14 +5,8 @@
  */
 package de.othr.sriethig.courseraproject.boundary;
 
-import de.othr.sriethig.courseraproject.control.StudentService;
-import de.othr.sriethig.courseraproject.entity.SCStudent;
-import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
-import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

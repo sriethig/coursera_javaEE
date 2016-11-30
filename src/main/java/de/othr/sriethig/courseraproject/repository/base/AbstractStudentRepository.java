@@ -7,21 +7,22 @@ package de.othr.sriethig.courseraproject.repository.base;
 
 import de.othr.sriethig.courseraproject.entity.Country;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
+import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 /**
  *
  * @author sonja
- * @param <Long>
- * @param <Student>
  */
-
+@SessionScoped
 @Transactional
-public abstract class StudentRepository extends AbstractUserRepository<Long, AbstractStudent> {
+public abstract class AbstractStudentRepository extends 
+        AbstractUserRepository<Long, AbstractStudent> implements Serializable {
     
-    public StudentRepository() {
+    public AbstractStudentRepository() {
         super(AbstractStudent.class);
     }
     
