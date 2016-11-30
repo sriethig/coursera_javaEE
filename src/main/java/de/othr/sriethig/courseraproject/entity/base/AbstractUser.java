@@ -21,7 +21,7 @@ import lombok.Setter;
  * @author sonja
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AbstractUser extends SingleIdEntity {

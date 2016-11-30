@@ -30,14 +30,14 @@ public class AbstractUserRepository extends
      * @return 
      */
     public AbstractUser authenticateAbstractUser(String email, String password) {
-        System.out.println("in authenticate(AbstractUser)");
+        System.out.println("in authenticate(AbstractUserRepo)");
         TypedQuery<AbstractUser> query = this.createTypedQuery(
-                "SELECT u FROM AbstractUser AS u WHERE u.email = :parameter1 AND "
-                        + "u.password = :parameter2"
+                "SELECT u FROM AbstractUser u WHERE u.name LIKE :parameter"
         );
-        query.setParameter("parameter1", email);
-        query.setParameter("parameter2", password);
-        AbstractUser abstractUser = query.getSingleResult();
+        query.setParameter("parameter", "Obst");
+        System.out.println("query fired");
+        AbstractUser abstractUser = query.getResultList().get(0);
+        System.out.println("result: " + abstractUser.getEmailAddress());
         return abstractUser;
     }
     
