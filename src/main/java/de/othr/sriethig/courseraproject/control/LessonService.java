@@ -9,21 +9,23 @@ import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.VideoWithText;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author sonja
  */
+@SessionScoped
 @Transactional
-public class LessonService {
+@NoArgsConstructor
+public class LessonService implements Serializable {
     
     @Inject 
     LessonRepository lessonRepository;
-    
-    public LessonService() {
-    }
     
     /**
      * 

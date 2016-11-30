@@ -1,4 +1,4 @@
-de/othr/sriethig/courseraproject/repository/base/AbstractStudentRepository.class
+de/othr/sriethig/courseraproject/boundary/DummyDataServlet.class
 de/othr/sriethig/courseraproject/entity/SNStudent.class
 de/othr/sriethig/courseraproject/entity/VideoWithText_.class
 de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
@@ -28,6 +28,7 @@ de/othr/sriethig/courseraproject/repository/CourseRepository.class
 de/othr/sriethig/courseraproject/control/AbstractStudentService.class
 de/othr/sriethig/courseraproject/entity/Course_.class
 de/othr/sriethig/courseraproject/entity/Lesson.class
+de/othr/sriethig/courseraproject/repository/base/StudentRepository.class
 de/othr/sriethig/courseraproject/entity/SNStudent_.class
 de/othr/sriethig/courseraproject/entity/Address_.class
 de/othr/sriethig/courseraproject/repository/ProfessorRepository.class

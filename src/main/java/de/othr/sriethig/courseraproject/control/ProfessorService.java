@@ -10,9 +10,12 @@ import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
+import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.NoArgsConstructor;
 
 //TODO: maybe add an abstract class for person (register, login, update params)
 
@@ -20,20 +23,13 @@ import javax.transaction.Transactional;
  *
  * @author sonja
  */
+@SessionScoped
 @Transactional
-public class ProfessorService {
+@NoArgsConstructor
+public class ProfessorService implements Serializable {
     
     @Inject
     ProfessorRepository professorRepository;
-    
-    @Inject
-    AbstractUserRepository abstractUserRepository;
-    
-    /**
-     * 
-     */
-    public ProfessorService() {
-    }
     
     /**
      * 
@@ -53,28 +49,6 @@ public class ProfessorService {
     //TODO
     public Professor loginProfessor(Professor professor) {
         return null;
-    }
-    
-    /**
-     * 
-     * @param firstName
-     * @return 
-     */
-    public Professor findProfessorByFirstName(String firstName) {
-        Professor professor = (Professor) abstractUserRepository
-                .findByFirstName(firstName);
-        return professor;
-    }
-    
-    /**
-     * 
-     * @param name
-     * @return 
-     */
-    public Professor findProfessorByName(String name) {
-        Professor professor = (Professor) abstractUserRepository
-                .findByName(name);
-        return professor;
     }
      
     /**

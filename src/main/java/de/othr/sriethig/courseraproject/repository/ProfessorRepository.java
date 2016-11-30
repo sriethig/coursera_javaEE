@@ -16,7 +16,7 @@ import javax.enterprise.context.SessionScoped;
  */
 @SessionScoped
 public class ProfessorRepository extends 
-        AbstractUserRepository<Long, Professor> implements Serializable {
+        AbstractUserRepository<Professor> implements Serializable {
     
     public ProfessorRepository() {
         super(Professor.class);

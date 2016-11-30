@@ -11,32 +11,28 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
-import de.othr.sriethig.courseraproject.repository.base.AbstractStudentRepository;
+import de.othr.sriethig.courseraproject.repository.base.StudentRepository;
+import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author sonja
  */
+@SessionScoped
 @Transactional
-public class AbstractStudentService {
+@NoArgsConstructor
+public class AbstractStudentService implements Serializable {
     
     @Inject
-    AbstractStudentRepository studentRepository;
-    
-    @Inject 
-    AbstractUserRepository abstractUserRepository;
+    StudentRepository studentRepository;
     
     @Inject
     CourseRepository courseRepository;
-    
-    /**
-     * 
-     */
-    public AbstractStudentService() {   
-    }
     
     /**
      * 
@@ -56,26 +52,6 @@ public class AbstractStudentService {
     //TODO
     public AbstractStudent loginStudent(AbstractStudent student) {
         return null;
-    }
-    
-    /**
-     * 
-     * @param firstName
-     * @return 
-     */
-    public List<AbstractUser> findStudentByFirstName(String firstName) {
-        List<AbstractUser> students = abstractUserRepository.findByFirstName(firstName);
-        return students;
-    }
-    
-    /**
-     * 
-     * @param name
-     * @return 
-     */
-    public List<AbstractUser> findStudentByName(String name) {
-        List<AbstractUser> students = abstractUserRepository.findByName(name);
-        return students;
     }
     
     /**

@@ -5,6 +5,9 @@
  */
 package de.othr.sriethig.courseraproject.boundary;
 
+import de.othr.sriethig.courseraproject.control.AbstractStudentService;
+import de.othr.sriethig.courseraproject.control.CourseService;
+import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Country;
 import de.othr.sriethig.courseraproject.entity.Course;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,8 +40,19 @@ public class DummyDataServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    @Inject
+    AbstractStudentService abstractStudentService;
+    
+    @Inject
+    CourseService courseService;
+    
+    @Inject
+    ProfessorService professorService;
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -62,7 +77,6 @@ public class DummyDataServlet extends HttpServlet {
                 "Portman",
                 "Weise"
             };
-            String[] emails;
             for(int i = 0; i < firstNames.length; i++) {
                 SCStudent s = new SCStudent();
                 s.setFirstName(firstNames[i]);
@@ -72,6 +86,7 @@ public class DummyDataServlet extends HttpServlet {
                 s.setPassword(firstNames[i]);
                 s.setAddress(new Address("Galgenbergstr. " + i, 93049, 
                         "Regensburg", Country.GER));
+                abstractStudentService.registerStudent(s);
             }
                         
             String[] courseTitles = {
@@ -95,6 +110,7 @@ public class DummyDataServlet extends HttpServlet {
                 c.setTitle(courseTitles[i]);
                 c.setDescription(courseDescriptions[i]);
                 courses.add(c);
+                courseService.createCourse(c);
             }
             
             String profFirstNames[] = {
@@ -117,6 +133,7 @@ public class DummyDataServlet extends HttpServlet {
                         "@oth-regensburg.de");
                 p.setPassword(profFirstNames[i]);
                 p.setCourses(courses.subList(i, i));
+                professorService.registerProfessor(p);
             }
             
             out.println("<h1>Servlet DummyDataServlet at " + request.getContextPath() + "</h1>");

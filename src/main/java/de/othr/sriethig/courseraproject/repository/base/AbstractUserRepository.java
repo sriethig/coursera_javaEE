@@ -17,11 +17,11 @@ import javax.transaction.Transactional;
  * @author sonja
  */
 @Transactional
-public abstract class AbstractUserRepository<Long, U extends AbstractUser> extends 
-        SingleIdEntityRepository implements Serializable {
+public abstract class AbstractUserRepository<T extends AbstractUser> extends 
+        SingleIdEntityRepository<Long, T> implements Serializable {
     
-    public AbstractUserRepository() {
-        super(AbstractUser.class);
+    public AbstractUserRepository(Class<T> type) {
+        super(type);
     }
     
     /**

@@ -12,16 +12,21 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
+import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author sonja
  */
+@SessionScoped
 @Transactional
-public class CourseService {
+@NoArgsConstructor
+public class CourseService implements Serializable {
     
     @Inject
     CourseRepository courseRepository;

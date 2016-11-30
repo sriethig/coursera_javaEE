@@ -9,27 +9,26 @@ import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.ExamResult;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.repository.ExamRepository;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author sonja
  */
+@SessionScoped
 @Transactional
-public class ExamService {
+@NoArgsConstructor
+public class ExamService implements Serializable {
     
     @Inject
     ExamRepository examRepository;
-    
-    /**
-     * 
-     */
-    public ExamService() {
-    }
     
     /**
      * 

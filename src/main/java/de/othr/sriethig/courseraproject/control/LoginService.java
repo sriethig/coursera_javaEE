@@ -22,9 +22,6 @@ import lombok.NoArgsConstructor;
 public class LoginService implements Serializable {
     
     @Inject
-    AbstractUserRepository abstractUserRepository;
-    
-    @Inject
     SCStudentRepository scStudentRepository;
     
     /**
