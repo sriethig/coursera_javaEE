@@ -8,6 +8,8 @@ package de.othr.sriethig.courseraproject.model;
 import de.othr.sriethig.courseraproject.control.LoginService;
 import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
+import de.othr.sriethig.courseraproject.entity.SCStudent;
+import de.othr.sriethig.courseraproject.entity.SNStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
@@ -56,17 +58,20 @@ public class LoginModel implements Serializable {
      * 
      */
     public void login() {
-        System.out.println("in login");
         this.message = "";
-        AbstractUser abstractUser = loginService.authenticate(emailAddress, password);
-        System.out.println("after authenticate");
-        if(abstractUser.getClass().isInstance(Professor.class)) {
+        AbstractUser abstractUser = loginService.authenticate(
+                emailAddress, password
+        );
+        System.out.println("after authenticate: " + abstractUser.toString());
+        if(abstractUser.getClass() == Professor.class) {
             this.message = "authenticated professor";
-        }
-        if(abstractUser.getClass().isInstance(AbstractStudent.class)) {
+        } else if(abstractUser.getClass() == SCStudent.class) {
             this.message = "authenticated student";
+        } else if(abstractUser.getClass() == SNStudent.class) {
+            this.message = "authenticated student from SN";
+        } else {
+            this.message = "Email and/or password wrong!\n Please try again!";
         }
-        this.message = "Email and/or password wrong!\n Please try again!";
         this.password = "";
         System.out.println("message: " + this.message);
     }

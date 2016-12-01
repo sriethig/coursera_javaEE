@@ -36,11 +36,10 @@ public class LoginService implements Serializable {
      * @return 
      */
     public AbstractUser authenticate(String emailAddress, String password) {
-        System.out.println("in authenticate(LoginService)");
-        AbstractUser abstractUser = 
-                (AbstractUser)abstractUserRepository.authenticateAbstractUser(
+        AbstractUser abstractUser = abstractUserRepository.authenticateAbstractUser(
                         emailAddress, password
                 );
+        System.out.println("after authenticate: " + abstractUser.toString());
         return abstractUser;
     }
     
