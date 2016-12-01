@@ -19,7 +19,7 @@ import lombok.Setter;
  * @author sonja
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AbstractStudent extends AbstractUser {

@@ -29,7 +29,10 @@ public class Lesson extends SingleIdEntity {
     @Getter @Setter private Course course;
     
     @OneToOne
-    @Getter @Setter private VideoWithText videoWithText;
+    @Getter @Setter private Video video;
+    
+    @OneToOne
+    @Getter @Setter private LessonContent lessonContent;
     
     @OneToOne
     @Getter @Setter private Exam exam;

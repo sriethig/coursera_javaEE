@@ -7,8 +7,12 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.Lesson;
-import de.othr.sriethig.courseraproject.entity.VideoWithText;
+import de.othr.sriethig.courseraproject.entity.LessonContent;
+import de.othr.sriethig.courseraproject.entity.Video;
+import de.othr.sriethig.courseraproject.repository.ExamRepository;
+import de.othr.sriethig.courseraproject.repository.LessonContentRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
+import de.othr.sriethig.courseraproject.repository.VideoRepository;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -26,6 +30,15 @@ public class LessonService implements Serializable {
     
     @Inject 
     LessonRepository lessonRepository;
+    
+    @Inject
+    LessonContentRepository lessonContentRepository;
+    
+    @Inject
+    VideoRepository videoRepository;
+    
+    @Inject 
+    ExamRepository examRepository;
     
     /**
      * 
@@ -62,12 +75,12 @@ public class LessonService implements Serializable {
     /**
      * 
      * @param lesson
-     * @param videoWithText
+     * @param lessonContent
      * @return 
      */
-    public Lesson addVideoWithText(Lesson lesson, VideoWithText videoWithText) {
+    public Lesson addLessonContent(Lesson lesson, LessonContent lessonContent) {
         lesson = (Lesson) lessonRepository.merge(lesson);
-        lesson.setVideoWithText(videoWithText);
+        lesson.setLessonContent(lessonContent);
         return lesson;
     }
     
@@ -76,9 +89,36 @@ public class LessonService implements Serializable {
      * @param lesson
      * @return 
      */
-    public Lesson removeVideoWithText(Lesson lesson) {
+    public Lesson removeLessonContent(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
-        lesson.setVideoWithText(null);
+        LessonContent lessonContent = lesson.getLessonContent();
+        lesson.setLessonContent(null);
+        lessonContentRepository.remove(lessonContent);
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param lesson
+     * @param video
+     * @return 
+     */
+    public Lesson addVideo(Lesson lesson, Video video) {
+        lesson = (Lesson) lessonRepository.merge(lesson);
+        lesson.setVideo(video);
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param lesson
+     * @return 
+     */
+    public Lesson removeVideo(Lesson lesson) {
+        lesson = (Lesson) lessonRepository.merge(lesson);
+        Video video = lesson.getVideo();
+        lesson.setVideo(null);
+        videoRepository.remove(video);
         return lesson;
     }
     
@@ -101,7 +141,9 @@ public class LessonService implements Serializable {
      */
     public Lesson removeExam(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
+        Exam exam = lesson.getExam();
         lesson.setExam(null);
+        examRepository.remove(exam);
         return lesson;
     }
     
