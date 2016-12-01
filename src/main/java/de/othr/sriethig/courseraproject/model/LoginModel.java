@@ -10,14 +10,11 @@ import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
-import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
-import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +31,12 @@ public class LoginModel implements Serializable {
     
     @Getter @Setter private String message;
     
+    @Getter AbstractUser abstractUser;
+    /*
+        error message styling:
+        http://blog.primefaces.org/?p=1170
+    */
+    
     @Getter @Setter private boolean isAuthorizedSCStudent;
     @Getter @Setter private boolean isAuthorizedSNStudent;
     @Getter @Setter private boolean isAuthorizedProfessor;
@@ -47,42 +50,36 @@ public class LoginModel implements Serializable {
     /**
      * 
      */
-    public void testAllProfessors() {
-        List<Professor> professors = professorService.getProfessors();
-        for(Professor p : professors) {
-            System.out.println("Prof: " + p.getEmailAddress());
+    public String login() {
+        this.message = "";
+        
+        abstractUser = loginService.authenticate(
+                this.emailAddress, this.password
+        );
+        
+        if(abstractUser == null) {
+            this.message = "Email and/or password wrong!\n Please try again!";
+        } else if(abstractUser.getClass() == Professor.class) {
+            this.isAuthorizedProfessor = true;
+        } else if(abstractUser.getClass() == SCStudent.class) {
+            this.isAuthorizedSCStudent = true;
+            return "sc_student.xhtml";
+        } else if(abstractUser.getClass() == SNStudent.class) {
+            this.isAuthorizedSNStudent = true;
+            return "sc_student.xhtml";
         }
+        this.password = "";
+        return "login.xhtml";
     }
     
     /**
      * 
      */
-    public void login() {
-        this.message = "";
-        AbstractUser abstractUser = loginService.authenticate(
-                emailAddress, password
-        );
-        System.out.println("after authenticate: " + abstractUser.toString());
-        if(abstractUser.getClass() == Professor.class) {
-            this.message = "authenticated professor";
-        } else if(abstractUser.getClass() == SCStudent.class) {
-            this.message = "authenticated student";
-        } else if(abstractUser.getClass() == SNStudent.class) {
-            this.message = "authenticated student from SN";
-        } else {
-            this.message = "Email and/or password wrong!\n Please try again!";
-        }
-        this.password = "";
-        System.out.println("message: " + this.message);
-    }
-    
     public void loginWithTestAccount() {
-        this.setEmailAddress("test@test.com");
-        this.setPassword("test123!");
+        this.setEmailAddress("test.prof@oth-regensburg.de");
+        this.setPassword("test");
         
-        
-        this.emailAddress = "";
-        this.password = "";
+        login();
     }
     
 }

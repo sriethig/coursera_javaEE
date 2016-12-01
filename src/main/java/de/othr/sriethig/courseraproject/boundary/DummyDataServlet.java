@@ -68,14 +68,16 @@ public class DummyDataServlet extends HttpServlet {
                 "Maria",
                 "Marlene",
                 "Natalie",
-                "Nathan"
+                "Nathan", 
+                "test"
             };
             String[] names = {
                 "Mustermann",
                 "Mustermann",
                 "Dietrich",
                 "Portman",
-                "Weise"
+                "Weise", 
+                "student"
             };
             for(int i = 0; i < firstNames.length; i++) {
                 SCStudent s = new SCStudent();

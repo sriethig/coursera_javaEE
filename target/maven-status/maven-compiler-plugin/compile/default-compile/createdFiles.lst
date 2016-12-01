@@ -34,6 +34,7 @@ de/othr/sriethig/courseraproject/repository/ProfessorRepository.class
 de/othr/sriethig/courseraproject/entity/Lesson_.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity_.class
 de/othr/sriethig/courseraproject/entity/base/AbstractUser_.class
+de/othr/sriethig/courseraproject/model/SCStudentModel.class
 de/othr/sriethig/courseraproject/control/ExamService.class
 de/othr/sriethig/courseraproject/entity/Exam_.class
 de/othr/sriethig/courseraproject/entity/base/AbstractStudent.class

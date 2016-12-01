@@ -15,6 +15,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/ExamResultRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/ProfessorRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/SNStudent.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/SCStudentModel.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Country.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Professor.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/LoginModel.java

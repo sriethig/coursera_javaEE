@@ -37,9 +37,8 @@ public class LoginService implements Serializable {
      */
     public AbstractUser authenticate(String emailAddress, String password) {
         AbstractUser abstractUser = abstractUserRepository.authenticateAbstractUser(
-                        emailAddress, password
-                );
-        System.out.println("after authenticate: " + abstractUser.toString());
+                    emailAddress, password
+            );
         return abstractUser;
     }
     

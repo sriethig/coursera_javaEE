@@ -9,6 +9,7 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 import javax.transaction.TransactionalException;
 
@@ -31,20 +32,19 @@ public class AbstractUserRepository extends
      * @return 
      */
     public AbstractUser authenticateAbstractUser(String email, String password) {
-        try {
-           TypedQuery<AbstractUser> query = this.createTypedQuery(
-                "SELECT u FROM AbstractUser u WHERE u.emailAddress LIKE "
-                        + ":parameter1"
-            );
-            query.setParameter("parameter1", email);
-            AbstractUser abstractUser = query.getSingleResult();
-            return abstractUser; 
-        } catch(TransactionalException te) {
-            System.out.println("AbstractUserRepository::authenticateAbstractUser"
-                    + ": " + te.getMessage());
+        TypedQuery<AbstractUser> query = this.createTypedQuery(
+            "SELECT u FROM AbstractUser u WHERE u.emailAddress = "
+                    + ":parameter1 AND u.password = :parameter2"
+        );
+        query.setParameter("parameter1", email);
+        query.setParameter("parameter2", password);
+        List<AbstractUser> abstractUsers = query.getResultList();
+        if(abstractUsers.isEmpty()) {
             return null;
-        }
-        
+        } else {
+            AbstractUser abstractUser = abstractUsers.get(0);
+            return abstractUser;
+        }      
     }
     
     /**
