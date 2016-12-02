@@ -1,4 +1,3 @@
-/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/boundary/DummyDataServlet.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/LessonService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/ExamService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Course.java
@@ -22,6 +21,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/LessonContent.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/CourseRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/LoginService.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/DummyDataService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/ProfessorService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/LessonRepository.java
@@ -32,4 +32,3 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/base/SingleIdEntityRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/LessonContentRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/base/AbstractStudent.java
-/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/boundary/TestServlet.java

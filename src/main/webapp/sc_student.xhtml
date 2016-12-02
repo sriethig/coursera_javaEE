@@ -7,19 +7,59 @@
         <title>Sonjas Coursera</title>
     </h:head>
     <h:body onload="#{SCStudentModel.initialize()}">
+        <!-- header -->
         <b:container style="width: 100%; height: 100px; background-color: #9CE18E;">
             <span style="color: white; font-size: 70px;">
                 Sonjas Coursera
             </span>
             <span style="position: relative; float: right; margin-right: 10px; 
                   margin-top: 25px; font-size: 30px;">
-                Hallo, #{SCStudentModel.studentFirstName}
+                Hallo, #{SCStudentModel.student.firstName}
                 <b:button style="background: transparent; border: none; size: 30px;"
                           value="Profil" 
-                          icon="glyphicon glyphicon-user" class="btn">
-                </b:button>
+                          icon="glyphicon glyphicon-user" class="btn" />
             </span>
-        </b:container>      
+        </b:container>    
+        <!-- /header -->
+        
+        <!-- content -->
+        <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+            <b:row style="border: solid activeborder">
+                <!-- user info -->
+                <b:column col-md="4" col-xs="12">
+                    <b:button style="background-color: #9CE18E; border: none; 
+                              width:80px; height: 80px; border-radius: 50%; color: white;"
+                              icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
+                              value = "" />
+                    <p>#{SCStudentModel.student.firstName} #{SCStudentModel.student.name}</p>
+                </b:column>
+                <!-- /user info -->
+                
+                <!-- courses -->
+                <b:column col-md="8" col-xs="12" >
+                    <b:accordion expanded-panels="panelSearchCourses" >
+                        <b:panel id="panelYourCourses" class="panel"
+                                 title="Your Courses" >
+                            Those are the courses, you are enrolled in:
+                            <h:dataTable value="#{SCStudentModel.courses}" var="course">
+                                <p>#{course.title}</p>
+                            </h:dataTable>
+                        </b:panel>
+                        <b:panel id="panelSearchCourses" class="panel"
+                                 title="Search Courses">
+                            Available courses on Sonjas Coursera:
+                            <h:dataTable value="#{SCStudentModel.availableCourses}" 
+                                         var="availableCourse">
+                                <p>#{availableCourse.title}</p>
+                            </h:dataTable>
+                            <p>#{SCStudentModel.availableCourses.get(0).title}</p>
+                        </b:panel>
+                    </b:accordion>
+                </b:column>
+                <!-- /courses -->
+            </b:row>
+        </b:container>
+        <!-- /content -->
     </h:body>
 </html>
 

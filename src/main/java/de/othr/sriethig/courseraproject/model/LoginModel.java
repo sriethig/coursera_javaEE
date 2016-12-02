@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.model;
 
+import de.othr.sriethig.courseraproject.control.DummyDataService;
 import de.othr.sriethig.courseraproject.control.LoginService;
 import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
@@ -42,6 +43,9 @@ public class LoginModel implements Serializable {
     @Getter @Setter private boolean isAuthorizedProfessor;
     
     @Inject
+    DummyDataService dummyDataService;
+    
+    @Inject
     LoginService loginService;
     
     @Inject
@@ -75,11 +79,26 @@ public class LoginModel implements Serializable {
     /**
      * 
      */
+    // TODO insert login data for sebis network
+    public void loginWithSN() {
+        this.emailAddress = "";
+        this.password = "";
+    }
+    
+    /**
+     * 
+     */
     public void loginWithTestAccount() {
         this.setEmailAddress("test.prof@oth-regensburg.de");
         this.setPassword("test");
         
         login();
+    }
+    
+    public void initialize() {
+        dummyDataService.insertDummyData();
+        this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";
+        this.password = "Max";
     }
     
 }

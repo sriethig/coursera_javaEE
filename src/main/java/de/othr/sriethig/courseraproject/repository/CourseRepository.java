@@ -11,12 +11,14 @@ import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author sonja
  */
 @SessionScoped
+@Transactional
 public class CourseRepository extends 
         SingleIdEntityRepository<Long, Course> implements Serializable {
     
@@ -31,10 +33,14 @@ public class CourseRepository extends
      */
     public Course findCourseByTitle(String title) {
         TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
-                + "Courses WHERE c.title = :1");
-        query.setParameter("1", title);
-        Course course = (Course) query.getSingleResult();
-        return course;
+                + "Courses WHERE c.title = :parameter1");
+        query.setParameter("parameter1", title);
+        List<Course> courses = query.getResultList();        
+        if(courses.isEmpty()) {
+            return null;
+        } else {
+            return courses.get(0);
+        }
     }
     
     /**
@@ -44,12 +50,17 @@ public class CourseRepository extends
      */
     public List<Course> findCoursesWithTag(String tag) {
         TypedQuery<Course> query = this.getEntityManager().createQuery("SELECT c FROM "
-                + "Courses WHERE c.description LIKE :parametername", 
+                + "Courses WHERE c.description LIKE :parametername OR "
+                + "c.title LIKE :parametername", 
                 this.getType()
         );
         query.setParameter("parametername", tag);
         List<Course> courses = query.getResultList();
-        return courses;
+        if(courses.isEmpty()) {
+            return null;
+        } else {
+            return courses;
+        }
     }
     
     /**
@@ -64,7 +75,11 @@ public class CourseRepository extends
         );
         query.setParameter("parametername", professor);
         List<Course> courses = query.getResultList();
-        return courses;
+        if(courses.isEmpty()) {
+            return null;
+        } else {
+            return courses;
+        }
     }
     
 }

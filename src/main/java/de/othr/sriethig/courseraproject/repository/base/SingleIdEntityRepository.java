@@ -110,7 +110,12 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity>
         CriteriaQuery<E> all = criteriaQuery.select(rootEntry);
         TypedQuery<E> allQuery = this.entityManager.createQuery(all);
 
-        return (List<E>) allQuery.getResultList();
+        List<E> resultList = allQuery.getResultList();
+        if(resultList.isEmpty()) {
+            return null;
+        } else {
+            return resultList;
+        }  
     }
     
     public TypedQuery<E> createTypedQuery(String queryString) {

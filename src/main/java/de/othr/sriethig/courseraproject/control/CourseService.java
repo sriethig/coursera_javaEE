@@ -47,6 +47,11 @@ public class CourseService implements Serializable {
         return course;
     }
     
+    public List<Course> getAllCourses() {
+        List<Course> courses = courseRepository.findAll();
+        return courses;
+    }
+    
     /**
      * 
      * @param title

@@ -44,12 +44,15 @@ public class StudentService implements Serializable {
     
     /**
      * 
-     * @param student
+     * @param firstName
+     * @param name
      * @return 
      */
-    //TODO
-    public AbstractStudent loginStudent(AbstractStudent student) {
-        return null;
+    public AbstractStudent findStudentByFirstAndLastName(String firstName, 
+            String name) {
+        AbstractStudent student = 
+                studentRepository.findStudentByFirstAndLastName(firstName, name);
+        return student;
     }
     
     /**

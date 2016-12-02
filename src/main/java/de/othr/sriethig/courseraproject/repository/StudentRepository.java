@@ -27,6 +27,29 @@ public class StudentRepository extends
     
     /**
      * 
+     * @param firstName
+     * @param name
+     * @return 
+     */
+    public AbstractStudent findStudentByFirstAndLastName(String firstName, 
+            String name) {
+        TypedQuery<AbstractStudent> query = this.createTypedQuery(
+            "SELECT s FROM AbstractStudent u WHERE s.firstName = "
+                    + ":parameter1 AND s.name = :parameter2"
+        );
+        query.setParameter("parameter1", firstName);
+        query.setParameter("parameter2", name);
+        List<AbstractStudent> abstractStudents = query.getResultList();
+        if(abstractStudents.isEmpty()) {
+            return null;
+        } else {
+            AbstractStudent abstractStudent = abstractStudents.get(0);
+            return abstractStudent;
+        }   
+    }
+    
+    /**
+     * 
      * @param country
      * @return 
      */
