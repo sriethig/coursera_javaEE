@@ -1,4 +1,5 @@
 de/othr/sriethig/courseraproject/control/StudentService.class
+de/othr/sriethig/courseraproject/model/StudentModel.class
 de/othr/sriethig/courseraproject/entity/SNStudent.class
 de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
 de/othr/sriethig/courseraproject/entity/Address.class
@@ -34,7 +35,6 @@ de/othr/sriethig/courseraproject/entity/Video.class
 de/othr/sriethig/courseraproject/entity/Lesson_.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity_.class
 de/othr/sriethig/courseraproject/entity/base/AbstractUser_.class
-de/othr/sriethig/courseraproject/model/SCStudentModel.class
 de/othr/sriethig/courseraproject/repository/LessonContentRepository.class
 de/othr/sriethig/courseraproject/control/ExamService.class
 de/othr/sriethig/courseraproject/entity/Exam_.class
