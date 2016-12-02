@@ -35,9 +35,15 @@ public abstract class AbstractStudent extends AbstractUser {
      * @param course 
      */
     public void addCourse(Course course) {
-        if(!this.courses.contains(course)) {
-            this.courses.add(course);
-        }
+        this.courses.add(course);
+    }
+    
+    /**
+     * 
+     * @param course 
+     */
+    public void removeCourse(Course course) {
+        this.courses.remove(course);
     }
     
 }

@@ -11,7 +11,9 @@ import de.othr.sriethig.courseraproject.entity.SCStudent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
@@ -28,6 +30,8 @@ public class SCStudentModel implements Serializable {
     @Getter @Setter private SCStudent student;
     @Getter @Setter private List<Course> courses;
     @Getter @Setter private List<Course> availableCourses;
+    
+    @Getter @Setter private String searchTag;
      
     @Inject
     LoginModel loginModel;
@@ -47,9 +51,35 @@ public class SCStudentModel implements Serializable {
         // list all available courses
         availableCourses = 
                 courseService.getAllCourses();
-        availableCourses.forEach((course) -> {
-            System.out.println("course: " + course.getTitle());
-        });
+    }
+    
+    /**
+     * 
+     */
+    public void searchForCourses() {
+            List<Course> resultCourses = 
+                courseService.findCoursesByTag("%" + this.searchTag + "%");
+        availableCourses = resultCourses;
+    }
+    
+    /**
+     * 
+     * @param course 
+     */
+    public void enrollInCourse(Course course) {
+        if(!this.student.getCourses().contains(course)) {
+            this.student.addCourse(course);
+        }
+    } 
+    
+    /**
+     * 
+     * @param course 
+     */
+    public void unenrollFromCourse(Course course) {
+        if(this.student.getCourses().contains(course)) {
+            this.student.removeCourse(course);
+        }
     }
     
 }

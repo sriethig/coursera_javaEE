@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Sonjas Coursera</title>
     </h:head>
@@ -24,11 +25,12 @@
         
         <!-- content -->
         <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
-            <b:row style="border: solid activeborder">
+            <b:row>
                 <!-- user info -->
-                <b:column col-md="4" col-xs="12">
+                <b:column col-md="4" col-xs="12" style="text-align: center;">
                     <b:button style="background-color: #9CE18E; border: none; 
-                              width:80px; height: 80px; border-radius: 50%; color: white;"
+                              width:80px; height: 80px; border-radius: 50%; 
+                              color: white; margin-bottom: 5px;"
                               icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
                               value = "" />
                     <p>#{SCStudentModel.student.firstName} #{SCStudentModel.student.name}</p>
@@ -40,19 +42,69 @@
                     <b:accordion expanded-panels="panelSearchCourses" >
                         <b:panel id="panelYourCourses" class="panel"
                                  title="Your Courses" >
-                            Those are the courses, you are enrolled in:
-                            <h:dataTable value="#{SCStudentModel.courses}" var="course">
-                                <p>#{course.title}</p>
+                            
+                            <!-- iterate over students courses -->
+                            <h:dataTable value="#{SCStudentModel.courses}" var="course"
+                                          style="width: 100%;">
+                                <h:column>
+                                    <b:well>
+                                        #{course.title}
+                                        <h:form>
+                                        <b:commandButton value="UnEnroll" 
+                                                  style="position: relative; float: right;
+                                                  background-color: coral; color: white;
+                                                  border-color: white;  margin-top: -27px;" 
+                                                  icon="glyphicon glyphicon-minus" icon-size="1x"
+                                                  action="#{SCStudentModel.unenrollFromCourse(course)}">
+                                        </b:commandButton>
+                                        </h:form>
+                                    </b:well>
+                                </h:column>
                             </h:dataTable>
+                            <!-- /iterate over students courses -->
+                            
                         </b:panel>
                         <b:panel id="panelSearchCourses" class="panel"
                                  title="Search Courses">
-                            Available courses on Sonjas Coursera:
+                            
+                            <!-- search bar for courses -->
+                            <b:container style="width: 100%; margin-bottom: 10px;">
+                                <h:form styleClass="form-search" prependId="false">
+                                    <b:column col-md="6" col-xs="12">
+                                        <b:inputText id="searchTag"
+                                                        placeholder="Search" 
+                                                        value="#{SCStudentModel.searchTag}"/>
+                                    </b:column>
+                                    <b:column col-md="6" col-xs="12">
+                                    <b:commandButton look="primary btn-block" 
+                                        value="Search" icon="search"
+                                        action="#{SCStudentModel.searchForCourses()}"/>
+                                    </b:column>
+                                </h:form>
+                            </b:container>
+                            <!-- /search bar for courses -->
+                            
+                            <!-- iterate over all courses available -->
                             <h:dataTable value="#{SCStudentModel.availableCourses}" 
-                                         var="availableCourse">
-                                <p>#{availableCourse.title}</p>
+                                         var="availableCourse"
+                                         style="width: 100%;">
+                                <h:column>
+                                    <b:well>
+                                        #{availableCourse.title}
+                                        <h:form>
+                                        <b:commandButton value="Enroll" 
+                                                  style="position: relative; float: right;
+                                                  background-color: #9CE18E; color: white;
+                                                  border-color: white;  margin-top: -27px;" 
+                                                  icon="glyphicon glyphicon-plus" icon-size="1x"
+                                                  action="#{SCStudentModel.enrollInCourse(availableCourse)}">
+                                        </b:commandButton>
+                                        </h:form>
+                                    </b:well>
+                                </h:column>
                             </h:dataTable>
-                            <p>#{SCStudentModel.availableCourses.get(0).title}</p>
+                            <!-- /iterate over all courses available -->
+                            
                         </b:panel>
                     </b:accordion>
                 </b:column>

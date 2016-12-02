@@ -65,8 +65,8 @@ public class CourseService implements Serializable {
     /**
      * 
      * use case: user is looking for a list of courses addressing a field of
-     * interest, which is specified by a keyword (e.g. 'data science)
-     * solution: query all course descriptions for the tag
+     * interest, which is specified by a keyword (e.g. 'data science')
+     * solution: query all course descriptions and titles for the tag
      * @param tag
      * @return 
      */

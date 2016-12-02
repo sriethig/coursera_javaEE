@@ -33,7 +33,7 @@ public class CourseRepository extends
      */
     public Course findCourseByTitle(String title) {
         TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
-                + "Courses WHERE c.title = :parameter1");
+                + "Course WHERE c.title = :parameter1");
         query.setParameter("parameter1", title);
         List<Course> courses = query.getResultList();        
         if(courses.isEmpty()) {
@@ -49,12 +49,12 @@ public class CourseRepository extends
      * @return 
      */
     public List<Course> findCoursesWithTag(String tag) {
-        TypedQuery<Course> query = this.getEntityManager().createQuery("SELECT c FROM "
-                + "Courses WHERE c.description LIKE :parametername OR "
-                + "c.title LIKE :parametername", 
-                this.getType()
+        TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
+                + "Course AS c WHERE c.description LIKE :parameter1 OR "
+                + "c.title LIKE :parameter2"
         );
-        query.setParameter("parametername", tag);
+        query.setParameter("parameter1", tag);
+        query.setParameter("parameter2", tag);
         List<Course> courses = query.getResultList();
         if(courses.isEmpty()) {
             return null;
