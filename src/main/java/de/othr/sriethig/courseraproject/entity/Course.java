@@ -8,7 +8,10 @@ package de.othr.sriethig.courseraproject.entity;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import java.util.Collection;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,13 +32,37 @@ public class Course extends SingleIdEntity {
     @Getter @Setter private String title;
     @Getter @Setter private String description;
     
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.PERSIST})
     @Getter @Setter private Professor professor;
     
-    @ManyToMany
+    @ManyToMany(cascade={CascadeType.PERSIST})
     @Getter @Setter private Collection<AbstractStudent> students;
     
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy="course", cascade={CascadeType.PERSIST})
     @Getter @Setter private Collection<Lesson> lessons;
+    
+    /**
+     * 
+     * @param student
+     * @return 
+     */
+    public Course addStudent(AbstractStudent student) {
+        if(!this.students.contains(student)) {
+            this.students.add(student);
+        }     
+        return this;
+    }
+    
+    /**
+     * 
+     * @param student
+     * @return 
+     */
+    public Course removeStudent(AbstractStudent student) {
+        if(this.students.contains(student)) {
+            this.students.remove(student);
+        }     
+        return this;
+    }
     
 }

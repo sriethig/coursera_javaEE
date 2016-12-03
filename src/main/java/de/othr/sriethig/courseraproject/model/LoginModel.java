@@ -11,7 +11,6 @@ import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
-import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -54,10 +53,11 @@ public class LoginModel implements Serializable {
     
     /**
      * 
+     * @return 
      */
     public String login() {
         this.message = "";
-        
+                
         abstractUser = loginService.authenticate(
                 this.emailAddress, this.password
         );
@@ -66,6 +66,7 @@ public class LoginModel implements Serializable {
             this.message = "Email and/or password wrong!\n Please try again!";
         } else if(abstractUser.getClass() == Professor.class) {
             this.isAuthorizedProfessor = true;
+            return "professor.xhtml";
         } else if(abstractUser.getClass() == SCStudent.class) {
             this.isAuthorizedSCStudent = true;
             return "student.xhtml";
@@ -88,14 +89,18 @@ public class LoginModel implements Serializable {
     
     /**
      * 
+     * @return 
      */
-    public void loginWithTestAccount() {
+    public String loginWithTestAccount() {
         this.setEmailAddress("test.prof@oth-regensburg.de");
         this.setPassword("test");
         
-        login();
+        return(login());
     }
     
+    /**
+     * 
+     */
     public void initialize() {
         dummyDataService.insertDummyData();
         this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";

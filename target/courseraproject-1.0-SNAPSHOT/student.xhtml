@@ -30,10 +30,11 @@
                 <b:column col-md="4" col-xs="12" style="text-align: center;">
                     <b:button style="background-color: #9CE18E; border: none; 
                               width:80px; height: 80px; border-radius: 50%; 
-                              color: white; margin-bottom: 5px;"
+                              color: white; margin-bottom: 5px; text-align: center;"
                               icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
                               value = "" />
                     <p>#{studentModel.student.firstName} #{studentModel.student.name}</p>
+                    <p>No. of enrollments: #{studentModel.courses.size()}</p>
                 </b:column>
                 <!-- /user info -->
                 
@@ -55,8 +56,7 @@
                                                   background-color: coral; color: white;
                                                   border-color: white;  margin-top: -27px;" 
                                                   icon="glyphicon glyphicon-minus" icon-size="1x"
-                                                  action="#{studentModel.unenrollFromCourse(course)}">
-                                        </b:commandButton>
+                                                  action="#{studentModel.unenrollFromCourse(course)}" />
                                         </h:form>
                                     </b:well>
                                 </h:column>
@@ -90,7 +90,7 @@
                                          style="width: 100%;">
                                 <h:column>
                                     <b:well rendered="#{studentModel.isInSearchedCourses(availableCourse)}">
-                                        #{availableCourse.title}
+                                        #{availableCourse.title} (#{availableCourse.students.size()})
                                         <h:form>
                                         <b:commandButton value="Enroll" 
                                                   style="position: relative; float: right;

@@ -6,6 +6,7 @@
 package de.othr.sriethig.courseraproject.model;
 
 import de.othr.sriethig.courseraproject.control.CourseService;
+import de.othr.sriethig.courseraproject.control.StudentService;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
@@ -35,7 +36,11 @@ public class StudentModel implements Serializable {
     LoginModel loginModel;
     
     @Inject
+    StudentService studentService;
+    
+    @Inject
     CourseService courseService;
+    
     
     /**
      * 
@@ -44,7 +49,7 @@ public class StudentModel implements Serializable {
         student = (AbstractStudent) loginModel.getAbstractUser();
         
         // list all courses of the user
-        courses = (List<Course>) student.getCourses();
+        courses = studentService.getEnrolledCourses(this.student);
         
         // list all available courses
         availableCourses = 
@@ -60,7 +65,6 @@ public class StudentModel implements Serializable {
     public void searchForCourses() {
             resultCourses = 
                 courseService.findCoursesByTag("%" + this.searchTag + "%");
-            System.out.println("in searchForCourses ....size(): " + resultCourses.size());
     }
     
     /**
@@ -69,13 +73,11 @@ public class StudentModel implements Serializable {
      * @return 
      */
     public boolean isInSearchedCourses(Course course) {
-        /*System.out.println("isInSearchedCourses(" + course.getTitle() + ")");
-        System.out.println("resultCourses.size(): " +resultCourses.size());*/
-        if(resultCourses.contains(course)) {
-            /*System.out.println("true");*/
+        if(resultCourses == null) {
+            return false;
+        } else if(resultCourses.contains(course)) {
             return true;
         } else {
-            /*System.out.println("true");*/
             return false;
         }
     }
@@ -85,9 +87,10 @@ public class StudentModel implements Serializable {
      * @param course 
      */
     public void enrollInCourse(Course course) {
-        if(!this.student.getCourses().contains(course)) {
-            this.student.addCourse(course);
+        if(!studentService.getEnrolledCourses(this.student).contains(course)) {
+            courseService.addStudent(course, this.student);
         }
+        this.courses = studentService.getEnrolledCourses(this.student);
     } 
     
     /**
@@ -95,9 +98,10 @@ public class StudentModel implements Serializable {
      * @param course 
      */
     public void unenrollFromCourse(Course course) {
-        if(this.student.getCourses().contains(course)) {
-            this.student.removeCourse(course);
+        if(studentService.getEnrolledCourses(this.student).contains(course)) {
+            courseService.removeStudent(course, this.student);
         }
+        this.courses = studentService.getEnrolledCourses(this.student);
     }
     
     /**

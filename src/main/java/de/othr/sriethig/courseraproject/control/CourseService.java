@@ -12,6 +12,7 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
+import de.othr.sriethig.courseraproject.repository.StudentRepository;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -33,10 +34,13 @@ public class CourseService implements Serializable {
     
     @Inject
     ProfessorRepository professorRepository;
+    
+    @Inject
+    StudentRepository studentRepository;
 
     @Inject
     LessonRepository lessonRepository;
-    
+        
     /**
      * 
      * @param course
@@ -131,14 +135,15 @@ public class CourseService implements Serializable {
      * @param student
      * @return 
      */
-    public List<AbstractStudent> addStudent(Course course,
+    public void addStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
-        List<AbstractStudent> students = (List) course.getStudents();
-        if(!students.contains(student)) {
-            students.add(student);
-        }
-        return students;
+        student = (AbstractStudent) studentRepository.merge(student);
+
+        course = course.addStudent(student);
+        student = student.addCourse(course);
+        studentRepository.getEntityManager().persist(student);
+        courseRepository.persist(course); // TODO not needed?!
     }
     
     /**
@@ -147,14 +152,15 @@ public class CourseService implements Serializable {
      * @param student
      * @return 
      */
-    public List<AbstractStudent> removeStudent(Course course,
+    public void removeStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
-        List<AbstractStudent> students = (List) course.getStudents();
-        if(students.contains(student)) {
-            students.remove(student);
-        }
-        return students;
+        student = (AbstractStudent) studentRepository.merge(student);
+
+        course = course.removeStudent(student);
+        student = student.removeCourse(course);
+        studentRepository.getEntityManager().persist(student);
+        courseRepository.persist(course); // not needed?!
     } 
     
     /**

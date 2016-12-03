@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sonjas Coursera</title>
+    </h:head>
+    <h:body onload="#{professorModel.initialize()}">
+        <!-- header -->
+        <b:container style="width: 100%; height: 100px; background-color: #9CE18E;">
+            <span style="color: white; font-size: 70px;">
+                Sonjas Coursera
+            </span>
+            <span style="position: relative; float: right; margin-right: 10px; 
+                  margin-top: 25px; font-size: 30px;">
+                Hallo, #{professorModel.professor.firstName}
+                <b:button style="background: transparent; border: none; size: 30px;"
+                          value="Profil" 
+                          icon="glyphicon glyphicon-user" class="btn" />
+            </span>
+        </b:container>    
+        <!-- /header -->
+        
+        <!-- content -->
+        <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+            <b:row>
+                <!-- user info -->
+                <b:column col-md="4" col-xs="12" style="text-align: center;">
+                    <b:button style="background-color: #9CE18E; border: none; 
+                              width:80px; height: 80px; border-radius: 50%; 
+                              color: white; margin-bottom: 5px; text-align: center;"
+                              icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
+                              value = "" />
+                    <p>#{professorModel.professor.firstName} #{professorModel.professor.name}</p>
+                </b:column>
+                <!-- /user info -->
+                
+                <!-- courses -->
+                <b:column col-md="8" col-xs="12" >
+                    <b:accordion expanded-panels="panelCourses" >
+                        <b:panel id="panelCourses" class="panel"
+                                 title="Your Courses" >
+                            
+                            <!-- add new course -->
+                            <h:form>
+                                <b:row style="width: 100%; text-align: center;">
+                                    <a style="background-color: #9CE18E; border: none; 
+                                      width:80px; height: 80px; border-radius: 50%; 
+                                      color: white; margin-bottom: 5px; text-align: center;
+                                      font-size: 45px;" class="btn" 
+                                      href="#modal" data-toggle="modal">+</a>
+                                </b:row>
+                            </h:form>
+                            <!-- /add new course -->
+                            
+                            <!-- modal for course creation -->
+                            <b:modal id="modal" title="Create new course" 
+                                     styleClass="modalPseudoClass" 
+                                     closable="false" close-on-escape="false" 
+                                     backdrop="false">
+                                <b:container style="width: 350px; padding-top: -10px; margin: 0 auto;">
+                                    <h:form styleClass="form" prependId="false">
+                                        <h2 class="form-heading">Fill in Title and Description</h2>
+                                        <b:inputText id="title" 
+                                                     placeholder="Title" 
+                                                     value="#{professorModel.title}"/>
+                                        <b:inputText id="description" 
+                                                     placeholder="Description" 
+                                                     value="#{professorModel.description}"/>
+                                    </h:form>
+                                    <b:button value="Close" dismiss="modal"
+                                              style="position: relative; float: right; margin-left: 10px;"
+                                              onclick="return false;"/>
+                                    <b:button value="Create" look="primary" dismiss="modal" 
+                                              style="position: relative; float: right; "
+                                              onclick="#{professorModel.addCourse()}"/>
+                                </b:container>
+                            </b:modal>
+                            <!-- /modal -->
+                            
+                            <!-- iterate over professors courses -->
+                            <h:dataTable value="#{professorModel.courses}" var="course"
+                                          style="width: 100%;">
+                                <h:column>
+                                    <b:well>
+                                        #{course.title}
+                                        <h:form>
+                                        <b:commandButton value="Edit" 
+                                                  style="position: relative; float: right;
+                                                  background-color: #9CE18E; color: white;
+                                                  border-color: white;  margin-top: -27px;" 
+                                                  icon="glyphicon glyphicon-edit" icon-size="1x" />
+                                        </h:form>
+                                    </b:well>
+                                </h:column>
+                            </h:dataTable>
+                            <!-- /iterate over professors courses -->
+                            
+                        </b:panel>
+                    </b:accordion>
+                </b:column>
+                <!-- /courses -->
+            </b:row>
+        </b:container>
+        <!-- /content -->
+    </h:body>
+</html>
+

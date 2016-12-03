@@ -5,6 +5,7 @@ import de.othr.sriethig.courseraproject.entity.ExamResult;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
@@ -33,17 +34,25 @@ public abstract class AbstractStudent extends AbstractUser {
     /**
      * 
      * @param course 
+     * @return  
      */
-    public void addCourse(Course course) {
-        this.courses.add(course);
+    public AbstractStudent addCourse(Course course) {
+        if(!this.courses.contains(course)) {
+            this.courses.add(course);
+        }
+        return this;
     }
     
     /**
      * 
      * @param course 
+     * @return  
      */
-    public void removeCourse(Course course) {
-        this.courses.remove(course);
+    public AbstractStudent removeCourse(Course course) {
+        if(this.courses.contains(course)) {
+            this.courses.remove(course);
+        }
+        return this;
     }
     
 }

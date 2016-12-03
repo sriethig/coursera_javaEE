@@ -32,6 +32,9 @@ public class StudentService implements Serializable {
     @Inject
     CourseRepository courseRepository;
     
+    @Inject
+    CourseService courseService;
+    
     /**
      * 
      * @param student
@@ -99,7 +102,7 @@ public class StudentService implements Serializable {
      * @param student
      * @return 
      */
-    public List<Course> showEnrolledCourses(AbstractStudent student) {
+    public List<Course> getEnrolledCourses(AbstractStudent student) {
         student = (AbstractStudent) studentRepository.merge(student);
         List<Course> enrolledCourses = (List) student.getCourses();
         return enrolledCourses;
@@ -114,8 +117,12 @@ public class StudentService implements Serializable {
     public List<Course> enrollInCourse(AbstractStudent student,
             Course newCourse) {
         student = (AbstractStudent) studentRepository.merge(student);
-        List<Course> enrolledCourses = (List) student.getCourses();
+        newCourse = (Course) courseRepository.merge(newCourse);
+        
+        List<Course> enrolledCourses = (List<Course>) student.getCourses();
         enrolledCourses.add(newCourse);
+        courseRepository.getEntityManager().persist(newCourse);
+        studentRepository.getEntityManager().persist(student);
         return enrolledCourses;
     }
     
@@ -130,7 +137,7 @@ public class StudentService implements Serializable {
         student = (AbstractStudent) studentRepository.merge(student);
         course = (Course) courseRepository.merge(course);
         
-        List<Course> enrolledCourses = (List) student.getCourses();
+        List<Course> enrolledCourses = (List<Course>) student.getCourses();
         if(enrolledCourses.contains(course)) {
             enrolledCourses.remove(course);
         } else {

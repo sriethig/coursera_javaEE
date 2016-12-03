@@ -59,6 +59,7 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity>
      */
     public void persist(E entity) {
         this.entityManager.persist(entity);
+        System.out.println("persist: " + entity.toString());
     }
     
     /**
