@@ -4,6 +4,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/Course.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Course.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/SCStudent.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/CourseModel.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/CourseService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/ExamResult.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/base/AbstractUser.java

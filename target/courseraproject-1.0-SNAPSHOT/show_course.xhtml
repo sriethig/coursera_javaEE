@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sonjas Coursera</title>
+    </h:head>
+    <h:body onload="#{courseModel.initialize()}">
+        <!-- header -->
+        <b:container style="width: 100%; height: 100px; background-color: #9CE18E;">
+            <span style="color: white; font-size: 70px;">
+                Sonjas Coursera
+            </span>
+            <span style="position: relative; float: right; margin-right: 10px; 
+                  margin-top: 25px; font-size: 30px;">
+                <h:form>
+                    <b:commandButton style="background: transparent; border: none; size: 30px;"
+                              value="Profil" 
+                              icon="glyphicon glyphicon-user" class="btn" />
+                    <b:commandButton style="background: transparent; border: none; size: 30px;"
+                              value="Log Out"
+                              icon="glyphicon glyphicon-log-out" class="btn"
+                              action="#{loginModel.logout()}"/>
+                </h:form>
+            </span>
+        </b:container>    
+        <!-- /header -->
+       
+        <!-- content -->
+        <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+            <h:form style="width: 100%; height: 50px;">
+                <b:commandButton value="back" action="#{courseModel.goBack()}"
+                                 class="btn" icon="glyphicon glyphicon-chevron-left"
+                                 style="position: relative; float: left;" />
+                <b:commandButton value="Enroll" rendered="#{courseModel.enableEnrollInThisCourse()}"
+                                 action="#{courseModel.enrollInThisCourse()}"
+                                 style="position: relative; float: right;
+                                 background-color: #9CE18E; color: white;"/>
+            </h:form>
+            
+            <!-- course info -->
+            <b:container>
+                <h2>#{courseModel.course.title}</h2>
+                <p>#{courseModel.course.professor.firstName} #{courseModel.course.professor.name}</p>
+                <p>#{courseModel.course.description}</p>
+            </b:container>
+            <!-- /course info -->
+            
+        </b:container>
+        <!-- /content -->
+        
+    </h:body>
+</html>
+

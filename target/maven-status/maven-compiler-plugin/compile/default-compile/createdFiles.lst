@@ -29,6 +29,7 @@ de/othr/sriethig/courseraproject/control/LoginService.class
 de/othr/sriethig/courseraproject/control/DummyDataService.class
 de/othr/sriethig/courseraproject/repository/AddressRepository.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class
+de/othr/sriethig/courseraproject/model/CourseModel.class
 de/othr/sriethig/courseraproject/entity/Video_.class
 de/othr/sriethig/courseraproject/entity/ExamResult_.class
 de/othr/sriethig/courseraproject/entity/Exam.class

@@ -95,12 +95,14 @@
                                          style="width: 100%;">
                                 <h:column>
                                     <b:well rendered="#{studentModel.isInSearchedCourses(availableCourse)}">
-                                        #{availableCourse.title}
                                         <h:form>
+                                        <h:commandLink action="#{studentModel.showDetailCourse(availableCourse)}"> 
+                                            #{availableCourse.title} 
+                                        </h:commandLink>
                                         <b:commandButton value="Enroll" 
                                                   style="position: relative; float: right;
                                                   background-color: #9CE18E; color: white;
-                                                  border-color: white;  margin-top: -27px;" 
+                                                  border-color: white;  margin-top: -7px;" 
                                                   icon="glyphicon glyphicon-plus" icon-size="1x"
                                                   action="#{studentModel.enrollInCourse(availableCourse)}"
                                                   disabled="#{studentModel.disableEnrollment(availableCourse)}" />

@@ -31,6 +31,8 @@ public class StudentModel implements Serializable {
     @Getter @Setter private List<Course> resultCourses;
     
     @Getter @Setter private String searchTag = "";
+    
+    @Getter @Setter private Course detailCourse;
      
     @Inject
     LoginModel loginModel;
@@ -54,6 +56,8 @@ public class StudentModel implements Serializable {
         // list all available courses
         availableCourses = 
                 courseService.getAllCourses();
+        
+        detailCourse = null;
         
         // initialize result list
         searchForCourses();
@@ -115,6 +119,12 @@ public class StudentModel implements Serializable {
         } else {
             return false;
         }
+    }
+    
+    public String showDetailCourse(Course course) {
+        this.detailCourse = course;
+        System.out.println("showing detail course: " + course.getTitle());
+        return "show_course.xhtml";
     }
     
 }
