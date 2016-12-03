@@ -7,7 +7,6 @@ package de.othr.sriethig.courseraproject.model;
 
 import de.othr.sriethig.courseraproject.control.CourseService;
 import de.othr.sriethig.courseraproject.entity.Course;
-import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
 import java.util.List;
@@ -28,8 +27,9 @@ public class StudentModel implements Serializable {
     @Getter @Setter private AbstractStudent student;
     @Getter @Setter private List<Course> courses;
     @Getter @Setter private List<Course> availableCourses;
+    @Getter @Setter private List<Course> resultCourses;
     
-    @Getter @Setter private String searchTag;
+    @Getter @Setter private String searchTag = "";
      
     @Inject
     LoginModel loginModel;
@@ -49,15 +49,35 @@ public class StudentModel implements Serializable {
         // list all available courses
         availableCourses = 
                 courseService.getAllCourses();
+        
+        // initialize result list
+        searchForCourses();
     }
     
     /**
      * 
      */
     public void searchForCourses() {
-            List<Course> resultCourses = 
+            resultCourses = 
                 courseService.findCoursesByTag("%" + this.searchTag + "%");
-        availableCourses = resultCourses;
+            System.out.println("in searchForCourses ....size(): " + resultCourses.size());
+    }
+    
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public boolean isInSearchedCourses(Course course) {
+        /*System.out.println("isInSearchedCourses(" + course.getTitle() + ")");
+        System.out.println("resultCourses.size(): " +resultCourses.size());*/
+        if(resultCourses.contains(course)) {
+            /*System.out.println("true");*/
+            return true;
+        } else {
+            /*System.out.println("true");*/
+            return false;
+        }
     }
     
     /**
@@ -77,6 +97,19 @@ public class StudentModel implements Serializable {
     public void unenrollFromCourse(Course course) {
         if(this.student.getCourses().contains(course)) {
             this.student.removeCourse(course);
+        }
+    }
+    
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public boolean disableEnrollment(Course course) {
+        if(this.courses.contains(course)) {
+            return true;
+        } else {
+            return false;
         }
     }
     

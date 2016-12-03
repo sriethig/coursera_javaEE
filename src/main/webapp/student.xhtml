@@ -78,7 +78,7 @@
                                     <b:column col-md="6" col-xs="12">
                                     <b:commandButton look="primary btn-block" 
                                         value="Search" icon="search"
-                                        action="#{studentModel.searchForCourses()}"/>
+                                        action="#{studentModel.searchForCourses()}" />
                                     </b:column>
                                 </h:form>
                             </b:container>
@@ -89,7 +89,7 @@
                                          var="availableCourse"
                                          style="width: 100%;">
                                 <h:column>
-                                    <b:well>
+                                    <b:well rendered="#{studentModel.isInSearchedCourses(availableCourse)}">
                                         #{availableCourse.title}
                                         <h:form>
                                         <b:commandButton value="Enroll" 
@@ -97,8 +97,8 @@
                                                   background-color: #9CE18E; color: white;
                                                   border-color: white;  margin-top: -27px;" 
                                                   icon="glyphicon glyphicon-plus" icon-size="1x"
-                                                  action="#{studentModel.enrollInCourse(availableCourse)}">
-                                        </b:commandButton>
+                                                  action="#{studentModel.enrollInCourse(availableCourse)}"
+                                                  disabled="#{studentModel.disableEnrollment(availableCourse)}" />
                                         </h:form>
                                     </b:well>
                                 </h:column>

@@ -4,7 +4,7 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent_;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-12-02T22:40:23")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-12-03T09:14:10")
 @StaticMetamodel(SCStudent.class)
 public class SCStudent_ extends AbstractStudent_ {
 
