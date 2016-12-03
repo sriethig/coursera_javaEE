@@ -15,10 +15,15 @@
             </span>
             <span style="position: relative; float: right; margin-right: 10px; 
                   margin-top: 25px; font-size: 30px;">
-                Hallo, #{studentModel.student.firstName}
-                <b:button style="background: transparent; border: none; size: 30px;"
-                          value="Profil" 
-                          icon="glyphicon glyphicon-user" class="btn" />
+                <h:form>
+                    <b:commandButton style="background: transparent; border: none; size: 30px;"
+                              value="Profil" 
+                              icon="glyphicon glyphicon-user" class="btn" />
+                    <b:commandButton style="background: transparent; border: none; size: 30px;"
+                              value="Log Out"
+                              icon="glyphicon glyphicon-log-out" class="btn"
+                              action="#{loginModel.logout()}"/>
+                </h:form>
             </span>
         </b:container>    
         <!-- /header -->

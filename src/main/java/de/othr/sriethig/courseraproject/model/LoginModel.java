@@ -78,6 +78,15 @@ public class LoginModel implements Serializable {
         return "login.xhtml";
     }
     
+    public String logout() {
+        System.out.println("logout");
+        this.abstractUser = null;
+        this.isAuthorizedProfessor = false;
+        this.isAuthorizedSCStudent = false;
+        this.isAuthorizedSNStudent = false;
+        return "login.xhtml";
+    }
+    
     /**
      * 
      */

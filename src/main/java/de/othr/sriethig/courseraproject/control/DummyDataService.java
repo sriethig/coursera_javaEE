@@ -16,7 +16,9 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -26,6 +28,8 @@ import lombok.NoArgsConstructor;
 @Transactional
 @NoArgsConstructor
 public class DummyDataService implements Serializable {
+    
+    @Getter @Setter private boolean isDataSeeded = false;
     
     @Inject
     StudentService studentService;
@@ -40,6 +44,9 @@ public class DummyDataService implements Serializable {
      * 
      */
     public void insertDummyData() {
+        if(this.isDataSeeded) {
+            return;
+        }
         String[] firstNames = {
                 "Max",
                 "Maria",
@@ -119,7 +126,7 @@ public class DummyDataService implements Serializable {
                 p.setPassword(profFirstNames[i]);
                 professorService.registerProfessor(p);                
             }
-            
+            this.isDataSeeded = true;
     }
     
 }
