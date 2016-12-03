@@ -8,10 +8,8 @@ package de.othr.sriethig.courseraproject.entity;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -62,6 +60,26 @@ public class Course extends SingleIdEntity {
         if(this.students.contains(student)) {
             this.students.remove(student);
         }     
+        return this;
+    }
+    
+    /**
+     * 
+     * @param professor
+     * @return 
+     */
+    public Course addProfessor(Professor professor) {
+        this.professor = professor;    
+        return this;
+    }
+    
+    /**
+     * 
+     * @param professor
+     * @return 
+     */
+    public Course updateProfessor(Professor professor) {
+        this.professor = professor;    
         return this;
     }
     

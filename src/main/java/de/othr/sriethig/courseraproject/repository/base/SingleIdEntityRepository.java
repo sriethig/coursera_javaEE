@@ -59,7 +59,6 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity>
      */
     public void persist(E entity) {
         this.entityManager.persist(entity);
-        System.out.println("persist: " + entity.toString());
     }
     
     /**
@@ -67,9 +66,9 @@ public abstract class SingleIdEntityRepository<K, E extends SingleIdEntity>
      * @param entities 
      */
     public void persist(List<E> entities) {
-        for(E entity : entities) {
+        entities.forEach((entity) -> {
             this.persist(entity);
-        }
+        });
     }
     
     /**

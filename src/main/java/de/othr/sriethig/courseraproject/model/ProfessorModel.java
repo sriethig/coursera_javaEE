@@ -6,6 +6,7 @@
 package de.othr.sriethig.courseraproject.model;
 
 import de.othr.sriethig.courseraproject.control.CourseService;
+import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
@@ -37,27 +38,48 @@ public class ProfessorModel implements Serializable {
     @Inject
     CourseService courseService;
     
+    @Inject
+    ProfessorService professorService;
+    
     /**
      * 
      */
     public void initialize() {
-        professor = (Professor) loginModel.getAbstractUser();
+        this.professor = (Professor) loginModel.getAbstractUser();
         
         // list all courses of the user
-        courses = (List<Course>) professor.getCourses();
+        this.courses = professorService.getCourses(this.professor);
     }
     
     /**
      * 
      */
-    public void addCourse() {
-        System.out.println("adding course");
-        
+    public void addCourse() {    
+        System.out.println("add course ->");
         Course course = new Course();
         course.setTitle(this.title);
         course.setDescription(this.description);
+                
+        course = courseService.createCourse(course);
+        courseService.addProfessor(course, this.professor);
         
-        // TODO
+        this.courses = professorService.getCourses(this.professor);
     }
     
+    /**
+     * 
+     * @param course 
+     */
+    public void removeCourse(Course course) {
+        courseService.removeCourse(course);
+        this.courses = professorService.getCourses(this.professor);
+    }
+    
+    /**
+     * 
+     * @param course 
+     */
+    public void editCourse(Course course) {
+        
+    }
 }

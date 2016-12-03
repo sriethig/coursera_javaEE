@@ -43,43 +43,6 @@
                         <b:panel id="panelCourses" class="panel"
                                  title="Your Courses" >
                             
-                            <!-- add new course -->
-                            <h:form>
-                                <b:row style="width: 100%; text-align: center;">
-                                    <a style="background-color: #9CE18E; border: none; 
-                                      width:80px; height: 80px; border-radius: 50%; 
-                                      color: white; margin-bottom: 5px; text-align: center;
-                                      font-size: 45px;" class="btn" 
-                                      href="#modal" data-toggle="modal">+</a>
-                                </b:row>
-                            </h:form>
-                            <!-- /add new course -->
-                            
-                            <!-- modal for course creation -->
-                            <b:modal id="modal" title="Create new course" 
-                                     styleClass="modalPseudoClass" 
-                                     closable="false" close-on-escape="false" 
-                                     backdrop="false">
-                                <b:container style="width: 350px; padding-top: -10px; margin: 0 auto;">
-                                    <h:form styleClass="form" prependId="false">
-                                        <h2 class="form-heading">Fill in Title and Description</h2>
-                                        <b:inputText id="title" 
-                                                     placeholder="Title" 
-                                                     value="#{professorModel.title}"/>
-                                        <b:inputText id="description" 
-                                                     placeholder="Description" 
-                                                     value="#{professorModel.description}"/>
-                                    </h:form>
-                                    <b:button value="Close" dismiss="modal"
-                                              style="position: relative; float: right; margin-left: 10px;"
-                                              onclick="return false;"/>
-                                    <b:button value="Create" look="primary" dismiss="modal" 
-                                              style="position: relative; float: right; "
-                                              onclick="#{professorModel.addCourse()}"/>
-                                </b:container>
-                            </b:modal>
-                            <!-- /modal -->
-                            
                             <!-- iterate over professors courses -->
                             <h:dataTable value="#{professorModel.courses}" var="course"
                                           style="width: 100%;">
@@ -87,6 +50,12 @@
                                     <b:well>
                                         #{course.title}
                                         <h:form>
+                                            <b:commandButton value="Delete" 
+                                                  style="position: relative; float: right;
+                                                  background-color: coral; color: white;
+                                                  border-color: white;  margin-top: -27px;" 
+                                                  icon="glyphicon glyphicon-minus" icon-size="1x"
+                                                  action="#{professorModel.removeCourse(course)}"/>
                                         <b:commandButton value="Edit" 
                                                   style="position: relative; float: right;
                                                   background-color: #9CE18E; color: white;
@@ -98,6 +67,22 @@
                             </h:dataTable>
                             <!-- /iterate over professors courses -->
                             
+                        </b:panel>
+                        
+                        <b:panel id="panelAddCourse" class="panel"
+                                 title="Add Course" >
+                            <h:form>
+                                <b:inputText id="newCourseTitle" 
+                                             placeholder="Title"
+                                             value="#{professorModel.title}"/>
+                                <b:inputTextarea id="newCourseDescription"
+                                                 placeholder="..."
+                                                 value="#{professorModel.description}"/>
+                                <b:commandButton value="Add"
+                                                 style="background-color: #9CE18E; color: white;"
+                                                 icon="glyphicon glyphicon-plus" 
+                                                 action="#{professorModel.addCourse()}" />
+                            </h:form>
                         </b:panel>
                     </b:accordion>
                 </b:column>

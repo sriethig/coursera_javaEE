@@ -7,7 +7,6 @@ package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -33,9 +32,11 @@ public class Professor extends AbstractUser {
      * @param course
      * @return 
      */
-    public List<Course> addCourse(Course course) {
-        courses.add(course);
-        return (List<Course>)courses;
+    public Professor addCourse(Course course) {
+        if(!courses.contains(course)) {
+            courses.add(course);
+        }
+        return this;
     }
     
     /**
@@ -43,9 +44,11 @@ public class Professor extends AbstractUser {
      * @param course
      * @return 
      */
-    public List<Course> removeCourse(Course course) {
-        courses.remove(course);
-        return (List<Course>)courses;
+    public Professor removeCourse(Course course) {
+        if(courses.contains(course)) {
+            courses.remove(course);
+        }
+        return this;
     }
     
 }

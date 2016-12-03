@@ -129,6 +129,16 @@ public class CourseService implements Serializable {
         return students;
     }
     
+    public void addProfessor(Course course, Professor professor) {
+        course = (Course) courseRepository.merge(course);
+        professor = (Professor) professorRepository.merge(professor);
+        
+        course = course.addProfessor(professor);
+        professor = professor.addCourse(course);
+        professorRepository.getEntityManager().persist(professor);
+        courseRepository.persist(course); // TODO not needed?!
+    }
+    
     /**
      * 
      * @param course
@@ -205,6 +215,11 @@ public class CourseService implements Serializable {
      */
     public void removeCourse(Course course) {
         course = (Course) courseRepository.merge(course);
+        Professor professor = course.getProfessor();
+        professor = (Professor) professorRepository.merge(professor);
+        
+        professor = professor.removeCourse(course);
+        professorRepository.getEntityManager().persist(professor);
         courseRepository.remove(course);
     }
 }
