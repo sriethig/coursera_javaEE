@@ -215,11 +215,23 @@ public class CourseService implements Serializable {
      */
     public void removeCourse(Course course) {
         course = (Course) courseRepository.merge(course);
-        Professor professor = course.getProfessor();
-        professor = (Professor) professorRepository.merge(professor);
         
+        // remove course from professors list of courses
+        Professor professor = course.getProfessor();
+        professor = (Professor) professorRepository.merge(professor);       
         professor = professor.removeCourse(course);
         professorRepository.getEntityManager().persist(professor);
+        
+        // remove course from all students list of courses
+        List<AbstractStudent> students = 
+                (List<AbstractStudent>) course.getStudents();
+        for(AbstractStudent student : students) {
+            student = (AbstractStudent) studentRepository.merge(student);
+            student = student.removeCourse(course);
+            studentRepository.getEntityManager().persist(student);
+        }
+        
+        // finally delete course from database
         courseRepository.remove(course);
     }
 }
