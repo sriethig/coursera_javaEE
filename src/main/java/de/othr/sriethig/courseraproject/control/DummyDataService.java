@@ -44,9 +44,22 @@ public class DummyDataService implements Serializable {
      * 
      */
     public void insertDummyData() {
-        if(this.isDataSeeded) {
-            return;
-        }
+        if(!this.isDataSeeded) {
+            seedStudents();
+            List<Course> courses = seedCourses();
+            seedProfessors(courses);
+            
+            this.isDataSeeded = true;
+        }        
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<SCStudent> seedStudents() {
+        List<SCStudent> students = new ArrayList<>();
+        
         String[] firstNames = {
                 "Max",
                 "Maria",
@@ -73,9 +86,20 @@ public class DummyDataService implements Serializable {
                 s.setAddress(new Address("Galgenbergstr. " + i, 93049, 
                         "Regensburg", Country.GER));
                 studentService.registerStudent(s);
+                students.add(s);
             }
-                        
-            String[] courseTitles = {
+            
+            return students;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Course> seedCourses() {
+        List<Course> courses = new ArrayList<>();
+        
+        String[] courseTitles = {
                 "HCI - Human Computer Interaction",
                 "Java for Beginners",
                 "UML Diagrams for the Daily Use",
@@ -94,16 +118,26 @@ public class DummyDataService implements Serializable {
                     + "bike collection and learn to query them with the "
                     + "almighty SQL."
             };
-            List<Course> courses = new ArrayList<>();
             for(int i = 0; i < courseTitles.length; i++) {
                 Course c = new Course();
                 c.setTitle(courseTitles[i]);
                 c.setDescription(courseDescriptions[i]);
-                courses.add(c);
                 courseService.createCourse(c);
+                courses.add(c);
             }
             
-            String profFirstNames[] = {
+            return courses;
+    }
+    
+    /**
+     * 
+     * @param courses
+     * @return 
+     */
+    public List<Professor> seedProfessors(List<Course> courses) {
+        List<Professor> professors = new ArrayList<>();
+        
+        String profFirstNames[] = {
                 "David",
                 "Mark",
                 "Flo",
@@ -124,9 +158,12 @@ public class DummyDataService implements Serializable {
                 p.setEmailAddress(profFirstNames[i] + "." + profNames[i] +
                         "@oth-regensburg.de");
                 p.setPassword(profFirstNames[i]);
-                professorService.registerProfessor(p);                
+                courseService.addProfessor(courses.get(i), p);
+                professorService.registerProfessor(p); 
+                professors.add(p);
             }
-            this.isDataSeeded = true;
+            
+            return professors;
     }
     
 }

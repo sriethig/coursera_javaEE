@@ -45,8 +45,6 @@ public class ProfessorModel implements Serializable {
      * 
      */
     public void initialize() {
-        this.professor = (Professor) loginModel.getAbstractUser();
-        
         // list all courses of the user
         this.courses = professorService.getCourses(this.professor);
     }

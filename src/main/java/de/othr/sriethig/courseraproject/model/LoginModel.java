@@ -11,6 +11,7 @@ import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
+import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -43,6 +44,12 @@ public class LoginModel implements Serializable {
     @Getter @Setter private boolean isAuthorizedProfessor;
     
     @Inject
+    StudentModel studentModel;
+    
+    @Inject 
+    ProfessorModel professorModel;
+    
+    @Inject
     DummyDataService dummyDataService;
     
     @Inject
@@ -66,12 +73,15 @@ public class LoginModel implements Serializable {
             this.message = "Email and/or password wrong!\n Please try again!";
         } else if(abstractUser.getClass() == Professor.class) {
             this.isAuthorizedProfessor = true;
+            professorModel.setProfessor((Professor) this.abstractUser);
             return "professor.xhtml";
         } else if(abstractUser.getClass() == SCStudent.class) {
             this.isAuthorizedSCStudent = true;
+            studentModel.setStudent((AbstractStudent) this.abstractUser);
             return "student.xhtml";
         } else if(abstractUser.getClass() == SNStudent.class) {
             this.isAuthorizedSNStudent = true;
+            studentModel.setStudent((AbstractStudent) this.abstractUser);
             return "student.xhtml";
         }
         this.password = "";

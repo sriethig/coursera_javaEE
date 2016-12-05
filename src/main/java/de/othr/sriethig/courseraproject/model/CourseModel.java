@@ -30,7 +30,6 @@ public class CourseModel implements Serializable {
     StudentModel studentModel;
     
     public void initialize() {
-        course = studentModel.getDetailCourse();
     }
     
     public void enrollInThisCourse() {

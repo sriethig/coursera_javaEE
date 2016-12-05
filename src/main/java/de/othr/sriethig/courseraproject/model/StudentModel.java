@@ -38,6 +38,9 @@ public class StudentModel implements Serializable {
     LoginModel loginModel;
     
     @Inject
+    CourseModel courseModel;
+    
+    @Inject
     StudentService studentService;
     
     @Inject
@@ -48,8 +51,6 @@ public class StudentModel implements Serializable {
      * 
      */
     public void initialize() {
-        student = (AbstractStudent) loginModel.getAbstractUser();
-        
         // list all courses of the user
         courses = studentService.getEnrolledCourses(this.student);
         
@@ -122,7 +123,8 @@ public class StudentModel implements Serializable {
     }
     
     public String showDetailCourse(Course course) {
-        this.detailCourse = course;
+        //this.detailCourse = course;
+        courseModel.setCourse(course);
         System.out.println("showing detail course: " + course.getTitle());
         return "show_course.xhtml";
     }
