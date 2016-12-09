@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
  */
 @SessionScoped
 @NoArgsConstructor
-@Transactional(Transactional.TxType.REQUIRED)
 public class StudentService implements Serializable {
     
     @Inject
@@ -40,9 +39,20 @@ public class StudentService implements Serializable {
      * @param student
      * @return 
      */
+    @Transactional
     public AbstractStudent registerStudent(AbstractStudent student) {
         studentRepository.persist(student);
         return student;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    // TODO
+    @Transactional
+    public AbstractStudent registerSNStudent() {
+        return null;
     }
     
     /**
@@ -64,6 +74,7 @@ public class StudentService implements Serializable {
      * @param firstName
      * @return 
      */
+    @Transactional
     public AbstractStudent updateStudentFirstName(AbstractStudent student, 
             String firstName) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -77,6 +88,7 @@ public class StudentService implements Serializable {
      * @param name
      * @return 
      */
+    @Transactional
     public AbstractStudent updateStudentName(AbstractStudent student, 
             String name) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -90,6 +102,7 @@ public class StudentService implements Serializable {
      * @param address
      * @return 
      */
+    @Transactional
     public AbstractStudent updateStudentAddress(AbstractStudent student, 
             Address address) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -114,6 +127,7 @@ public class StudentService implements Serializable {
      * @param newCourse
      * @return 
      */
+    @Transactional
     public List<Course> enrollInCourse(AbstractStudent student,
             Course newCourse) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -132,6 +146,7 @@ public class StudentService implements Serializable {
      * @param course
      * @return 
      */
+    @Transactional
     public List<Course> unenrollFromCourse(AbstractStudent student,
             Course course) {
         student = (AbstractStudent) studentRepository.merge(student);

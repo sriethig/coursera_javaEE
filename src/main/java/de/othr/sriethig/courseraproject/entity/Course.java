@@ -83,4 +83,13 @@ public class Course extends SingleIdEntity {
         return this;
     }
     
+    /**
+     * 
+     * @param lesson
+     * @return 
+     */
+    public Course addLesson(Lesson lesson) {
+        return null;
+    }
+    
 }

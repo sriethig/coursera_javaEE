@@ -9,9 +9,8 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
-import javax.transaction.TransactionalException;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -31,6 +30,7 @@ public class AbstractUserRepository extends
      * @param password
      * @return 
      */
+    @Transactional
     public AbstractUser authenticateAbstractUser(String email, String password) {
         TypedQuery<AbstractUser> query = this.createTypedQuery(
             "SELECT u FROM AbstractUser u WHERE u.emailAddress = "

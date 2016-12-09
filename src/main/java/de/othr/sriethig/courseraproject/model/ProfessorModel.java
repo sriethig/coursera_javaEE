@@ -9,12 +9,12 @@ import de.othr.sriethig.courseraproject.control.CourseService;
 import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
-import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,17 +33,21 @@ public class ProfessorModel implements Serializable {
     @Getter @Setter private String description;
     
     @Inject
-    LoginModel loginModel;
+    private LoginModel loginModel;
     
     @Inject
-    CourseService courseService;
+    private CourseModel courseModel;
     
     @Inject
-    ProfessorService professorService;
+    private CourseService courseService;
+    
+    @Inject
+    private ProfessorService professorService;
     
     /**
      * 
      */
+    @Transactional
     public void initialize() {
         // list all courses of the user
         this.courses = professorService.getCourses(this.professor);
@@ -52,6 +56,7 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      */
+    @Transactional
     public void addCourse() {    
         System.out.println("add course ->");
         Course course = new Course();
@@ -68,6 +73,7 @@ public class ProfessorModel implements Serializable {
      * 
      * @param course 
      */
+    @Transactional
     public void removeCourse(Course course) {
         courseService.removeCourse(course);
         this.courses = professorService.getCourses(this.professor);
@@ -76,8 +82,11 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      * @param course 
+     * @return  
      */
-    public void editCourse(Course course) {
-        
+    @Transactional
+    public String editCourse(Course course) {
+        courseModel.setCourse(course);
+        return "edit_course.xhtml";
     }
 }

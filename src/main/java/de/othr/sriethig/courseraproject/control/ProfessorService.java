@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
  */
 @SessionScoped
 @NoArgsConstructor
-@Transactional(Transactional.TxType.REQUIRED)
 public class ProfessorService implements Serializable {
     
     @Inject
@@ -35,6 +34,7 @@ public class ProfessorService implements Serializable {
      * @param professor
      * @return 
      */
+    @Transactional
     public Professor registerProfessor(Professor professor) {
         professorRepository.persist(professor);
         return professor;
@@ -42,16 +42,11 @@ public class ProfessorService implements Serializable {
     
     /**
      * 
-     * @param professor
      * @return 
      */
-    //TODO
-    public Professor loginProfessor(Professor professor) {
-        return null;
-    }
-    
     public List<Professor> getProfessors() {
-        List<Professor> professors = professorRepository.getAllProfessors();
+        List<Professor> professors = professorRepository.findAll();
+        //List<Professor> professors = professorRepository.getAllProfessors();
         return professors;
     }
      
@@ -61,6 +56,7 @@ public class ProfessorService implements Serializable {
      * @param firstName
      * @return 
      */
+    @Transactional
     public Professor updateProfessorFirstName(Professor professor, 
             String firstName) {
         professor = (Professor) professorRepository.merge(professor);
@@ -74,6 +70,7 @@ public class ProfessorService implements Serializable {
      * @param name
      * @return 
      */
+    @Transactional
     public Professor updateProfessorName(Professor professor,
             String name) {
         professor = (Professor) professorRepository.merge(professor);
@@ -87,6 +84,7 @@ public class ProfessorService implements Serializable {
      * @param address
      * @return 
      */
+    @Transactional
     public Professor updateProfessorAddress(Professor professor,
             Address address) {
         professor = (Professor) professorRepository.merge(professor);
@@ -109,6 +107,7 @@ public class ProfessorService implements Serializable {
      * 
      * @param professor 
      */
+    @Transactional
     public void removeProfessor(Professor professor) {
         professorRepository.remove(professor);
     }

@@ -56,7 +56,7 @@ public class StudentRepository extends
     //TODO: resolve country
     public List<AbstractStudent> findStudentByCountry(Country country) {
         TypedQuery<AbstractStudent> query = this.getEntityManager().createQuery("SELECT s FROM "
-            + "Student AS s WHERE s.country = :paramertername",
+            + "AbstractStudent AS s WHERE s.country = :paramertername",
             this.getType()    
         );
         query.setParameter("parametername", country);

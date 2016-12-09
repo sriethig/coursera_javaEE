@@ -26,7 +26,6 @@ import lombok.NoArgsConstructor;
  */
 @SessionScoped
 @NoArgsConstructor
-@Transactional(Transactional.TxType.REQUIRED)
 public class CourseService implements Serializable {
     
     @Inject
@@ -46,6 +45,7 @@ public class CourseService implements Serializable {
      * @param course
      * @return 
      */
+    @Transactional
     public Course createCourse(Course course) {
         courseRepository.persist(course);
         return course;
@@ -85,6 +85,7 @@ public class CourseService implements Serializable {
      * @param title
      * @return 
      */
+    @Transactional
     public Course updateCourseTitle(Course course, String title) {
         course = (Course) courseRepository.merge(course);
         course.setTitle(title);
@@ -97,10 +98,12 @@ public class CourseService implements Serializable {
      * @param description
      * @return 
      */
+    @Transactional
     public Course updateCourseDescription(Course course, 
             String description) {
         course = (Course) courseRepository.merge(course);
         course.setDescription(description);
+        courseRepository.persist(course);
         return course;
     }
     
@@ -110,6 +113,7 @@ public class CourseService implements Serializable {
      * @param professor
      * @return 
      */
+    @Transactional
     public Course updateProfessor(Course course, Professor professor) {
         course = (Course) courseRepository.merge(course);
         professor = (Professor) professorRepository.merge(professor);
@@ -129,6 +133,12 @@ public class CourseService implements Serializable {
         return students;
     }
     
+    /**
+     * 
+     * @param course
+     * @param professor 
+     */
+    @Transactional
     public void addProfessor(Course course, Professor professor) {
         course = (Course) courseRepository.merge(course);
         professor = (Professor) professorRepository.merge(professor);
@@ -142,10 +152,11 @@ public class CourseService implements Serializable {
     /**
      * 
      * @param course
-     * @param student
-     * @return 
+     * @param student 
+     * @return  
      */
-    public void addStudent(Course course,
+    @Transactional
+    public Course addStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
@@ -154,6 +165,7 @@ public class CourseService implements Serializable {
         student = student.addCourse(course);
         studentRepository.getEntityManager().persist(student);
         courseRepository.persist(course); // TODO not needed?!
+        return course;
     }
     
     /**
@@ -162,7 +174,8 @@ public class CourseService implements Serializable {
      * @param student
      * @return 
      */
-    public void removeStudent(Course course,
+    @Transactional
+    public Course removeStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
@@ -171,6 +184,7 @@ public class CourseService implements Serializable {
         student = student.removeCourse(course);
         studentRepository.getEntityManager().persist(student);
         courseRepository.persist(course); // not needed?!
+        return course;
     } 
     
     /**
@@ -179,15 +193,20 @@ public class CourseService implements Serializable {
      * @param lesson
      * @return 
      */
-    public List<Lesson> addLesson(Course course, Lesson lesson) {
+    @Transactional
+    public Course addLesson(Course course, Lesson lesson) {
         course = (Course) courseRepository.merge(course);
         lesson = (Lesson) lessonRepository.merge(lesson);
         
         List<Lesson> lessons = (List) course.getLessons();
         if(!lessons.contains(lesson)) {
             lessons.add(lesson);
+            lessonRepository.persist(lesson);
+            courseRepository.persist(course);
+            System.out.println("added lesson " + lesson.getTitle());
+            System.out.println("no of course lessons " + course.getLessons().size());
         }
-        return lessons;
+        return course;
     }
     
     /**
@@ -196,6 +215,7 @@ public class CourseService implements Serializable {
      * @param lesson
      * @return 
      */
+    @Transactional
     public List<Lesson> removeLesson(Course course, Lesson lesson) {
         course = (Course) courseRepository.merge(course);
         lesson = (Lesson) lessonRepository.merge(lesson);
@@ -213,6 +233,7 @@ public class CourseService implements Serializable {
      * 
      * @param course 
      */
+    @Transactional
     public void removeCourse(Course course) {
         course = (Course) courseRepository.merge(course);
         

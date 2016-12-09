@@ -8,7 +8,10 @@ package de.othr.sriethig.courseraproject.repository;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -49,12 +52,26 @@ public class CourseRepository extends
      * @return 
      */
     public List<Course> findCoursesWithTag(String tag) {
-        TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
+        /*
+        String s = "SELECT B FROM AbstractBook AS B WHERE ";
+		s = s.concat(Arrays.asList(term.split(" ")).stream()
+				.map(str -> "LOWER(B.name) LIKE '%" + str.toLowerCase() + "%'")
+				.collect(Collectors.joining(" OR ")));
+
+        return bookManager.createQuery(s).getResultList();
+        */
+        String queryString  = "SELECT c FROM Course AS c WHERE ";
+        queryString = queryString.concat(Arrays.asList(tag.split(" ")).stream()
+                        .map(str -> "LOWER(c.title) LIKE '%" + str.toLowerCase() + "%' OR "
+                                + "LOWER(c.description) LIKE '%" + str.toLowerCase() + "%'")
+                        .collect(Collectors.joining (" OR ")));
+        /*TypedQuery<Course> query = this.createTypedQuery("SELECT c FROM "
                 + "Course AS c WHERE c.description LIKE :parameter1 OR "
                 + "c.title LIKE :parameter2"
         );
         query.setParameter("parameter1", tag);
-        query.setParameter("parameter2", tag);
+        query.setParameter("parameter2", tag);*/
+        TypedQuery<Course> query = this.createTypedQuery(queryString);
         List<Course> courses = query.getResultList();
         if(courses.isEmpty()) {
             return null;
@@ -70,10 +87,10 @@ public class CourseRepository extends
      */
     public List<Course> findCoursesFromProfessor(String professor) {
         TypedQuery query = this.getEntityManager().createQuery("SELECT c FROM "
-                + "Courses WHERE c.professor = :parametername", 
+                + "Courses As c WHERE c.professor = :parameter1", 
                 this.getType()
         );
-        query.setParameter("parametername", professor);
+        query.setParameter("parameter1", professor);
         List<Course> courses = query.getResultList();
         if(courses.isEmpty()) {
             return null;

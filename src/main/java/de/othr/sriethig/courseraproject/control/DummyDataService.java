@@ -8,8 +8,11 @@ package de.othr.sriethig.courseraproject.control;
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Country;
 import de.othr.sriethig.courseraproject.entity.Course;
+import de.othr.sriethig.courseraproject.entity.Exam;
+import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
+import de.othr.sriethig.courseraproject.entity.Video;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,28 +28,32 @@ import lombok.Setter;
  * @author sonja
  */
 @SessionScoped
-@Transactional
 @NoArgsConstructor
 public class DummyDataService implements Serializable {
     
     @Getter @Setter private boolean isDataSeeded = false;
     
     @Inject
-    StudentService studentService;
+    private StudentService studentService;
     
     @Inject
-    CourseService courseService;
+    private CourseService courseService;
     
     @Inject
-    ProfessorService professorService;
+    private LessonService lessonService;
+    
+    @Inject
+    private ProfessorService professorService;
     
     /**
      * 
      */
+    @Transactional
     public void insertDummyData() {
         if(!this.isDataSeeded) {
             seedStudents();
-            List<Course> courses = seedCourses();
+            Lesson lesson = seedLesson();
+            List<Course> courses = seedCourses(lesson);
             seedProfessors(courses);
             
             this.isDataSeeded = true;
@@ -94,9 +101,10 @@ public class DummyDataService implements Serializable {
     
     /**
      * 
+     * @param standardLesson
      * @return 
      */
-    public List<Course> seedCourses() {
+    public List<Course> seedCourses(Lesson standardLesson) {
         List<Course> courses = new ArrayList<>();
         
         String[] courseTitles = {
@@ -122,11 +130,38 @@ public class DummyDataService implements Serializable {
                 Course c = new Course();
                 c.setTitle(courseTitles[i]);
                 c.setDescription(courseDescriptions[i]);
-                courseService.createCourse(c);
+                c = courseService.createCourse(c);
+                c = courseService.addLesson(c, standardLesson);
                 courses.add(c);
             }
             
             return courses;
+    }
+    
+    public Lesson seedLesson() {
+                
+        Lesson standardLesson = new Lesson();
+        standardLesson.setTitle("General Introduction");
+        standardLesson.setLessonContent("In the following video, the main "
+                + "principles of all courses are explained. Please watch it "
+                + "carefully and after that go to the exam.");
+        
+        Video standardVideo = new Video();
+        standardVideo.setTitle("Intro");
+        standardVideo.setDescription("Watch carefully!");
+        standardVideo.setUrl("https://www.youtube.com/embed/QH2-TGUlwu4");
+        standardLesson.setVideo(standardVideo);
+        
+        Exam standardExam = new Exam();
+        standardExam.setTitle("Did you watch carefully?");
+        List<String> questions = new ArrayList<>();
+        questions.add("Which animal is shown in the video?");
+        standardExam.setQuestions(questions);
+        standardLesson.setExam(standardExam);
+        
+        standardLesson = lessonService.createLesson(standardLesson);
+
+        return standardLesson;
     }
     
     /**

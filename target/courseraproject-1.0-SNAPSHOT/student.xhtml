@@ -56,7 +56,7 @@
                                 <h:column>
                                     <b:well>
                                         <h:form>
-                                        <h:commandLink action="#{studentModel.showDetailCourse(course)}"> 
+                                        <h:commandLink action="#{courseModel.showCourse(course)}"> 
                                             #{course.title} 
                                         </h:commandLink>
                                         <b:commandButton value="UnEnroll" 
@@ -99,7 +99,7 @@
                                 <h:column>
                                     <b:well rendered="#{studentModel.isInSearchedCourses(availableCourse)}">
                                         <h:form>
-                                        <h:commandLink action="#{studentModel.showDetailCourse(availableCourse)}"> 
+                                        <h:commandLink action="#{courseModel.showCourse(availableCourse)}"> 
                                             #{availableCourse.title} 
                                         </h:commandLink>
                                         <b:commandButton value="Enroll" 

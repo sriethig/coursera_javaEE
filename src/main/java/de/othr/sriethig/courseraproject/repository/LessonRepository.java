@@ -30,8 +30,8 @@ public class LessonRepository extends
      */
     public Lesson findLessonByTitle(String title) {
         TypedQuery<Lesson> query = this.createTypedQuery("SELECT l FROM "
-                + "Lesson WHERE l.title = :1");
-        query.setParameter("1", title);
+                + "Lesson WHERE l.title = :parameter1");
+        query.setParameter("parameter1", title);
         Lesson lesson = (Lesson) query.getSingleResult();
         return lesson;
     }

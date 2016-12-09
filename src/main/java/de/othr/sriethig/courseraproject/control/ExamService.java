@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
  * @author sonja
  */
 @SessionScoped
-@Transactional
 @NoArgsConstructor
 public class ExamService implements Serializable {
     
@@ -35,6 +34,7 @@ public class ExamService implements Serializable {
      * @param exam
      * @return 
      */
+    @Transactional
     public Exam createExam(Exam exam) {
         examRepository.persist(exam);
         return exam;
@@ -90,6 +90,7 @@ public class ExamService implements Serializable {
      * @param question
      * @return 
      */
+    @Transactional
     public List<String> addQuestion(Exam exam, String question) {
         exam = (Exam) examRepository.merge(exam);
         List<String> questions = exam.getQuestions();
@@ -105,6 +106,7 @@ public class ExamService implements Serializable {
      * @param question
      * @return 
      */
+    @Transactional
     public List<String> removeQuestion(Exam exam, String question) {
         exam = (Exam) examRepository.merge(exam);
         List<String> questions = exam.getQuestions();
@@ -125,6 +127,11 @@ public class ExamService implements Serializable {
         return results;
     }
     
+    /**
+     * 
+     * @param exam
+     * @return 
+     */
     public HashMap<String, Double> getExamStatistics(Exam exam) {
         exam = (Exam) examRepository.merge(exam);
         List<ExamResult> results = (List) exam.getResults();
@@ -148,6 +155,7 @@ public class ExamService implements Serializable {
      * 
      * @param exam 
      */
+    @Transactional
     public void removeExam(Exam exam) {
         exam = (Exam) examRepository.merge(exam);
         examRepository.remove(exam);

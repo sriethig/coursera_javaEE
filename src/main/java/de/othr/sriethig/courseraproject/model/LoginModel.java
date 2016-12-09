@@ -17,6 +17,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,24 +45,25 @@ public class LoginModel implements Serializable {
     @Getter @Setter private boolean isAuthorizedProfessor;
     
     @Inject
-    StudentModel studentModel;
+    private StudentModel studentModel;
     
     @Inject 
-    ProfessorModel professorModel;
+    private ProfessorModel professorModel;
     
     @Inject
-    DummyDataService dummyDataService;
+    private DummyDataService dummyDataService;
     
     @Inject
-    LoginService loginService;
+    private LoginService loginService;
     
     @Inject
-    ProfessorService professorService;
+    private ProfessorService professorService;
     
     /**
      * 
      * @return 
      */
+    @Transactional
     public String login() {
         this.message = "";
                 
@@ -88,6 +90,11 @@ public class LoginModel implements Serializable {
         return "login.xhtml";
     }
     
+    /**
+     * 
+     * @return 
+     */
+    @Transactional
     public String logout() {
         System.out.println("logout");
         this.abstractUser = null;
@@ -101,6 +108,7 @@ public class LoginModel implements Serializable {
      * 
      */
     // TODO insert login data for sebis network
+    @Transactional
     public void loginWithSN() {
         this.emailAddress = "";
         this.password = "";
@@ -110,6 +118,7 @@ public class LoginModel implements Serializable {
      * 
      * @return 
      */
+    @Transactional
     public String loginWithTestAccount() {
         this.setEmailAddress("test.prof@oth-regensburg.de");
         this.setPassword("test");

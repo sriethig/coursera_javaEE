@@ -7,10 +7,8 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.Lesson;
-import de.othr.sriethig.courseraproject.entity.LessonContent;
 import de.othr.sriethig.courseraproject.entity.Video;
 import de.othr.sriethig.courseraproject.repository.ExamRepository;
-import de.othr.sriethig.courseraproject.repository.LessonContentRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.VideoRepository;
 import java.io.Serializable;
@@ -24,15 +22,11 @@ import lombok.NoArgsConstructor;
  * @author sonja
  */
 @SessionScoped
-@Transactional
 @NoArgsConstructor
 public class LessonService implements Serializable {
     
     @Inject 
     LessonRepository lessonRepository;
-    
-    @Inject
-    LessonContentRepository lessonContentRepository;
     
     @Inject
     VideoRepository videoRepository;
@@ -45,6 +39,7 @@ public class LessonService implements Serializable {
      * @param lesson
      * @return 
      */
+    @Transactional
     public Lesson createLesson(Lesson lesson) {
         lessonRepository.persist(lesson);
         return lesson;
@@ -66,6 +61,7 @@ public class LessonService implements Serializable {
      * @param title
      * @return 
      */
+    @Transactional
     public Lesson updateTitle(Lesson lesson, String title) {
         lesson = (Lesson) lessonRepository.merge(lesson);
         lesson.setTitle(title);
@@ -78,7 +74,8 @@ public class LessonService implements Serializable {
      * @param lessonContent
      * @return 
      */
-    public Lesson addLessonContent(Lesson lesson, LessonContent lessonContent) {
+    @Transactional
+    public Lesson addLessonContent(Lesson lesson, String lessonContent) {
         lesson = (Lesson) lessonRepository.merge(lesson);
         lesson.setLessonContent(lessonContent);
         return lesson;
@@ -89,11 +86,11 @@ public class LessonService implements Serializable {
      * @param lesson
      * @return 
      */
+    @Transactional
     public Lesson removeLessonContent(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
-        LessonContent lessonContent = lesson.getLessonContent();
-        lesson.setLessonContent(null);
-        lessonContentRepository.remove(lessonContent);
+        String lessonContent = lesson.getLessonContent();
+        lesson.setLessonContent("");
         return lesson;
     }
     
@@ -103,9 +100,14 @@ public class LessonService implements Serializable {
      * @param video
      * @return 
      */
+    @Transactional
     public Lesson addVideo(Lesson lesson, Video video) {
         lesson = (Lesson) lessonRepository.merge(lesson);
+        video = (Video) videoRepository.merge(video);
         lesson.setVideo(video);
+        video.setLesson(lesson);
+        lessonRepository.persist(lesson);
+        videoRepository.persist(video);
         return lesson;
     }
     
@@ -114,11 +116,14 @@ public class LessonService implements Serializable {
      * @param lesson
      * @return 
      */
+    @Transactional
     public Lesson removeVideo(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
         Video video = lesson.getVideo();
         lesson.setVideo(null);
         videoRepository.remove(video);
+        lessonRepository.persist(lesson);
+        videoRepository.persist(video);
         return lesson;
     }
     
@@ -128,6 +133,7 @@ public class LessonService implements Serializable {
      * @param exam
      * @return 
      */
+    @Transactional
     public Lesson addExam(Lesson lesson, Exam exam) {
         lesson = (Lesson) lessonRepository.merge(lesson);
         lesson.setExam(exam);
@@ -139,6 +145,7 @@ public class LessonService implements Serializable {
      * @param lesson
      * @return 
      */
+    @Transactional
     public Lesson removeExam(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
         Exam exam = lesson.getExam();
@@ -151,6 +158,7 @@ public class LessonService implements Serializable {
      * 
      * @param lesson 
      */
+    @Transactional
     public void removeLesson(Lesson lesson) {
         lessonRepository.remove(lesson);
     }

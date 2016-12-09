@@ -42,10 +42,35 @@
             </h:form>
             
             <!-- course info -->
-            <b:container>
+            <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
                 <h2>#{courseModel.course.title}</h2>
                 <p>#{courseModel.course.professor.firstName} #{courseModel.course.professor.name}</p>
                 <p>#{courseModel.course.description}</p>
+          
+                            
+                <!-- list of lessons -->
+                <div style="height: 15px"/>
+                <b:dataTable value="#{courseModel.lessons}" var="lesson"
+                             rendered="#{!courseModel.enableEnrollInThisCourse()}">
+                    <b:column>
+                        <f:facet name="header"> Lessons </f:facet>
+                        <b:panel title="#{lesson.title}" collapsed="true">
+                            <b:row>
+                                <b:column span="6">
+                                    <iframe width="320" height="180" 
+                                            src="#{lesson.video.url}" 
+                                        frameborder="0" allowfullscreen="true">
+                                    </iframe>
+                                </b:column>
+                                <b:column span="6">
+                                    <p>#{lesson.lessonContent}</p>
+                                </b:column>
+                            </b:row>
+                        </b:panel>
+                    </b:column>
+                </b:dataTable>
+                <!-- /list of lessons -->
+                
             </b:container>
             <!-- /course info -->
             

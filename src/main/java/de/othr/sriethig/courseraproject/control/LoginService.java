@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @SessionScoped
-@Transactional(Transactional.TxType.REQUIRED)
 public class LoginService implements Serializable {
     
     @Inject
