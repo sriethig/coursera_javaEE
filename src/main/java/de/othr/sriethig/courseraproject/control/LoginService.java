@@ -11,7 +11,6 @@ import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import lombok.NoArgsConstructor;
 
 /**

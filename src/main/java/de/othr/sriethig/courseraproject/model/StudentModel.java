@@ -14,7 +14,6 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,7 +50,6 @@ public class StudentModel implements Serializable {
     /**
      * 
      */
-    @Transactional
     public void initialize() {
         // list all courses of the user
         courses = studentService.getEnrolledCourses(this.student);
@@ -93,7 +91,6 @@ public class StudentModel implements Serializable {
      * 
      * @param course 
      */
-    @Transactional
     public void enrollInCourse(Course course) {
         if(!studentService.getEnrolledCourses(this.student).contains(course)) {
             courseService.addStudent(course, this.student);
@@ -105,7 +102,6 @@ public class StudentModel implements Serializable {
      * 
      * @param course 
      */
-    @Transactional
     public void unenrollFromCourse(Course course) {
         if(studentService.getEnrolledCourses(this.student).contains(course)) {
             courseService.removeStudent(course, this.student);
@@ -133,7 +129,7 @@ public class StudentModel implements Serializable {
      */
     public String showDetailCourse(Course course) {
         courseModel.setCourse(course);
-        return "show_course.xhtml";
+        return "showCourse";
     }
     
 }

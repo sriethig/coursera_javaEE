@@ -16,7 +16,6 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -80,7 +79,7 @@ public class CourseModel implements Serializable {
      */
     public String showCourse(Course course) {
         this.course = course;
-        return "show_course.xhtml";
+        return "showCourse";
     }
     
     /**
@@ -88,16 +87,14 @@ public class CourseModel implements Serializable {
      * @param course
      * @return 
      */
-    @Transactional
     public String editCourse(Course course) {
         this.course = course;
-        return "edit_course.xhtml";
+        return "editCourse";
     }
     
     /**
      * 
      */
-    @Transactional
     public void enrollInThisCourse() {
         studentModel.enrollInCourse(course);
     }
@@ -105,9 +102,7 @@ public class CourseModel implements Serializable {
     /**
      * 
      */
-    @Transactional
     public void updateCourse() {
-        System.out.println("updating course");
         course = courseService.updateCourseTitle(this.course, this.title);
         course = courseService.updateCourseDescription(this.course, this.description);
     }
@@ -115,7 +110,6 @@ public class CourseModel implements Serializable {
     /**
      * 
      */
-    @Transactional
     public void addLesson() {
         Lesson lesson = new Lesson();
         lesson.setTitle(this.lessonTitle);
@@ -138,11 +132,11 @@ public class CourseModel implements Serializable {
     public String goBack() {
         studentModel.setDetailCourse(null);
         if(loginModel.isAuthorizedProfessor()) {
-            return "professor.xhtml";
-        } else if(loginModel.isAuthorizedSCStudent() || loginModel.isAuthorizedSNStudent()) {
-            return "student.xhtml";
+            return "professor";
+        } else if(loginModel.isAuthorizedStudent()) {
+            return "student";
         } else {
-            return "login.xhtml";
+            return "login";
         }
     }
     

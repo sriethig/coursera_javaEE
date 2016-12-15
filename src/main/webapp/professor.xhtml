@@ -54,22 +54,19 @@
                                           style="width: 100%;">
                                 <h:column>
                                     <b:well>
+                                        #{course.title}
                                         <h:form>
-                                        <h:commandLink action="#{courseModel.showCourse(course)}"> 
-                                            #{course.title} 
-                                        </h:commandLink>
                                             <b:commandButton value="Delete" 
                                                   style="position: relative; float: right;
                                                   background-color: coral; color: white;
-                                                  border-color: white;  margin-top: -7px;" 
+                                                  border-color: white;  margin-top: -27px;" 
                                                   icon="glyphicon glyphicon-minus" icon-size="1x"
                                                   action="#{professorModel.removeCourse(course)}"/>
                                         <b:commandButton value="Edit" 
                                                   style="position: relative; float: right;
                                                   background-color: #9CE18E; color: white;
-                                                  border-color: white;  margin-top: -7px;" 
-                                                  icon="glyphicon glyphicon-edit" icon-size="1x"
-                                                  action="#{courseModel.editCourse(course)}"/>
+                                                  border-color: white;  margin-top: -27px;" 
+                                                  icon="glyphicon glyphicon-edit" icon-size="1x" />
                                         </h:form>
                                     </b:well>
                                 </h:column>

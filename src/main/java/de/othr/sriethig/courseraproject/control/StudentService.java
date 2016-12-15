@@ -115,6 +115,7 @@ public class StudentService implements Serializable {
      * @param student
      * @return 
      */
+    @Transactional
     public List<Course> getEnrolledCourses(AbstractStudent student) {
         student = (AbstractStudent) studentRepository.merge(student);
         List<Course> enrolledCourses = (List) student.getCourses();

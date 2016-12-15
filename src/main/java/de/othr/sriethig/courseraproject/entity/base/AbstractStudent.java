@@ -25,10 +25,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public abstract class AbstractStudent extends AbstractUser {
     
-    @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST})
+    @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Getter @Setter private Collection<Course> courses;
     
-    @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Getter @Setter private Collection<ExamResult> results;
     
     /**

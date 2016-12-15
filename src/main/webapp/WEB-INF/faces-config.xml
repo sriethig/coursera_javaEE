@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+              
+    <navigation-rule>
+        <description>Rules for navigation</description>
+        <from-view-id>/faces/*</from-view-id>
+        
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/faces/login.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/faces/student.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>professor</from-outcome>
+            <to-view-id>/faces/professor.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>showCourse</from-outcome>
+            <to-view-id>/faces/show_course.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>editCourse</from-outcome>
+            <to-view-id>/faces/edit_course</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+</faces-config>

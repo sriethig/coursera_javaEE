@@ -11,10 +11,10 @@ import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,9 +31,7 @@ public class ProfessorModel implements Serializable {
     
     @Getter @Setter private String title;
     @Getter @Setter private String description;
-    
-    @Inject
-    private LoginModel loginModel;
+
     
     @Inject
     private CourseModel courseModel;
@@ -47,7 +45,6 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      */
-    @Transactional
     public void initialize() {
         // list all courses of the user
         this.courses = professorService.getCourses(this.professor);
@@ -56,9 +53,7 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      */
-    @Transactional
     public void addCourse() {    
-        System.out.println("add course ->");
         Course course = new Course();
         course.setTitle(this.title);
         course.setDescription(this.description);
@@ -73,7 +68,6 @@ public class ProfessorModel implements Serializable {
      * 
      * @param course 
      */
-    @Transactional
     public void removeCourse(Course course) {
         courseService.removeCourse(course);
         this.courses = professorService.getCourses(this.professor);
@@ -84,9 +78,8 @@ public class ProfessorModel implements Serializable {
      * @param course 
      * @return  
      */
-    @Transactional
     public String editCourse(Course course) {
         courseModel.setCourse(course);
-        return "edit_course.xhtml";
+        return "editCourse";
     }
 }

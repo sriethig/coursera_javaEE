@@ -97,6 +97,7 @@ public class ProfessorService implements Serializable {
      * @param professor
      * @return 
      */
+    @Transactional // Transactional Required
     public List<Course> getCourses(Professor professor) {
         professor = (Professor) professorRepository.merge(professor);
         List<Course> courses =  (List) professor.getCourses();
