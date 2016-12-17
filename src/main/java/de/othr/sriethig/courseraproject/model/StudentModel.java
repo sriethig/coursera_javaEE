@@ -12,6 +12,7 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,7 +24,7 @@ import lombok.Setter;
  * @author sonja
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class StudentModel implements Serializable {
     
     @Getter @Setter private AbstractStudent student;
@@ -72,8 +73,9 @@ public class StudentModel implements Serializable {
      * get all courses from server when page is initialized
      * @return 
      */
-    public List<Course> getAvailableCourses() {      
-        this.availableCourses = courseService.getAllCourses();
+    public List<Course> getAvailableCourses() {  
+        this.availableCourses = courseService.getAllCourses();  
+        System.out.println("StudentModel::getAvailableCourses " + this.availableCourses.size());
         return this.availableCourses;
     }
     
