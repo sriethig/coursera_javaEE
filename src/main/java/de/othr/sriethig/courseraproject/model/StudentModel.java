@@ -11,6 +11,7 @@ import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,8 +27,9 @@ import lombok.Setter;
 public class StudentModel implements Serializable {
     
     @Getter @Setter private AbstractStudent student;
+    
     @Getter @Setter private List<Course> courses;
-    @Getter @Setter private List<Course> availableCourses;
+    @Setter private List<Course> availableCourses;
     @Getter @Setter private List<Course> resultCourses;
     
     @Getter @Setter private String searchTag = "";
@@ -50,9 +52,11 @@ public class StudentModel implements Serializable {
     /**
      * 
      */
+    @PostConstruct
     public void initialize() {
         // list all courses of the user
-        courses = studentService.getEnrolledCourses(this.student);
+        this.student = (AbstractStudent) loginModel.getAbstractUser();
+        this.courses = studentService.getEnrolledCourses(this.student);
         
         // list all available courses
         availableCourses = 
@@ -62,6 +66,15 @@ public class StudentModel implements Serializable {
         
         // initialize result list
         searchForCourses();
+    }
+    
+    /**
+     * get all courses from server when page is initialized
+     * @return 
+     */
+    public List<Course> getAvailableCourses() {      
+        this.availableCourses = courseService.getAllCourses();
+        return this.availableCourses;
     }
     
     /**
@@ -93,7 +106,9 @@ public class StudentModel implements Serializable {
      */
     public void enrollInCourse(Course course) {
         if(!studentService.getEnrolledCourses(this.student).contains(course)) {
-            courseService.addStudent(course, this.student);
+            System.out.println("StudentModel::enrollInCourse -> " + this.student.getName() + " -> " + course.getTitle());
+            //course = courseService.addStudent(course, this.student);
+            this.student = studentService.enrollInCourse(this.student, course);
         }
         this.courses = studentService.getEnrolledCourses(this.student);
     } 
@@ -104,7 +119,8 @@ public class StudentModel implements Serializable {
      */
     public void unenrollFromCourse(Course course) {
         if(studentService.getEnrolledCourses(this.student).contains(course)) {
-            courseService.removeStudent(course, this.student);
+            //course = courseService.removeStudent(course, this.student);
+            this.student = studentService.unenrollFromCourse(this.student, course);
         }
         this.courses = studentService.getEnrolledCourses(this.student);
     }
@@ -128,8 +144,11 @@ public class StudentModel implements Serializable {
      * @return 
      */
     public String showDetailCourse(Course course) {
-        courseModel.setCourse(course);
-        return "showCourse";
+        this.detailCourse = course;
+        courseModel.initialize();
+        System.out.println("StudentModel::detailCourse: " + this.detailCourse.getTitle());
+        this.searchTag = "";
+        return "show_course";
     }
     
 }

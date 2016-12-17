@@ -160,10 +160,16 @@ public class CourseService implements Serializable {
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
+        
+        System.out.println("CourseService::addStudent " + student.getName());
+        System.out.println("CourseService::addStudent " + course.getTitle());
 
         course = course.addStudent(student);
         student = student.addCourse(course);
-        studentRepository.getEntityManager().persist(student);
+        
+        System.out.println("CourseService::addStudent " + student.getCourses().size());
+        
+        studentRepository.persist(student);
         courseRepository.persist(course); // TODO not needed?!
         return course;
     }
@@ -179,10 +185,15 @@ public class CourseService implements Serializable {
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
+        
+        System.out.println("CourseService::removeStudent " + student.getName());
+        System.out.println("CourseService::removeStudent " + course.getTitle());
 
         course = course.removeStudent(student);
         student = student.removeCourse(course);
-        studentRepository.getEntityManager().persist(student);
+              
+        System.out.println("CourseService::remoceStudent " + student.getCourses().size());
+        studentRepository.persist(student);
         courseRepository.persist(course); // not needed?!
         return course;
     } 
@@ -203,8 +214,6 @@ public class CourseService implements Serializable {
             lessons.add(lesson);
             lessonRepository.persist(lesson);
             courseRepository.persist(course);
-            System.out.println("added lesson " + lesson.getTitle());
-            System.out.println("no of course lessons " + course.getLessons().size());
         }
         return course;
     }

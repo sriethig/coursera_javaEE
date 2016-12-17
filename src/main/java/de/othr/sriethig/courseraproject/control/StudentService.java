@@ -129,16 +129,17 @@ public class StudentService implements Serializable {
      * @return 
      */
     @Transactional
-    public List<Course> enrollInCourse(AbstractStudent student,
+    public AbstractStudent enrollInCourse(AbstractStudent student,
             Course newCourse) {
         student = (AbstractStudent) studentRepository.merge(student);
         newCourse = (Course) courseRepository.merge(newCourse);
         
-        List<Course> enrolledCourses = (List<Course>) student.getCourses();
-        enrolledCourses.add(newCourse);
-        courseRepository.getEntityManager().persist(newCourse);
-        studentRepository.getEntityManager().persist(student);
-        return enrolledCourses;
+        student = student.addCourse(newCourse);
+        newCourse = newCourse.addStudent(student);
+        
+        courseRepository.persist(newCourse);
+        studentRepository.persist(student);
+        return student;
     }
     
     /**
@@ -148,17 +149,16 @@ public class StudentService implements Serializable {
      * @return 
      */
     @Transactional
-    public List<Course> unenrollFromCourse(AbstractStudent student,
+    public AbstractStudent unenrollFromCourse(AbstractStudent student,
             Course course) {
         student = (AbstractStudent) studentRepository.merge(student);
         course = (Course) courseRepository.merge(course);
         
-        List<Course> enrolledCourses = (List<Course>) student.getCourses();
-        if(enrolledCourses.contains(course)) {
-            enrolledCourses.remove(course);
-        } else {
-            //TODO ask about removing objects
-        }
-        return enrolledCourses;
+        student = student.removeCourse(course);
+        course = course.removeStudent(student);
+        
+        courseRepository.persist(course);
+        studentRepository.persist(student);
+        return student;
     }
 }

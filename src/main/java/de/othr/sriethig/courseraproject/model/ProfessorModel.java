@@ -31,7 +31,11 @@ public class ProfessorModel implements Serializable {
     
     @Getter @Setter private String title;
     @Getter @Setter private String description;
+    
+    @Getter @Setter private Course detailCourse;
 
+    @Inject
+    private LoginModel loginModel;
     
     @Inject
     private CourseModel courseModel;
@@ -45,8 +49,10 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      */
+    @PostConstruct
     public void initialize() {
         // list all courses of the user
+        this.professor = (Professor) loginModel.getAbstractUser();
         this.courses = professorService.getCourses(this.professor);
     }
     
@@ -79,7 +85,8 @@ public class ProfessorModel implements Serializable {
      * @return  
      */
     public String editCourse(Course course) {
-        courseModel.setCourse(course);
-        return "editCourse";
+        this.detailCourse = course;
+        courseModel.initialize();
+        return "edit_course";
     }
 }

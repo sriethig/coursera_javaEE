@@ -24,13 +24,13 @@
         </navigation-case>
         
         <navigation-case>
-            <from-outcome>showCourse</from-outcome>
+            <from-outcome>show_course</from-outcome>
             <to-view-id>/faces/show_course.xhtml</to-view-id>
         </navigation-case>
         
         <navigation-case>
-            <from-outcome>editCourse</from-outcome>
-            <to-view-id>/faces/edit_course</to-view-id>
+            <from-outcome>edit_course</from-outcome>
+            <to-view-id>/faces/edit_course.xhtml</to-view-id>
         </navigation-case>
         
     </navigation-rule>

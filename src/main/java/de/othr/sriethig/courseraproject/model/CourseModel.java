@@ -13,6 +13,7 @@ import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -44,6 +45,9 @@ public class CourseModel implements Serializable {
     @Inject
     private StudentModel studentModel;
     
+    @Inject 
+    private ProfessorModel professorModel;
+    
     @Inject
     private CourseService courseService;
     
@@ -57,6 +61,13 @@ public class CourseModel implements Serializable {
      * 
      */
     public void initialize() {
+        if(loginModel.isAuthorizedProfessor()) {
+            this.course = professorModel.getDetailCourse();
+            System.out.println("CourseModel::initalize course: " + this.course.getTitle());
+        } else if(loginModel.isAuthorizedStudent()) {
+            this.course = studentModel.getDetailCourse();
+            System.out.println("CourseModel::initalize course: " + this.course.getTitle());
+        }
         title = this.course.getTitle();
         description = this.course.getDescription();
         lessons = (List<Lesson>) this.course.getLessons();
@@ -74,29 +85,9 @@ public class CourseModel implements Serializable {
     
     /**
      * 
-     * @param course
-     * @return 
-     */
-    public String showCourse(Course course) {
-        this.course = course;
-        return "showCourse";
-    }
-    
-    /**
-     * 
-     * @param course
-     * @return 
-     */
-    public String editCourse(Course course) {
-        this.course = course;
-        return "editCourse";
-    }
-    
-    /**
-     * 
      */
     public void enrollInThisCourse() {
-        studentModel.enrollInCourse(course);
+        studentModel.enrollInCourse(this.course);
     }
     
     /**
@@ -130,10 +121,10 @@ public class CourseModel implements Serializable {
      * @return 
      */
     public String goBack() {
-        studentModel.setDetailCourse(null);
         if(loginModel.isAuthorizedProfessor()) {
             return "professor";
         } else if(loginModel.isAuthorizedStudent()) {
+        studentModel.setDetailCourse(null);
             return "student";
         } else {
             return "login";

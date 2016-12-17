@@ -39,6 +39,8 @@ public abstract class AbstractStudent extends AbstractUser {
     public AbstractStudent addCourse(Course course) {
         if(!this.courses.contains(course)) {
             this.courses.add(course);
+            System.out.println("AbstractStudent::addCourse " + course.getTitle());
+            System.out.println("AbstractStudent::addCourse " + this.courses.size());
         }
         return this;
     }
@@ -51,6 +53,8 @@ public abstract class AbstractStudent extends AbstractUser {
     public AbstractStudent removeCourse(Course course) {
         if(this.courses.contains(course)) {
             this.courses.remove(course);
+            System.out.println("AbstractStudent::removeCourse " + course.getTitle());
+            System.out.println("AbstractStudent::removeCourse " + this.courses.size());
         }
         return this;
     }

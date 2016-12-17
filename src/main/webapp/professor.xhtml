@@ -8,7 +8,7 @@
         <title>Sonjas Coursera</title>
         <h:outputStylesheet library="css" name="style.css" />
     </h:head>
-    <h:body onload="#{professorModel.initialize()}">
+    <h:body>
         <!-- header -->
         <b:container class="sonja sonja_header" style="width: 100%;">
             <span>
@@ -66,7 +66,8 @@
                                                   style="position: relative; float: right;
                                                   background-color: #9CE18E; color: white;
                                                   border-color: white;  margin-top: -27px;" 
-                                                  icon="glyphicon glyphicon-edit" icon-size="1x" />
+                                                  icon="glyphicon glyphicon-edit" icon-size="1x"
+                                                  action="#{professorModel.editCourse(course)}"/>
                                         </h:form>
                                     </b:well>
                                 </h:column>

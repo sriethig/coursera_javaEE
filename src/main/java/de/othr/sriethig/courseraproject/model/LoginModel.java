@@ -8,11 +8,9 @@ package de.othr.sriethig.courseraproject.model;
 import de.othr.sriethig.courseraproject.control.DummyDataService;
 import de.othr.sriethig.courseraproject.control.LoginService;
 import de.othr.sriethig.courseraproject.control.ProfessorService;
-import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
-import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -61,6 +59,24 @@ public class LoginModel implements Serializable {
     @Inject
     private ProfessorService professorService;
     
+    
+    /**
+     * 
+     */
+    @PostConstruct
+    public void initialize() {
+        if(professorService.getProfessors().isEmpty()) {
+            System.out.println("no professors in database, inserting dummy data");
+            dummyDataService.insertDummyData();
+        }
+        if(this.emailAddress.equals("")) {
+            this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";
+        }
+        if(this.password.equals("")) {
+            this.password = "Max";
+        }
+    }
+    
     /**
      * 
      * @return 
@@ -76,19 +92,16 @@ public class LoginModel implements Serializable {
             this.message = "Email and/or password wrong!\n Please try again!";
         } else if(abstractUser.getClass() == Professor.class) {
             this.authorizedProfessor = true;
-            professorModel.setProfessor((Professor) this.abstractUser);
             this.emailAddress = "";
             this.password = "";
             return "professor";
         } else if(abstractUser.getClass() == SCStudent.class) {
             this.authorizedStudent = true;
-            studentModel.setStudent((AbstractStudent) this.abstractUser);
             this.emailAddress = "";
             this.password = "";
             return "student";
         } else if(abstractUser.getClass() == SNStudent.class) {
             this.authorizedStudent = true;
-            studentModel.setStudent((AbstractStudent) this.abstractUser);
             this.emailAddress = "";
             this.password = "";
             return "student";
@@ -102,7 +115,6 @@ public class LoginModel implements Serializable {
      * @return 
      */
     public String logout() {
-        System.out.println("logout");
         this.abstractUser = null;
         this.authorizedProfessor = false;
         this.authorizedStudent = false;
@@ -133,21 +145,8 @@ public class LoginModel implements Serializable {
     
     /**
      * 
+     * @return 
      */
-    @PostConstruct
-    public void initialize() {
-        if(professorService.getProfessors().isEmpty()) {
-            System.out.println("no professors in database, inserting dummy data");
-            dummyDataService.insertDummyData();
-        }
-        if(this.emailAddress.equals("")) {
-            this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";
-        }
-        if(this.password.equals("")) {
-            this.password = "Max";
-        }
-    }
-    
     public boolean isAuthorized() {
         return this.authorizedProfessor || this.authorizedStudent;
     }
