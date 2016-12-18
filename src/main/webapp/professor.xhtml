@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sonjas Coursera</title>
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./resources/template/header_footer_template.xhtml">
+
+            <ui:define name="content">
+        
+                <!-- content -->
+                <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+                    <b:row>
+                        <!-- user info -->
+                        <b:column col-md="4" col-xs="12" style="text-align: center;">
+                            <b:button style="background-color: #B9F9C2; border: none; 
+                                      width:80px; height: 80px; border-radius: 50%; 
+                                      color: white; margin-bottom: 5px; text-align: center;"
+                                      icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
+                                      value = "" />
+                            <p>#{professorModel.professor.firstName} #{professorModel.professor.name}</p>
+                        </b:column>
+                        <!-- /user info -->
+
+                        <!-- courses -->
+                        <b:column col-md="8" col-xs="12" >
+                            <b:accordion expanded-panels="panelCourses" >
+                                <b:panel id="panelCourses" class="panel"
+                                         title="Your Courses" >
+
+                                    <!-- iterate over professors courses -->
+                                    <h:dataTable value="#{professorModel.courses}" var="course"
+                                                  style="width: 100%;">
+                                        <h:column>
+                                            <b:well>
+                                                #{course.title}
+                                                <h:form>
+                                                    <b:commandButton value="Delete" 
+                                                          style="position: relative; float: right;
+                                                          background-color: coral; color: white;
+                                                          border-color: white;  margin-top: -27px;" 
+                                                          icon="glyphicon glyphicon-minus" icon-size="1x"
+                                                          action="#{professorModel.removeCourse(course)}"/>
+                                                <b:commandButton value="Edit" 
+                                                          style="position: relative; float: right;
+                                                          background-color: #9CE18E; color: white;
+                                                          border-color: white;  margin-top: -27px;" 
+                                                          icon="glyphicon glyphicon-edit" icon-size="1x"
+                                                          action="#{professorModel.editCourse(course)}"/>
+                                                </h:form>
+                                            </b:well>
+                                        </h:column>
+                                    </h:dataTable>
+                                    <!-- /iterate over professors courses -->
+
+                                </b:panel>
+
+                                <b:panel id="panelAddCourse" class="panel"
+                                         title="Add Course" >
+                                    <h:form>
+                                        <b:inputText id="newCourseTitle" 
+                                                     placeholder="Title"
+                                                     value="#{professorModel.title}"/>
+                                        <b:inputTextarea id="newCourseDescription"
+                                                         placeholder="..."
+                                                         value="#{professorModel.description}"/>
+                                        <b:commandButton value="Add"
+                                                         style="background-color: #9CE18E; color: white;"
+                                                         icon="glyphicon glyphicon-plus" 
+                                                         action="#{professorModel.addCourse()}" />
+                                    </h:form>
+                                </b:panel>
+                            </b:accordion>
+                        </b:column>
+                        <!-- /courses -->
+                    </b:row>
+                </b:container>
+                <!-- /content -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

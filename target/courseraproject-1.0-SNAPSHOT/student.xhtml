@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sonjas Coursera</title>
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./resources/template/header_footer_template.xhtml">
+
+            <ui:define name="content">
+        
+                <!-- content -->
+                <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+                    <b:row>
+                        <!-- user info -->
+                        <b:column col-md="4" col-xs="12" style="text-align: center;">
+                            <b:button style="background-color: #B9F9C2; border: none; 
+                                      width:80px; height: 80px; border-radius: 50%; 
+                                      color: white; margin-bottom: 5px; text-align: center;"
+                                      icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
+                                      value = "" />
+                            <p>#{studentModel.student.firstName} #{studentModel.student.name}</p>
+                            <p>No. of enrollments: #{studentModel.courses.size()}</p>
+                        </b:column>
+                        <!-- /user info -->
+
+                        <!-- courses -->
+                        <b:column col-md="8" col-xs="12" >
+                            <b:accordion expanded-panels="panelSearchCourses" >
+                                <b:panel id="panelYourCourses" class="panel"
+                                         title="Your Courses" >
+
+                                    <!-- iterate over students courses -->
+                                    <h:dataTable value="#{studentModel.courses}" var="course"
+                                                  style="width: 100%;">
+                                        <h:column>
+                                            <b:well>
+                                                <h:form>
+                                                <h:commandLink action="#{studentModel.showDetailCourse(course)}"> 
+                                                    #{course.title} 
+                                                </h:commandLink>
+                                                <b:commandButton value="UnEnroll" 
+                                                          style="position: relative; float: right;
+                                                          background-color: coral; color: white;
+                                                          border-color: white;  margin-top: -7px;" 
+                                                          icon="glyphicon glyphicon-minus" icon-size="1x"
+                                                          action="#{studentModel.unenrollFromCourse(course)}" />
+                                                </h:form>
+                                            </b:well>
+                                        </h:column>
+                                    </h:dataTable>
+                                    <!-- /iterate over students courses -->
+
+                                </b:panel>
+                                <b:panel id="panelSearchCourses" class="panel"
+                                         title="Search Courses">
+
+                                    <!-- search bar for courses -->
+                                    <b:container style="width: 100%; margin-bottom: 10px;">
+                                        <h:form styleClass="form-search" prependId="false">
+                                            <b:column col-md="6" col-xs="12">
+                                                <b:inputText id="searchTag"
+                                                                placeholder="Search" 
+                                                                value="#{studentModel.searchTag}"/>
+                                            </b:column>
+                                            <b:column col-md="6" col-xs="12">
+                                            <b:commandButton look="primary btn-block" 
+                                                value="Search" icon="search"
+                                                action="#{studentModel.searchForCourses()}" />
+                                            </b:column>
+                                        </h:form>
+                                    </b:container>
+                                    <!-- /search bar for courses -->
+
+                                    <!-- iterate over all courses available -->
+                                    <h:dataTable value="#{studentModel.availableCourses}" 
+                                                 var="availableCourse"
+                                                 style="width: 100%;">
+                                        <h:column>
+                                            <b:well rendered="#{studentModel.isInSearchedCourses(availableCourse)}">
+                                                <h:form>
+                                                <h:commandLink action="#{studentModel.showDetailCourse(availableCourse)}">
+                                                    #{availableCourse.title} 
+                                                </h:commandLink>
+                                                <b:commandButton value="Enroll" 
+                                                          style="position: relative; float: right;
+                                                          background-color: #9CE18E; color: white;
+                                                          border-color: white;  margin-top: -7px;" 
+                                                          icon="glyphicon glyphicon-plus" icon-size="1x"
+                                                          action="#{studentModel.enrollInCourse(availableCourse)}"
+                                                          disabled="#{studentModel.disableEnrollment(availableCourse)}" />
+                                                </h:form>
+                                            </b:well>
+                                        </h:column>
+                                    </h:dataTable>
+                                    <!-- /iterate over all courses available -->
+
+                                </b:panel>
+                            </b:accordion>
+                        </b:column>
+                        <!-- /courses -->
+                    </b:row>
+                </b:container>
+                <!-- /content -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

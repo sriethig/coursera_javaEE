@@ -38,4 +38,47 @@ public class Course extends SingleIdEntity {
     @OneToMany(mappedBy="course")
     @Getter @Setter private Collection<Lesson> lessons;
     
+    /**
+     * 
+     * @param professor
+     * @return 
+     */
+    public Course addProfessor(Professor professor) {
+       this.professor = professor;
+       return this;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    // TODO: not needed
+    public Course removeProfessor() {
+        this.professor = null;
+        return this;
+    }
+    
+    /**
+     * 
+     * @param student
+     * @return 
+     */
+    public Course addStudent(AbstractStudent student) {
+        if(!this.students.contains(student)) {
+            this.students.add(student);
+        }
+        return this;
+    }
+    
+    /**
+     * 
+     * @param student
+     * @return 
+     */
+    public Course removeStudent(AbstractStudent student) {
+        if(this.students.contains(student)) {
+            this.students.remove(student);
+        }
+        return this;
+    }
 }

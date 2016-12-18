@@ -2,43 +2,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Sonjas Coursera</title>
     </h:head>
     <h:body>
-        <b:container style="width: 100%; height: 100px; background-color: #9CE18E;">
-            <span style="color: white; font-size: 70px;">
-                Sonjas Coursera
-            </span>
-        </b:container>
-        <b:container style="width: 350px; padding-top: 100px;">
-            <h:form styleClass="form-signin" prependId="false">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <b:inputText id="email" 
-                             placeholder="Email address" 
-                             value="#{loginModel.emailAddress}"/>
-                <b:inputText id="password" 
-                             placeholder="Password" 
-                             type="password"
-                             value="#{loginModel.password}"/>
-                <h:outputText style="color: red;"
-                              value="#{loginModel.message}" />
-                <b:commandButton look="primary btn-block" 
-                                 value="Sign In" icon="log-in" 
-                                 size="lg" style=" margin-top: 20px;"
-                                 action="#{loginModel.login()}"/>
-            </h:form>
-        </b:container>
+
+        <ui:composition template="./resources/template/header_footer_template.xhtml">
+
+            <ui:define name="content">
         
-        <b:container style="width: 350px; padding-top: 50px;">
-            <h:form styleClass="form-signin" prependId="false">
-                <b:commandButton look="default btn-block" 
-                                 value="Testaccount" 
-                                 icon="log-in" size="lg"
-                                 action="#{loginModel.loginWithTestAccount()}"/>
-                </h:form>
-        </b:container>
+                <!-- sign in using known email and password -->
+                <b:container style="width: 350px; padding-top: 30px; padding-bottom: 30px;">
+                    <h:form styleClass="form-signin" prependId="false">
+                        <h2 class="form-signin-heading">Please sign in</h2>
+                        <b:inputText id="emailSC" 
+                                     placeholder="Email address" 
+                                     value="#{loginModel.emailAddress}"/>
+                        <b:inputText id="passwordSC" 
+                                     placeholder="Password" 
+                                     type="password"
+                                     value="#{loginModel.password}"/>
+                        <h:outputText style="color: red;"
+                                      value="#{loginModel.message}" />
+                        <b:commandButton look="primary btn-block" 
+                                         value="Sign In" icon="log-in" 
+                                         size="lg" style=" margin-top: 20px;"
+                                         action="#{loginModel.login()}"/>
+                    </h:form>
+                </b:container>
+                <!-- /sign in -->
+
+                <!-- sign in using test accounts -->
+                <b:container style="width: 350px; padding-top: 30px;">
+                    <!-- test account sn student - opens modal -->
+                    <h:form styleClass="form-signin" prependId="false">
+                        <h2 class="form-signin-heading">or use a test account</h2>
+                        <!-- this button opens the modal for the sn login -->
+                        <button class="btn btn-info btn-lg" type="button"
+                                style="width: 320px; height: 45px;"
+                                data-target="#modal" data-toggle="modal">
+                                    Testaccount SN
+                        </button>
+                    </h:form>
+
+                        <!-- modal for sn data input -->
+                        <b:modal id="modal" title="SN Log In" 
+                                 styleClass="sonja-modal" 
+                                 closable="false" close-on-escape="false" 
+                                 backdrop="false">
+                            <b:container style="width: 350px; padding-top: -10px; margin: 0 auto;">
+                                <h:form styleClass="form-signin" prependId="false">
+                                    <h2 class="form-signin-heading">Please sign in</h2>
+                                    <b:inputText id="emailSN" 
+                                                 placeholder="Nickname" 
+                                                 value="#{loginModel.emailAddress}"/>
+                                    <b:inputText id="passwordSN" 
+                                                 placeholder="Password" 
+                                                 type="password"
+                                                 value="#{loginModel.password}"/>
+                                    <h:outputText style="color: red;"
+                                                  value="#{loginModel.message}" />
+                                </h:form>
+                                <b:button value="Close" dismiss="modal"
+                                          style="position: relative; float: right; margin-left: 10px;"
+                                          onclick="return false;"/>
+                                <b:button value="Sign In" look="primary" dismiss="modal" 
+                                          style="position: relative; float: right; "
+                                          onclick="#{loginModel.loginWithSN()}"/>
+                            </b:container>
+                        </b:modal>
+                        <!-- /modal -->
+                    <!-- /test account sn student -->
+
+                    <!-- test account professor -->
+                    <h:form styleClass="form-signin" prependId="false" style="padding-top: 20px;">
+                        <b:commandButton look="default btn-block" 
+                                         value="Testaccount Professor" 
+                                         icon="log-in" size="lg"
+                                         action="#{loginModel.loginWithTestAccount()}"/>
+                    </h:form>
+                    <!-- test account professor -->
+
+                </b:container>
+                <!-- /sign in using test account -->
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

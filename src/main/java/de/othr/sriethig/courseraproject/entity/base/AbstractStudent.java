@@ -30,4 +30,28 @@ public abstract class AbstractStudent extends AbstractUser {
     @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST})
     @Getter @Setter private Collection<ExamResult> results;
     
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public AbstractStudent addCourse(Course course) {
+        if(!this.courses.contains(course)) {
+            this.courses.add(course);
+        }
+        return this;
+    }
+    
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public AbstractStudent removeCourse(Course course) {
+        if(this.courses.contains(course)) {
+            this.courses.remove(course);
+        }
+        return this;
+    }
+    
 }

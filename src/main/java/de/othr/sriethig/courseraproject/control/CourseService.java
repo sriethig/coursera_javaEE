@@ -6,12 +6,12 @@
 package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Course;
-import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
+import de.othr.sriethig.courseraproject.repository.StudentRepository;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -33,6 +33,9 @@ public class CourseService implements Serializable {
     
     @Inject
     ProfessorRepository professorRepository;
+    
+    @Inject
+    StudentRepository studentRepository;
 
     @Inject
     LessonRepository lessonRepository;
@@ -126,14 +129,17 @@ public class CourseService implements Serializable {
      * @param student
      * @return 
      */
-    public List<AbstractStudent> addStudent(Course course,
+    public Course addStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
-        List<AbstractStudent> students = (List) course.getStudents();
-        if(!students.contains(student)) {
-            students.add(student);
-        }
-        return students;
+        student = (AbstractStudent) studentRepository.merge(student);
+        
+        course = course.addStudent(student);
+        student = student.addCourse(course);
+        
+        studentRepository.persist(student);
+        courseRepository.persist(course); // TODO not needed?!
+        return course;
     }
     
     /**
@@ -142,50 +148,17 @@ public class CourseService implements Serializable {
      * @param student
      * @return 
      */
-    public List<AbstractStudent> removeStudent(Course course,
+    public Course removeStudent(Course course,
             AbstractStudent student) {
         course = (Course) courseRepository.merge(course);
-        List<AbstractStudent> students = (List) course.getStudents();
-        if(students.contains(student)) {
-            students.remove(student);
-        }
-        return students;
-    } 
-    
-    /**
-     * 
-     * @param course
-     * @param lesson
-     * @return 
-     */
-    public List<Lesson> addLesson(Course course, Lesson lesson) {
-        course = (Course) courseRepository.merge(course);
-        lesson = (Lesson) lessonRepository.merge(lesson);
+        student = (AbstractStudent) studentRepository.merge(student);
         
-        List<Lesson> lessons = (List) course.getLessons();
-        if(!lessons.contains(lesson)) {
-            lessons.add(lesson);
-        }
-        return lessons;
-    }
-    
-    /**
-     * 
-     * @param course
-     * @param lesson
-     * @return 
-     */
-    public List<Lesson> removeLesson(Course course, Lesson lesson) {
-        course = (Course) courseRepository.merge(course);
-        lesson = (Lesson) lessonRepository.merge(lesson);
-        
-        List<Lesson> lessons = (List) course.getLessons();
-        if(lessons.contains(lesson)) {
-            lessons.remove(lesson);
-        } else {
-            //TODO ask about removing non-existent objects
-        }
-        return lessons;
+        course = course.removeStudent(student);
+        student = student.removeCourse(course);
+              
+        studentRepository.persist(student);
+        courseRepository.persist(course); // not needed?!
+        return course;
     }
     
     /**
