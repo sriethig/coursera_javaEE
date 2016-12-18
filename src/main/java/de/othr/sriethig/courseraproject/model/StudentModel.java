@@ -74,6 +74,7 @@ public class StudentModel implements Serializable {
      */
     public List<Course> getAvailableCourses() {      
         this.availableCourses = courseService.getAllCourses();
+        searchForCourses(); // update search list
         return this.availableCourses;
     }
     

@@ -65,7 +65,7 @@ public class ProfessorModel implements Serializable {
         course.setDescription(this.description);
                 
         course = courseService.createCourse(course);
-        courseService.addProfessor(course, this.professor);
+        course = courseService.addProfessor(course, this.professor);
         
         this.courses = professorService.getCourses(this.professor);
     }

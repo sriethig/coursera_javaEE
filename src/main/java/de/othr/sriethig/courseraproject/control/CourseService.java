@@ -137,9 +137,10 @@ public class CourseService implements Serializable {
      * 
      * @param course
      * @param professor 
+     * @return  
      */
     @Transactional
-    public void addProfessor(Course course, Professor professor) {
+    public Course addProfessor(Course course, Professor professor) {
         course = (Course) courseRepository.merge(course);
         professor = (Professor) professorRepository.merge(professor);
         
@@ -147,6 +148,7 @@ public class CourseService implements Serializable {
         professor = professor.addCourse(course);
         professorRepository.getEntityManager().persist(professor);
         courseRepository.persist(course); // TODO not needed?!
+        return course;
     }
     
     /**
@@ -161,14 +163,9 @@ public class CourseService implements Serializable {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
         
-        System.out.println("CourseService::addStudent " + student.getName());
-        System.out.println("CourseService::addStudent " + course.getTitle());
-
         course = course.addStudent(student);
         student = student.addCourse(course);
-        
-        System.out.println("CourseService::addStudent " + student.getCourses().size());
-        
+
         studentRepository.persist(student);
         courseRepository.persist(course); // TODO not needed?!
         return course;
@@ -186,13 +183,9 @@ public class CourseService implements Serializable {
         course = (Course) courseRepository.merge(course);
         student = (AbstractStudent) studentRepository.merge(student);
         
-        System.out.println("CourseService::removeStudent " + student.getName());
-        System.out.println("CourseService::removeStudent " + course.getTitle());
-
         course = course.removeStudent(student);
         student = student.removeCourse(course);
               
-        System.out.println("CourseService::remoceStudent " + student.getCourses().size());
         studentRepository.persist(student);
         courseRepository.persist(course); // not needed?!
         return course;
@@ -240,7 +233,7 @@ public class CourseService implements Serializable {
     
     /**
      * 
-     * @param course 
+     * @param course  
      */
     @Transactional
     public void removeCourse(Course course) {
