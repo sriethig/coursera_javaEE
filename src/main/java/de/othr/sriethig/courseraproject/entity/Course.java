@@ -83,4 +83,27 @@ public class Course extends SingleIdEntity {
         return this;
     }
     
+    /**
+     * 
+     * @param lesson
+     * @return 
+     */
+    public Course addLesson(Lesson lesson) {
+        if(!this.lessons.contains(lesson)) {
+            this.lessons.add(lesson);
+        }
+        return this;
+    }
+    
+    /**
+     * 
+     * @param lesson
+     * @return 
+     */
+    public Course removeLesson(Lesson lesson) {
+        if(this.lessons.contains(lesson)) {
+            this.lessons.remove(lesson);
+        }
+        return this;
+    }
 }

@@ -34,5 +34,15 @@ public class Lesson extends SingleIdEntity {
   
     @OneToOne
     @Getter @Setter private Exam exam;
+    
+    /**
+     * 
+     * @param course
+     * @return 
+     */
+    public Lesson addCourse(Course course) {
+        this.course = course;
+        return this;
+    }
   
 }

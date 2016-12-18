@@ -52,12 +52,11 @@ public class DummyDataService implements Serializable {
     public void insertDummyData() {
         if(!this.isDataSeeded) {
             seedStudents();
-            Lesson lesson = seedLesson();
-            List<Course> courses = seedCourses(lesson);
+            List<Course> courses = seedCourses();
             seedProfessors(courses);
             
             this.isDataSeeded = true;
-        }        
+        }  
     }
     
     /**
@@ -78,8 +77,8 @@ public class DummyDataService implements Serializable {
             String[] names = {
                 "Mustermann",
                 "Mustermann",
-                "Dietrich",
-                "Portman",
+                "Dieter",
+                "Portmonnaie",
                 "Weise", 
                 "student"
             };
@@ -92,7 +91,7 @@ public class DummyDataService implements Serializable {
                 s.setPassword(firstNames[i]);
                 s.setAddress(new Address("Galgenbergstr. " + i, 93049, 
                         "Regensburg", Country.GER));
-                studentService.registerStudent(s);
+                s = (SCStudent) studentService.registerStudent(s);
                 students.add(s);
             }
             
@@ -104,7 +103,7 @@ public class DummyDataService implements Serializable {
      * @param standardLesson
      * @return 
      */
-    public List<Course> seedCourses(Lesson standardLesson) {
+    public List<Course> seedCourses() {
         List<Course> courses = new ArrayList<>();
         
         String[] courseTitles = {
@@ -131,8 +130,11 @@ public class DummyDataService implements Serializable {
                 c.setTitle(courseTitles[i]);
                 c.setDescription(courseDescriptions[i]);
                 c = courseService.createCourse(c);
-                c = courseService.addLesson(c, standardLesson);
+                
+                Lesson lesson = seedLesson();
+                c = courseService.addLesson(c, lesson);
                 courses.add(c);
+                System.out.println("DummyDataService::seedCourses " + c.getTitle() + " " + c.getLessons().size());
             }
             
             return courses;
@@ -194,7 +196,7 @@ public class DummyDataService implements Serializable {
                         "@oth-regensburg.de");
                 p.setPassword(profFirstNames[i]);
                 courseService.addProfessor(courses.get(i), p);
-                professorService.registerProfessor(p); 
+                p = professorService.registerProfessor(p); 
                 professors.add(p);
             }
             

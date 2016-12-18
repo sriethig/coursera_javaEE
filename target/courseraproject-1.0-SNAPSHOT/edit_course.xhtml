@@ -10,63 +10,48 @@
         <h:outputStylesheet library="css" name="style.css" />
     </h:head>
     <h:body>
-        <!-- header -->
-        <b:container class="sonja sonja_header" style="width: 100%;">
-            <span>
-                Sonjas Coursera
-            </span>
-            <span style="position: relative; float: right; margin-right: 10px; 
-                  margin-top: 25px; font-size: 30px;">
-                <h:form>
-                    <b:commandButton style="background: transparent; border: none; size: 30px;"
-                              value="Profil" 
-                              icon="glyphicon glyphicon-user" class="btn" />
-                    <b:commandButton style="background: transparent; border: none; size: 30px;"
-                              value="Log Out"
-                              icon="glyphicon glyphicon-log-out" class="btn"
-                              action="#{loginModel.logout()}"/>
-                </h:form>
-            </span>
-        </b:container>    
-        <!-- /header -->
-       
-        <!-- content -->
-        <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
-            <h:form style="width: 100%; height: 50px;">
-                <b:commandButton value="back" action="#{courseModel.goBack()}"
-                                 class="btn" icon="glyphicon glyphicon-chevron-left"
-                                 style="position: relative; float: left;" />
-            </h:form>
-            <h:form>
-                <b:accordion expanded-panels="panelCourses" >
-                        <b:panel id="editCourse" class="panel"
-                                 title="Edit Course Info" >
-                            <b:inputText id="newCourseTitle" 
-                                         placeholder="Title"
-                                         value="#{courseModel.title}"/>
-                            <b:inputTextarea id="newCourseDescription"
-                                             placeholder="..."
-                                             value="#{courseModel.description}"/>
-                            <b:commandButton value="Update"
-                                             style="background-color: #9CE18E; color: white;"
-                                             icon="glyphicon glyphicon-edit" 
-                                             action="#{courseModel.updateCourse()}" />
-                        </b:panel>
-
-                    <b:panel id="lessons" class="panel"
-                        title="Lessons" >
-
-                        List of lessons
-                        Panel to add a lesson!?
-
-                    </b:panel>
-                    </b:accordion>
-            </h:form>
-
-
-        </b:container>
-        <!-- /content -->
         
+        <ui:composition template="./resources/templates/header_footer_template.xhtml">
+
+            <ui:define name="content">
+       
+                <!-- content -->
+                <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+                    <h:form style="width: 100%; height: 50px;">
+                        <b:commandButton value="back" action="#{courseModel.goBack()}"
+                                         class="btn" icon="glyphicon glyphicon-chevron-left"
+                                         style="position: relative; float: left;" />
+                    </h:form>
+                    <h:form>
+                        <b:accordion expanded-panels="panelCourses" >
+                                <b:panel id="editCourse" class="panel"
+                                         title="Edit Course Info" >
+                                    <b:inputText id="newCourseTitle" 
+                                                 placeholder="Title"
+                                                 value="#{courseModel.title}"/>
+                                    <b:inputTextarea id="newCourseDescription"
+                                                     placeholder="..."
+                                                     value="#{courseModel.description}"/>
+                                    <b:commandButton value="Update"
+                                                     style="background-color: #9CE18E; color: white;"
+                                                     icon="glyphicon glyphicon-edit" 
+                                                     action="#{courseModel.updateCourse()}" />
+                                </b:panel>
+
+                            <b:panel id="lessons" class="panel"
+                                title="Lessons" >
+
+                                List of lessons
+                                Panel to add a lesson!?
+
+                            </b:panel>
+                            </b:accordion>
+                    </h:form>
+
+                </b:container>
+                <!-- /content -->
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

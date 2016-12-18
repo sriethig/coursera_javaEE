@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .sonja {
-    background-color: #9CE18E;
+    background-color: #B9F9C2;
     color: white;
     border: none;
 }
@@ -18,6 +18,9 @@ and open the template in the editor.
     position: relative;
     float: left;
     font-size: 70px;
+    font-variant: small-caps;
+    text-shadow: 2px 2px 8px grey;
+    color: white;
     margin-top: -20px;
 }
 
@@ -28,4 +31,28 @@ and open the template in the editor.
     margin-top: 15px; 
     font-size: 30px;
 }
+
+.sonja-container {
+    width: 350px;
+    padding-top: 30px;
+}
+
+.modal-header {
+    background-image: url("../resources/img/congruent_pentagon.png");
+    background-repeat: repeat;
+    color: white;
+    font-variant: small-caps;
+    text-shadow: 2px 2px 8px grey;
+    border-radius: 5px 5px 0 0;
+}
+
+.panel-heading {
+    background-image: url("../resources/img/school.png");
+    background-repeat: repeat;
+    color: white;
+    font-variant: small-caps;
+    text-shadow: 2px 2px 8px grey;
+    border-radius: 5px 5px 0 0;
+}
+
 

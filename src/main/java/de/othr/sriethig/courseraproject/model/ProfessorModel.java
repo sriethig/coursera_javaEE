@@ -59,7 +59,7 @@ public class ProfessorModel implements Serializable {
     /**
      * 
      */
-    public void addCourse() {    
+    public String addCourse() {    
         Course course = new Course();
         course.setTitle(this.title);
         course.setDescription(this.description);
@@ -68,15 +68,17 @@ public class ProfessorModel implements Serializable {
         course = courseService.addProfessor(course, this.professor);
         
         this.courses = professorService.getCourses(this.professor);
+        return "professor";
     }
     
     /**
      * 
      * @param course 
      */
-    public void removeCourse(Course course) {
+    public String removeCourse(Course course) {
         courseService.removeCourse(course);
         this.courses = professorService.getCourses(this.professor);
+        return "professor";
     }
     
     /**

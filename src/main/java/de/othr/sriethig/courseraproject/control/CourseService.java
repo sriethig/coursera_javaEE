@@ -202,12 +202,12 @@ public class CourseService implements Serializable {
         course = (Course) courseRepository.merge(course);
         lesson = (Lesson) lessonRepository.merge(lesson);
         
-        List<Lesson> lessons = (List) course.getLessons();
-        if(!lessons.contains(lesson)) {
-            lessons.add(lesson);
-            lessonRepository.persist(lesson);
-            courseRepository.persist(course);
-        }
+        lesson = lesson.addCourse(course);
+        //course = course.addLesson(lesson);
+        System.out.println("CourseService::addLesson " + course + " " + lesson);
+        System.out.println("CourseService::addLesson " + course.getLessons().size());
+        courseRepository.persist(course);
+        lessonRepository.persist(lesson);
         return course;
     }
     
@@ -233,6 +233,17 @@ public class CourseService implements Serializable {
     
     /**
      * 
+     * @param course
+     * @return 
+     */
+    @Transactional
+    public List<Lesson> getLessons(Course course) {
+        course = courseRepository.merge(course);
+        return (List) course.getLessons();
+    }
+    
+    /**
+     * 
      * @param course  
      */
     @Transactional
@@ -243,7 +254,7 @@ public class CourseService implements Serializable {
         Professor professor = course.getProfessor();
         professor = (Professor) professorRepository.merge(professor);       
         professor = professor.removeCourse(course);
-        professorRepository.getEntityManager().persist(professor);
+        professorRepository.persist(professor);
         
         // remove course from all students list of courses
         List<AbstractStudent> students = 
@@ -251,7 +262,7 @@ public class CourseService implements Serializable {
         for(AbstractStudent student : students) {
             student = (AbstractStudent) studentRepository.merge(student);
             student = student.removeCourse(course);
-            studentRepository.getEntityManager().persist(student);
+            studentRepository.persist(student);
         }
         
         // finally delete course from database

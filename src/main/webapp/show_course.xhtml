@@ -3,78 +3,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Sonjas Coursera</title>
         <h:outputStylesheet library="css" name="style.css" />
     </h:head>
     <h:body>
-        <!-- header -->
-        <b:container class="sonja sonja_header" style="width: 100%;">
-            <span>
-                Sonjas Coursera
-            </span>
-            <span style="position: relative; float: right; margin-right: 10px; 
-                  margin-top: 25px; font-size: 30px;">
-                <h:form>
-                    <b:commandButton style="background: transparent; border: none; size: 30px;"
-                              value="Profil" 
-                              icon="glyphicon glyphicon-user" class="btn" />
-                    <b:commandButton style="background: transparent; border: none; size: 30px;"
-                              value="Log Out"
-                              icon="glyphicon glyphicon-log-out" class="btn"
-                              action="#{loginModel.logout()}"/>
-                </h:form>
-            </span>
-        </b:container>    
-        <!-- /header -->
-       
-        <!-- content -->
-        <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
-            <h:form style="width: 100%; height: 50px;">
-                <b:commandButton value="back" action="#{courseModel.goBack()}"
-                                 class="btn" icon="glyphicon glyphicon-chevron-left"
-                                 style="position: relative; float: left;" />
-                <b:commandButton value="Enroll" rendered="#{courseModel.enableEnrollInThisCourse()}"
-                                 action="#{courseModel.enrollInThisCourse()}"
-                                 style="position: relative; float: right;
-                                 background-color: #9CE18E; color: white;"/>
-            </h:form>
-            
-            <!-- course info -->
-            <b:container>
-                <h2>#{courseModel.course.title}</h2>
-                <p>#{courseModel.course.professor.firstName} #{courseModel.course.professor.name}</p>
-                <p>#{courseModel.course.description}</p>
-            </b:container>
-            <!-- /course info -->
-            
-                            <!-- list of lessons -->
-                <div style="height: 15px"/>
-                <b:dataTable value="#{courseModel.lessons}" var="lesson"
-                             rendered="#{!courseModel.enableEnrollInThisCourse()}">
-                    <b:column>
-                        <f:facet name="header"> Lessons </f:facet>
-                        <b:panel title="#{lesson.title}" collapsed="true">
-                            <b:row>
-                                <b:column span="6">
-                                    <iframe width="320" height="180" 
-                                            src="#{lesson.video.url}" 
-                                        frameborder="0" allowfullscreen="true">
-                                    </iframe>
-                                </b:column>
-                                <b:column span="6">
-                                    <p>#{lesson.lessonContent}</p>
-                                </b:column>
-                            </b:row>
-                        </b:panel>
-                    </b:column>
-                </b:dataTable>
-                <!-- /list of lessons -->
+        
+        <ui:composition template="./resources/templates/header_footer_template.xhtml">
 
-            
-        </b:container>
-        <!-- /content -->
+            <ui:define name="content">
+       
+                <!-- content -->
+                <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+                    <h:form style="width: 100%; height: 50px;">
+                        <b:commandButton value="back" action="#{courseModel.goBack()}"
+                                         class="btn" icon="glyphicon glyphicon-chevron-left"
+                                         style="position: relative; float: left;" />
+                        <b:commandButton value="Enroll" rendered="#{courseModel.enableEnrollInThisCourse()}"
+                                         action="#{courseModel.enrollInThisCourse()}"
+                                         style="position: relative; float: right;
+                                         background-color: #9CE18E; color: white;"/>
+                    </h:form>
+
+                    <!-- course info -->
+                    <b:container style="width: 80%; margin: 0 auto; padding-top: 30px;">
+                        <h2>#{courseModel.course.title}</h2>
+                        <p>#{courseModel.course.professor.firstName} #{courseModel.course.professor.name}</p>
+                        <p>#{courseModel.course.description}</p>
+                    </b:container>
+                    <!-- /course info -->
+
+                                    <!-- list of lessons -->
+                        <div style="height: 15px"/>
+                        <b:dataTable value="#{courseModel.lessons}" var="lesson"
+                                     rendered="#{!courseModel.enableEnrollInThisCourse()}">
+                            <b:column>
+                                <f:facet name="header"> Lessons </f:facet>
+                                <b:panel title="#{lesson.title}" collapsed="true">
+                                    <b:row>
+                                        <b:column span="6">
+                                            <iframe width="320" height="180" 
+                                                    src="#{lesson.video.url}" 
+                                                frameborder="0" allowfullscreen="true">
+                                            </iframe>
+                                        </b:column>
+                                        <b:column span="6">
+                                            <p>#{lesson.lessonContent}</p>
+                                        </b:column>
+                                    </b:row>
+                                </b:panel>
+                            </b:column>
+                        </b:dataTable>
+                        <!-- /list of lessons -->
+
+                </b:container>
+                <!-- /content -->
+            </ui:define>
+        </ui:composition>
         
     </h:body>
 </html>

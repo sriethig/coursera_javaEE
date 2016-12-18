@@ -28,7 +28,7 @@ public class StudentModel implements Serializable {
     
     @Getter @Setter private AbstractStudent student;
     
-    @Getter @Setter private List<Course> courses;
+    @Setter private List<Course> courses;
     @Setter private List<Course> availableCourses;
     @Getter @Setter private List<Course> resultCourses;
     
@@ -69,12 +69,23 @@ public class StudentModel implements Serializable {
     }
     
     /**
+     * get all courses of student from server on load
+     * i.e. if a professor deletes a course, it shouldn't be
+     * availabe on the students site
+     * @return 
+     */
+    public List<Course> getCourses() {
+        this.courses = studentService.getEnrolledCourses(this.student);
+        return this.courses;
+    }
+    
+    /**
      * get all courses from server when page is initialized
      * @return 
      */
     public List<Course> getAvailableCourses() {      
         this.availableCourses = courseService.getAllCourses();
-        searchForCourses(); // update search list
+        searchForCourses(); // update search list   
         return this.availableCourses;
     }
     
@@ -104,26 +115,30 @@ public class StudentModel implements Serializable {
     /**
      * 
      * @param course 
+     * @return  
      */
-    public void enrollInCourse(Course course) {
+    public String enrollInCourse(Course course) {
         if(!studentService.getEnrolledCourses(this.student).contains(course)) {
             System.out.println("StudentModel::enrollInCourse -> " + this.student.getName() + " -> " + course.getTitle());
             //course = courseService.addStudent(course, this.student);
             this.student = studentService.enrollInCourse(this.student, course);
         }
         this.courses = studentService.getEnrolledCourses(this.student);
+        return "student";
     } 
     
     /**
      * 
      * @param course 
+     * @return  
      */
-    public void unenrollFromCourse(Course course) {
+    public String unenrollFromCourse(Course course) {
         if(studentService.getEnrolledCourses(this.student).contains(course)) {
             //course = courseService.removeStudent(course, this.student);
             this.student = studentService.unenrollFromCourse(this.student, course);
         }
         this.courses = studentService.getEnrolledCourses(this.student);
+        return "student";
     }
     
     /**
@@ -147,7 +162,6 @@ public class StudentModel implements Serializable {
     public String showDetailCourse(Course course) {
         this.detailCourse = course;
         courseModel.initialize();
-        System.out.println("StudentModel::detailCourse: " + this.detailCourse.getTitle());
         this.searchTag = "";
         return "show_course";
     }

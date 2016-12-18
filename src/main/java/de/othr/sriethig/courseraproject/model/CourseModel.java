@@ -31,7 +31,7 @@ public class CourseModel implements Serializable {
     @Getter @Setter private Course course;
     @Getter @Setter private String title;
     @Getter @Setter private String description;
-    @Getter @Setter private List<Lesson> lessons;
+    @Setter private List<Lesson> lessons;
     
     @Getter @Setter private String lessonTitle;
     @Getter @Setter private String lessonContent;
@@ -84,10 +84,22 @@ public class CourseModel implements Serializable {
     }
     
     /**
-     * 
+     * fetch lessons from server when page is loaded
+     * in case a professor added a lesson during the session
+     * @return 
      */
-    public void enrollInThisCourse() {
+    public List<Lesson> getLessons() {
+        this.lessons = courseService.getLessons(this.course);
+        return this.lessons;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String enrollInThisCourse() {
         studentModel.enrollInCourse(this.course);
+        return "show_course";
     }
     
     /**

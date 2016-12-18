@@ -5,9 +5,11 @@
  */
 package de.othr.sriethig.courseraproject.control;
 
+import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
+import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.ExamRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.VideoRepository;
@@ -26,13 +28,14 @@ import lombok.NoArgsConstructor;
 public class LessonService implements Serializable {
     
     @Inject 
-    LessonRepository lessonRepository;
+    private LessonRepository lessonRepository;
     
     @Inject
-    VideoRepository videoRepository;
+    private VideoRepository videoRepository;
     
     @Inject 
-    ExamRepository examRepository;
+    private ExamRepository examRepository;
+    
     
     /**
      * 
