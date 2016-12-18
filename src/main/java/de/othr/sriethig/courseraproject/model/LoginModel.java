@@ -124,8 +124,15 @@ public class LoginModel implements Serializable {
     /**
      * 
      */
+    // TODO implement
+    public void registerWithSN() {
+        
+    }
+    
+    /**
+     * 
+     */
     // TODO insert login data for sebis network
-    @Transactional
     public void loginWithSN() {
         this.emailAddress = "";
         this.password = "";
@@ -135,13 +142,14 @@ public class LoginModel implements Serializable {
      * 
      * @return 
      */
-    @Transactional
     public String loginWithTestAccount() {
         this.setEmailAddress("test.prof@oth-regensburg.de");
         this.setPassword("test");
         
         return(login());
     }
+    
+    
     
     /**
      * 

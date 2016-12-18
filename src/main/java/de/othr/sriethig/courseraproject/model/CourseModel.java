@@ -85,7 +85,9 @@ public class CourseModel implements Serializable {
     
     /**
      * fetch lessons from server when page is loaded
-     * in case a professor added a lesson during the session
+     * in case a profe
+     * 
+     * ssor added a lesson during the session
      * @return 
      */
     public List<Lesson> getLessons() {
