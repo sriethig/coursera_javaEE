@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.22)  23 DEC 2016 11:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.22)  23 DEC 2016 15:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -146,38 +146,37 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 18.
 
-<../images/SonjasCoursera-ComponentDiagram.png, id=1, 1515.6625pt x 903.375pt>
-File: ../images/SonjasCoursera-ComponentDiagram.png Graphic file (type png)
+[1
 
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<../images/SonjasCoursera-ComponentDiagram.png, id=11, 1515.6625pt x 903.375pt>
+File: ../images/SonjasCoursera-ComponentDiagram.png Graphic file (type png)
 <use ../images/SonjasCoursera-ComponentDiagram.png>
 Package pdftex.def Info: ../images/SonjasCoursera-ComponentDiagram.png used on 
-input line 28.
+input line 30.
 (pdftex.def)             Requested size: 1515.65881pt x 903.3728pt.
- [1
-
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <../
-images/SonjasCoursera-ComponentDiagram.png>] (./Requirements_SonjaRiethig_Compo
-nentDiagram.aux)
+ [2 <../images/SonjasCoursera-ComponentDiagram.png>] (./Requirements_SonjaRieth
+ig_ComponentDiagram.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  1556 strings out of 493089
- 22838 string characters out of 6134842
- 79912 words of memory out of 5000000
+ 22842 string characters out of 6134842
+ 78920 words of memory out of 5000000
  5044 multiletter control sequences out of 15000+600000
  7887 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,24p,268b,227s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,24p,268b,225s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on Requirements_SonjaRiethig_ComponentDiagram.pdf (2 pages, 1335
-74 bytes).
+Output written on Requirements_SonjaRiethig_ComponentDiagram.pdf (2 pages, 1337
+04 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
