@@ -25,11 +25,12 @@
                   <h:form rendered="#{loginModel.authorized}">
                       <b:commandButton style="background: transparent; border: none; size: 30px;"
                                        value="Profil"
-                                icon="glyphicon glyphicon-user" class="btn" />
+                                       icon="glyphicon glyphicon-user" class="btn"
+                                       action="#{loginModel.goToProfile()}"/>
                       <b:commandButton style="background: transparent; border: none; size: 30px;"
-                                value="Log Out"
-                                icon="glyphicon glyphicon-log-out" class="btn"
-                                action="#{loginModel.logout()}"/>
+                                       value="Log Out"
+                                       icon="glyphicon glyphicon-log-out" class="btn"
+                                       action="#{loginModel.logout()}"/>
                   </h:form>
               </span>
 

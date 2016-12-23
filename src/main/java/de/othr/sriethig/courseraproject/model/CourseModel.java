@@ -13,8 +13,8 @@ import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.convert.LessonConverter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
@@ -33,6 +33,7 @@ public class CourseModel implements Serializable {
     @Getter @Setter private String description;
     @Setter private List<Lesson> lessons;
     
+    @Getter @Setter private Lesson lesson = null;
     @Getter @Setter private String lessonTitle;
     @Getter @Setter private String lessonContent;
     @Getter @Setter private String lessonVideoTitle;
@@ -57,21 +58,24 @@ public class CourseModel implements Serializable {
     @Inject
     private VideoService videoService;
     
+    @Inject
+    @Getter
+    @Setter
+    private LessonConverter lessonConverter;
+    
     /**
      * 
      */
     public void initialize() {
         if(loginModel.isAuthorizedProfessor()) {
             this.course = professorModel.getDetailCourse();
-            System.out.println("CourseModel::initalize course: " + this.course.getTitle());
         } else if(loginModel.isAuthorizedStudent()) {
             this.course = studentModel.getDetailCourse();
-            System.out.println("CourseModel::initalize course: " + this.course.getTitle());
         }
         title = this.course.getTitle();
         description = this.course.getDescription();
         lessons = (List<Lesson>) this.course.getLessons();
-        // get books from flo's amazon
+        // get books from flo's BookStore
         /*
          <!-- list of books recommended for this course -->
         <div style="height: 15px"/>
@@ -85,9 +89,7 @@ public class CourseModel implements Serializable {
     
     /**
      * fetch lessons from server when page is loaded
-     * in case a profe
-     * 
-     * ssor added a lesson during the session
+     * in case a professor added a lesson during the session
      * @return 
      */
     public List<Lesson> getLessons() {
@@ -115,19 +117,35 @@ public class CourseModel implements Serializable {
     /**
      * 
      */
+    public void changeLesson() {
+        
+    }
+    
+    /**
+     * 
+     */
+    public void updateLesson() {
+        
+    }
+    
+    /**
+     * 
+     */
     public void addLesson() {
-        Lesson lesson = new Lesson();
-        lesson.setTitle(this.lessonTitle);
-        lesson.setLessonContent(this.lessonContent);
+        Lesson newLesson = new Lesson();
+        newLesson.setTitle(this.lessonTitle);
+        newLesson.setLessonContent(this.lessonContent);
         
         Video video = new Video();
         video.setTitle(this.lessonVideoTitle);
         video.setDescription(this.lessonVideoDescription);
-        video.setUrl(this.getLessonVideoURL());
+        video.setUrl(this.lessonVideoURL);
         
-        lessonService.createLesson(lesson);
+        /*lessonService.createLesson(lesson);
         videoService.createVideo(video);
-        lesson = lessonService.addVideo(lesson, video);
+        lesson = lessonService.addVideo(lesson, video);*/
+        newLesson.setVideo(video);
+        newLesson = lessonService.createLesson(newLesson);
     }
     
     /**

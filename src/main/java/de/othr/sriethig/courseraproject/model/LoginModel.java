@@ -65,10 +65,8 @@ public class LoginModel implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        if(professorService.getProfessors().isEmpty()) {
-            System.out.println("no professors in database, inserting dummy data");
-            dummyDataService.insertDummyData();
-        }
+        //dummyDataService.insertDummyData();
+       
         if(this.emailAddress.equals("")) {
             this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";
         }
@@ -108,6 +106,16 @@ public class LoginModel implements Serializable {
         }
         this.password = "";
         return "login";
+    }
+    
+    public String goToProfile() {
+        if(this.authorizedProfessor) {
+            return "professor";
+        } else if(this.authorizedStudent) {
+            return "student";
+        } else {
+            return "login";
+        }
     }
     
     /**

@@ -39,12 +39,41 @@
                                 </b:panel>
 
                             <b:panel id="lessons" class="panel"
-                                title="Lessons" >
-
-                                List of lessons
-                                Panel to add a lesson!?
-
+                                title="Edit Lessons" >
+                                
+                                <h:selectOneMenu value="#{courseModel.course}" onchange="#{courseModel.changeLesson()}">
+                                    <f:converter binding="#{courseModel.lessonConverter}" />
+                                    <f:selectItems value="#{courseModel.lessons}" var="lesson" itemLabel="#{lesson.title}" />
+                                </h:selectOneMenu>
+                                
                             </b:panel>
+                            
+                            <b:panel id="panelAddLesson" class="panel"
+                                title="Add Lessons" >
+                                
+                                <h4>Lesson</h4>
+                                <b:inputText id="newLessonTitle" 
+                                                 placeholder="Title"
+                                                 value="#{courseModel.lessonTitle}"/>
+                                <b:inputTextarea id="newLessonContent"
+                                                 placeholder="..."
+                                                 value="#{courseModel.lessonContent}"/>
+                                <h4>Video</h4>
+                                <b:inputText id="newLessonVideoTitle" 
+                                                 placeholder="Title of the Video"
+                                                 value="#{courseModel.lessonVideoTitle}"/>
+                                <b:inputTextarea id="newLessonVideoDescription"
+                                                 placeholder="..."
+                                                 value="#{courseModel.lessonVideoDescription}"/>
+                                <b:inputText id="newLessonVideoUrl" 
+                                                 placeholder="URL of the Video"
+                                                 value="#{courseModel.lessonVideoURL}"/>
+                                <b:commandButton value="Add"
+                                                 style="background-color: #9CE18E; color: white;"
+                                                 icon="glyphicon glyphicon-edit" 
+                                                 action="#{courseModel.addLesson()}" />
+                            </b:panel>
+                            
                             </b:accordion>
                     </h:form>
 

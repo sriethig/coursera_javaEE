@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.22)  18 DEC 2016 22:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.22)  23 DEC 2016 11:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Requirements_SonjaRiethig.tex
-(./Requirements_SonjaRiethig.tex
+**Requirements_SonjaRiethig_UseCaseDiagram.tex
+(./Requirements_SonjaRiethig_UseCaseDiagram.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -62,8 +62,8 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmargin=\skip44
 \droptitle=\skip45
 )
-(./Requirements_SonjaRiethig.aux)
-\openout1 = `Requirements_SonjaRiethig.aux'.
+(./Requirements_SonjaRiethig_UseCaseDiagram.aux)
+\openout1 = `Requirements_SonjaRiethig_UseCaseDiagram.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -146,47 +146,43 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 18.
 
-<./UML/classDiagram.png, id=1, 1087.06125pt x 537.00626pt>
-File: ./UML/classDiagram.png Graphic file (type png)
+<../images/SonjasCoursera-UseCaseDiagram.png, id=1, 705.63625pt x 391.4625pt>
+File: ../images/SonjasCoursera-UseCaseDiagram.png Graphic file (type png)
 
-<use ./UML/classDiagram.png>
-Package pdftex.def Info: ./UML/classDiagram.png used on input line 28.
-(pdftex.def)             Requested size: 426.79134pt x 210.83278pt.
+<use ../images/SonjasCoursera-UseCaseDiagram.png>
+Package pdftex.def Info: ../images/SonjasCoursera-UseCaseDiagram.png used on in
+put line 28.
+(pdftex.def)             Requested size: 426.79134pt x 236.76685pt.
 
 Overfull \hbox (81.79134pt too wide) in paragraph at lines 28--29
  [][] 
  []
 
-Missing character: There is no ü in font cmbx12!
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 41.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 41.
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2 <./UML/classDiagram.png>] (./Requirements_SonjaRiethig.aux) ) 
+[2 <../images/SonjasCoursera-UseCaseDiagram.png>]
+(./Requirements_SonjaRiethig_UseCaseDiagram.aux) ) 
 Here is how much of TeX's memory you used:
- 1561 strings out of 493089
- 22648 string characters out of 6134842
- 80936 words of memory out of 5000000
- 5049 multiletter control sequences out of 15000+600000
+ 1557 strings out of 493089
+ 22825 string characters out of 6134842
+ 79920 words of memory out of 5000000
+ 5045 multiletter control sequences out of 15000+600000
  8194 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,23p,251b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on Requirements_SonjaRiethig.pdf (2 pages, 140047 bytes).
+ 38i,6n,23p,266b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb>
+Output written on Requirements_SonjaRiethig_UseCaseDiagram.pdf (2 pages, 99163 
+bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 38 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

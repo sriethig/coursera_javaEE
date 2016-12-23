@@ -6,6 +6,7 @@
 package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import lombok.Setter;
  *
  * @author sonja
  */
-@Entity
+@Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address extends SingleIdEntity {

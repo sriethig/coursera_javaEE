@@ -26,7 +26,7 @@ public class Video extends SingleIdEntity {
     @Getter @Setter private String description;
     @Getter @Setter private String url;
     
-    @OneToOne(mappedBy="video")
+    @OneToOne
     @Getter @Setter private Lesson lesson;
 
 }

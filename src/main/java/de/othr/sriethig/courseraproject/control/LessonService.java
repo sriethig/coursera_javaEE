@@ -5,11 +5,9 @@
  */
 package de.othr.sriethig.courseraproject.control;
 
-import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Exam;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
-import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.ExamRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.VideoRepository;
@@ -45,6 +43,16 @@ public class LessonService implements Serializable {
     @Transactional
     public Lesson createLesson(Lesson lesson) {
         lessonRepository.persist(lesson);
+        return lesson;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public Lesson find(Long id) {
+        Lesson lesson = lessonRepository.findById(id);
         return lesson;
     }
     
@@ -108,9 +116,7 @@ public class LessonService implements Serializable {
         lesson = (Lesson) lessonRepository.merge(lesson);
         video = (Video) videoRepository.merge(video);
         lesson.setVideo(video);
-        video.setLesson(lesson);
         lessonRepository.persist(lesson);
-        videoRepository.persist(video);
         return lesson;
     }
     

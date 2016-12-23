@@ -203,11 +203,9 @@ public class CourseService implements Serializable {
         lesson = (Lesson) lessonRepository.merge(lesson);
         
         lesson = lesson.addCourse(course);
-        //course = course.addLesson(lesson);
-        System.out.println("CourseService::addLesson " + course + " " + lesson);
-        System.out.println("CourseService::addLesson " + course.getLessons().size());
-        courseRepository.persist(course);
+        course = course.addLesson(lesson);
         lessonRepository.persist(lesson);
+        courseRepository.persist(course);
         return course;
     }
     
