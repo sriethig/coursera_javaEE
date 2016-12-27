@@ -27,6 +27,26 @@ public class StudentRepository extends
     
     /**
      * 
+     * @param emailAddress
+     * @return 
+     */
+    public AbstractStudent findStudentByEmail(String emailAddress) {
+        TypedQuery<AbstractStudent> query = this.createTypedQuery(
+            "SELECT s From AbstractStudent s WHERE s.emailAddress = "
+                    + ":parameter1" 
+        );
+        query.setParameter("parameter1", emailAddress);
+        List<AbstractStudent> abstractStudents = query.getResultList();
+        if(abstractStudents.isEmpty()) {
+            return null;
+        } else {
+            AbstractStudent abstractStudent = abstractStudents.get(0);
+            return abstractStudent;
+        }
+    }
+    
+    /**
+     * 
      * @param firstName
      * @param name
      * @return 
@@ -34,7 +54,7 @@ public class StudentRepository extends
     public AbstractStudent findStudentByFirstAndLastName(String firstName, 
             String name) {
         TypedQuery<AbstractStudent> query = this.createTypedQuery(
-            "SELECT s FROM AbstractStudent u WHERE s.firstName = "
+            "SELECT s FROM AbstractStudent s WHERE s.firstName = "
                     + ":parameter1 AND s.name = :parameter2"
         );
         query.setParameter("parameter1", firstName);

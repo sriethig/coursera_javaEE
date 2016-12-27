@@ -37,6 +37,18 @@ and open the template in the editor.
     padding-top: 30px;
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #B9F9C2 !important;
+    border-color: transparent !important;
+    color: #3CA249 !important;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #FFDCBD !important;
+    border-color: transparent !important;
+    color: white !important;
+}
+
 .modal-header {
     background-image: url("../resources/img/congruent_pentagon.png");
     background-repeat: repeat;
@@ -55,4 +67,15 @@ and open the template in the editor.
     border-radius: 5px 5px 0 0;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    border-color: transparent !important;
+    background-image: url("../resources/img/school.png") !important;
+    color: white;
+}
+
+.nav-tabs>li>a:hover, .nav-tabs>li>.active, .nav>li>a:focus, .nav>li>a:hover {
+    border-color: transparent !important;
+    background-image: url("../resources/img/school.png") !important;
+    color: white;
+}
 

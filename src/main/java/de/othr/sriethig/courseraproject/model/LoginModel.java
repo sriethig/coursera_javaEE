@@ -17,7 +17,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -131,10 +130,21 @@ public class LoginModel implements Serializable {
     
     /**
      * 
+     * @return 
+     */
+    public String register() {
+        logout();
+        this.authorized = false;
+        return "sign_up";
+    }
+    
+    /**
+     * 
+     * @return 
      */
     // TODO implement
-    public void registerWithSN() {
-        
+    public String registerWithSN() {
+        return "sign_up";
     }
     
     /**

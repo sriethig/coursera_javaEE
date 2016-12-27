@@ -14,7 +14,7 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author sonja
  */
-@RequestScoped
+/*@RequestScoped
 public class AddressRepository extends
         SingleIdEntityRepository<Long, Address> implements Serializable {
     
@@ -22,4 +22,4 @@ public class AddressRepository extends
         super(Address.class);
     }
     
-}
+}*/

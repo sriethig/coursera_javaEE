@@ -36,6 +36,18 @@ public class StudentService implements Serializable {
     
     /**
      * 
+     * @param emailAddress
+     * @return 
+     */
+    public boolean emailAlreadyInUse(String emailAddress) {
+        if(studentRepository.findStudentByEmail(emailAddress) == null) {
+            return false;
+        } 
+        return true;
+    }
+    
+    /**
+     * 
      * @param student
      * @return 
      */

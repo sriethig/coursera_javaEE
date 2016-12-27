@@ -7,6 +7,7 @@ package de.othr.sriethig.courseraproject.entity.base;
 
 import de.othr.sriethig.courseraproject.entity.Address;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -29,7 +30,7 @@ public abstract class AbstractUser extends SingleIdEntity {
     @Getter @Setter private String firstName;
     @Getter @Setter private String name;
     
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @Embedded
     @Getter @Setter private Address address;
     
     @Getter @Setter private String emailAddress;

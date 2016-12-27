@@ -8,6 +8,7 @@ de/othr/sriethig/courseraproject/entity/ExamResult.class
 de/othr/sriethig/courseraproject/model/LoginModel.class
 de/othr/sriethig/courseraproject/repository/ExamResultRepository.class
 de/othr/sriethig/courseraproject/repository/LessonRepository.class
+de/othr/sriethig/courseraproject/model/SignUpModel.class
 de/othr/sriethig/courseraproject/service/IProfessorService.class
 de/othr/sriethig/courseraproject/service/IStudentService.class
 de/othr/sriethig/courseraproject/control/ProfessorService.class
@@ -32,7 +33,6 @@ de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
 de/othr/sriethig/courseraproject/entity/Address.class
 de/othr/sriethig/courseraproject/control/LoginService.class
 de/othr/sriethig/courseraproject/control/DummyDataService.class
-de/othr/sriethig/courseraproject/repository/AddressRepository.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class
 de/othr/sriethig/courseraproject/model/CourseModel.class
 de/othr/sriethig/courseraproject/entity/Video_.class

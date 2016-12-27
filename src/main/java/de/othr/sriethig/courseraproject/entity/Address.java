@@ -5,9 +5,8 @@
  */
 package de.othr.sriethig.courseraproject.entity;
 
-import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
+import java.io.Serializable;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ import lombok.Setter;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address extends SingleIdEntity {
+public class Address implements Serializable {
     
     @Getter @Setter private String street;
     @Getter @Setter private long zipCode;

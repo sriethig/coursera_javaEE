@@ -14,6 +14,11 @@
         </navigation-case>
         
         <navigation-case>
+            <from-outcome>sign_up</from-outcome>
+            <to-view-id>/faces/sign_up.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
             <from-outcome>student</from-outcome>
             <to-view-id>/faces/student.xhtml</to-view-id>
         </navigation-case>

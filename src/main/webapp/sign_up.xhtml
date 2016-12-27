@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sonjas Coursera</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="./resources/templates/header_footer_template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <b:tabView tabPosition="left" 
+                               contentStyle="border: 1px solid #ddd;padding:10px"
+                               activeIndex="#{signUpModel.tabIndex}" >
+                        
+                        <b:tab title="Login Info">
+                            <b:container style="width: 400px;">
+                                <h2>Create a new Account:</h2>
+                                <b:inputText id="emailSC" 
+                                         placeholder="Email address" 
+                                         value="#{signUpModel.emailAddressSC}"/>
+                                <b:inputText id="passwordSC" 
+                                             placeholder="Password" 
+                                             type="password"
+                                             value="#{signUpModel.passwordSC}"/>
+                                <h:outputText style="color: red;"
+                                              value="#{signUpModel.messageSC}" />
+                                <b:commandButton look="primary btn-block" 
+                                                value="OK" icon="glyphicon glyphicon-ok" 
+                                                size="lg" style=" margin-top: 20px;"
+                                                action="#{signUpModel.loginInfoSC()}" />
+                            </b:container>
+                            <b:container style="width: 400px; text-align: center; margin-top: 25px;">
+                                <div> - or - </div>
+                            </b:container>
+                            <b:container style="width: 400px;">
+                                <h2>Sign Up With Nutwork:</h2>
+                                <b:inputText id="emailSN" 
+                                         placeholder="Nickname" 
+                                         value="#{signUpModel.nickNameSN}"/>
+                                <b:inputText id="passwordSN" 
+                                             placeholder="Password" 
+                                             type="password"
+                                             value="#{signUpModel.passwordSN}"/>
+                                <h:outputText style="color: red;"
+                                              value="#{signUpModel.messageSN}" />
+                                <b:commandButton look="primary btn-block" 
+                                                value="OK" icon="glyphicon glyphicon-ok" 
+                                                size="lg" style=" margin-top: 20px;"
+                                                action="#{signUpModel.loginInfoSN()}" />
+                            </b:container>
+                        </b:tab>
+                        
+                        <b:tab title="Personal Info" rendered="#{signUpModel.personalRendered}">
+                            <b:container style="width: 400px;">
+                                <b:inputText id="firstName"
+                                             placeholder="first name"
+                                             value="#{signUpModel.firstName}" />
+                                <b:inputText id="name"
+                                             placeholder="name"
+                                             value="#{signUpModel.name}" />
+                                <b:commandButton look="primary btn-block" 
+                                                value="OK" icon="glyphicon glyphicon-ok" 
+                                                size="lg" style=" margin-top: 20px;"
+                                                action="#{signUpModel.personalInfoOK()}" />
+                            </b:container>
+                        </b:tab>
+
+                        <b:tab title="Address Info" rendered="#{signUpModel.addressRendered}">
+                            <b:container style="width: 400px;">
+                                <b:inputText id="streetName"
+                                             placeholder="street name"
+                                             value="#{signUpModel.street}" />
+                                <b:inputText id="streetNumber"
+                                             placeholder="street name"
+                                             value="#{signUpModel.streetNumber}" />
+                                <b:inputText id="zipCode"
+                                             placeholder="zip code"
+                                             value="#{signUpModel.zipCode}" />
+                                <b:inputText id="city"
+                                             placeholder="city"
+                                             value="#{signUpModel.city}" />
+                            </b:container>
+                        </b:tab>
+                        
+                        <b:tab title="Confirm" rendered="#{signUpModel.confirmRendered}">
+                            
+                        </b:tab>
+                        
+                    </b:tabView>
+                </h:form>
+                
+            </ui:define>
+            
+        </ui:composition>
+        
+    </h:body>
+</html>
+

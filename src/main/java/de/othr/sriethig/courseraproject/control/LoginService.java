@@ -11,6 +11,7 @@ import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import lombok.NoArgsConstructor;
 
 /**
@@ -33,6 +34,7 @@ public class LoginService implements Serializable {
      * @param password
      * @return 
      */
+    @Transactional
     public AbstractUser authenticate(String emailAddress, String password) {
         AbstractUser abstractUser = abstractUserRepository.authenticateAbstractUser(
                     emailAddress, password
