@@ -49,61 +49,6 @@
                     </h:form>
                 </b:container>
                 <!-- /sign up -->
-
-                <!-- sign in using test accounts -->
-                <!--b:container style="width: 350px; padding-top: 30px;"-->
-                    
-                    <!-- test account sn student - opens modal -->
-                    <!--h:form styleClass="form-signin" prependId="false">
-                        <h2 class="form-signin-heading">or use a test account</h2-->
-                        <!-- this button opens the modal for the sn login -->
-                        <!--button class="btn btn-info btn-lg" type="button"
-                                style="width: 320px; height: 45px;"
-                                data-target="#modal" data-toggle="modal">
-                                    Testaccount SN
-                        </button>
-                    </h:form-->
-
-                        <!-- modal for sn data input -->
-                        <!--b:modal id="modal" title="SN Log In" 
-                                 styleClass="modalPseudoClass" 
-                                 closable="false" close-on-escape="false" 
-                                 backdrop="false">
-                            <b:container style="width: 350px; padding-top: -10px; margin: 0 auto;">
-                                <h:form styleClass="form-signin" prependId="false">
-                                    <h2 class="form-signin-heading">Please sign in</h2>
-                                    <b:inputText id="emailSN" 
-                                                 placeholder="Nickname" 
-                                                 value="#{loginModel.emailAddress}"/>
-                                    <b:inputText id="passwordSN" 
-                                                 placeholder="Password" 
-                                                 type="password"
-                                                 value="#{loginModel.password}"/>
-                                    <h:outputText style="color: red;"
-                                                  value="#{loginModel.message}" />
-                                </h:form>
-                                <b:button value="Close" dismiss="modal"
-                                          style="position: relative; float: right; margin-left: 10px;"
-                                          onclick="return false;"/>
-                                <b:button value="Sign In" look="primary" dismiss="modal" 
-                                          style="position: relative; float: right; "
-                                          onclick="#{loginModel.loginWithSN()}"/>
-                            </b:container>
-                        </b:modal-->
-                        <!-- /modal -->
-                    <!-- /test account sn student -->
-
-                    <!-- test account professor -->
-                    <!--h:form styleClass="form-signin" prependId="false" style="padding-top: 20px;">
-                        <b:commandButton look="default btn-block" 
-                                         value="Testaccount Professor" 
-                                         icon="log-in" size="lg"
-                                         action="#{loginModel.loginWithTestAccount()}"/>
-                    </h:form-->
-                    <!-- test account professor -->
-
-                <!--/b:container-->
-                <!-- /sign in using test account -->
                 
             </ui:define>
         </ui:composition>
