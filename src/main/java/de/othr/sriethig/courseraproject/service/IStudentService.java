@@ -5,10 +5,16 @@
  */
 package de.othr.sriethig.courseraproject.service;
 
+import de.othr.sriethig.courseraproject.entity.SNStudent;
+import java.util.List;
+
 /**
  *
  * @author sonja
  */
 public interface IStudentService {
+    
+    public List<SNStudent> getStudentsInTheSameCourseAs(SNStudent SNStudent);
+    public List<SNStudent> getStudentsInTheSameCourseAs(String nickName);
     
 }

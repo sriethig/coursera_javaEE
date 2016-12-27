@@ -266,4 +266,33 @@ public class CourseService implements Serializable {
         // finally delete course from database
         courseRepository.remove(course);
     }
+    
+    /**
+     * use component BookServiceService from BookStore
+     * (project by Florian Fusseder) to search for book
+     * recommendations for a course
+     * @param tag
+     * @return 
+     */
+    public List<services.impl.AbstractBook> getBooksForCourse(String tag) {
+        
+        try { // Call Web Service Operation
+            services.impl.BookServiceService service = new services.impl.BookServiceService();
+            services.impl.BookService port = service.getBookServicePort();
+            
+            // TODO initialize WS operation arguments here
+            java.lang.String arg0 = tag;
+            // TODO process result here
+            java.util.List<services.impl.AbstractBook> result = port.searchBooks(arg0);
+            if(result.isEmpty()) {
+                result = null;
+            }
+
+            return result;
+            
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            return null;
+        }
+    }
 }

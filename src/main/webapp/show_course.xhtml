@@ -37,30 +37,57 @@
 
                     <!-- list of lessons -->
                     <div style="height: 15px"/>
-                        <b:panel id="panelLessons" class="panel"
-                                 title="Lessons in #{courseModel.course.title}" >
-                            <b:dataTable value="#{courseModel.lessons}" 
-                                         var="lesson" style="width: 100%;"
-                                         rendered="#{!courseModel.enableEnrollInThisCourse()}">
-                                <b:column>
-                                    <f:facet name="header"> Lessons </f:facet>
-                                    <b:panel title="#{lesson.title}" collapsed="true">
-                                        <b:row>
-                                            <b:column span="6">
-                                                <iframe width="320" height="180" 
-                                                        src="#{lesson.video.url}" 
-                                                    frameborder="0" allowfullscreen="true">
-                                                </iframe>
-                                            </b:column>
-                                            <b:column span="6">
-                                                <p>#{lesson.lessonContent}</p>
-                                            </b:column>
-                                        </b:row>
-                                    </b:panel>
-                                </b:column>
-                            </b:dataTable>
-                        </b:panel>
+                    <b:panel id="panelLessons" class="panel"
+                             title="Lessons in #{courseModel.course.title}"
+                                     rendered="#{!courseModel.enableEnrollInThisCourse()}" >
+                        <b:dataTable value="#{courseModel.lessons}" 
+                                     var="lesson" style="width: 100%;">
+                            <b:column>
+                                <f:facet name="header"> Lessons </f:facet>
+                                <b:panel title="#{lesson.title}" collapsed="true">
+                                    <b:row>
+                                        <b:column span="6">
+                                            <iframe width="320" height="180" 
+                                                    src="#{lesson.video.url}" 
+                                                frameborder="0" allowfullscreen="true">
+                                            </iframe>
+                                        </b:column>
+                                        <b:column span="6">
+                                            <p>#{lesson.lessonContent}</p>
+                                        </b:column>
+                                    </b:row>
+                                </b:panel>
+                            </b:column>
+                        </b:dataTable>
+                    </b:panel>
                     <!-- /list of lessons -->
+                    
+                    <!-- list of books -->
+                    <div style="height: 15px"/>
+                    <b:panel id="panelBooks" class="panel"
+                             title="Recommended Books"
+                             rendered="#{!courseModel.enableEnrollInThisCourse()}" >
+                        <b:dataTable value="#{courseModel.books}" 
+                                     var="book" style="width: 100%;">
+                            <b:column>
+                                <f:facet name="header"> ISBN </f:facet>
+                                #{book.isbn}
+                            </b:column>
+                            <b:column>
+                                <f:facet name="header"> Title </f:facet>
+                                #{book.name}
+                            </b:column>
+                            <h:column>
+                                <f:facet name="header"> Authors </f:facet>
+                                #{courseModel.authorsAsString(book.author)}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"> Price </f:facet>
+                                #{book.price}
+                            </h:column>
+                        </b:dataTable>
+                    </b:panel>
+                    <!-- /list of books -->
 
                 </b:container>
                 <!-- /content -->

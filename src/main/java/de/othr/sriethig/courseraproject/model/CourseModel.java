@@ -13,6 +13,7 @@ import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.convert.LessonConverter;
 import javax.inject.Inject;
@@ -39,6 +40,8 @@ public class CourseModel implements Serializable {
     @Getter @Setter private String lessonVideoTitle;
     @Getter @Setter private String lessonVideoDescription;
     @Getter @Setter private String lessonVideoURL;
+    
+    @Getter @Setter private List<services.impl.AbstractBook> books;
     
     @Inject
     private LoginModel loginModel;
@@ -75,6 +78,8 @@ public class CourseModel implements Serializable {
         title = this.course.getTitle();
         description = this.course.getDescription();
         lessons = (List<Lesson>) this.course.getLessons();
+        books = courseService.getBooksForCourse("potter");
+        
         // get books from flo's BookStore
         /*
          <!-- list of books recommended for this course -->
@@ -174,4 +179,13 @@ public class CourseModel implements Serializable {
             return !studentModel.disableEnrollment(course);
         }
     }
+    
+    /**
+     * 
+     * @param authorList
+     * @return 
+     */
+    public String authorsAsString(List<services.impl.Author> authorList) {
+		return authorList.stream().map(a -> (a.getFirstName() + " " + a.getLastName())).collect(Collectors.joining(", "));
+	}
 }
