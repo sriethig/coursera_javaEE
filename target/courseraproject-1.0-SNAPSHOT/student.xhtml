@@ -20,12 +20,13 @@
                     <b:row>
                         <!-- user info -->
                         <b:column col-md="4" col-xs="12" style="text-align: center;">
-                            <b:button style="background-color: #9CE18E; border: none; 
-                                      width:80px; height: 80px; border-radius: 50%; 
-                                      color: white; margin-bottom: 5px; text-align: center;"
-                                      icon="glyphicon glyphicon-user" icon-size="3x" class="btn" 
+                            <b:button class="btn sonja-user-button"
+                                      icon="glyphicon glyphicon-user" icon-size="3x"
                                       value = "" />
                             <p>#{studentModel.student.firstName} #{studentModel.student.name}</p>
+                            <p>#{studentModel.student.address.street}</p>
+                            <p>#{studentModel.student.address.zipCode} #{studentModel.student.address.city}</p>
+                            <p>#{studentModel.student.address.country}</p>
                             <p>No. of enrollments: #{studentModel.courses.size()}</p>
                         </b:column>
                         <!-- /user info -->
@@ -90,7 +91,7 @@
                                                 </h:commandLink>
                                                 <b:commandButton value="Enroll" 
                                                           style="position: relative; float: right;
-                                                          background-color: #9CE18E; color: white;
+                                                          background-color: #B9F9C2; color: white;
                                                           border-color: white;  margin-top: -7px;" 
                                                           icon="glyphicon glyphicon-plus" icon-size="1x"
                                                           action="#{studentModel.enrollInCourse(availableCourse)}"

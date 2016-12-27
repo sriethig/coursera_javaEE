@@ -6,7 +6,10 @@
 package de.othr.sriethig.courseraproject.model;
 
 import de.othr.sriethig.courseraproject.control.StudentService;
+import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Country;
+import de.othr.sriethig.courseraproject.entity.SCStudent;
+import de.othr.sriethig.courseraproject.entity.SNStudent;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -106,6 +109,10 @@ public class SignUpModel implements Serializable {
         return "sign_up";
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String addressInfoOK() {
         this.confirmRendered = true;
         this.tabIndex = 3;
@@ -116,16 +123,47 @@ public class SignUpModel implements Serializable {
      * 
      * @return 
      */
-    private String finalizeSignUp() {
+    public String finalizeSignUp() {
+        Address address = new Address(
+                this.street + " " + this.streetNumber,
+                this.zipCode,
+                this.city,
+                this.country
+        );
+        
         if(this.signUpSC) {
+            SCStudent scStudent = new SCStudent();
+            scStudent.setEmailAddress(this.emailAddressSC);
+            scStudent.setPassword(this.passwordSC);
+            scStudent.setFirstName(this.firstName);
+            scStudent.setName(this.name);
+            scStudent.setAddress(address);
+            studentService.registerStudent(scStudent);
+            
             loginModel.setEmailAddress(this.emailAddressSC);
             loginModel.setPassword(this.passwordSC);
         } else {
+            SNStudent snStudent = new SNStudent();
+            snStudent.setEmailAddress(this.emailAddressSC);
+            snStudent.setPassword(this.passwordSC);
+            snStudent.setFirstName(this.firstName);
+            snStudent.setName(this.name);
+            snStudent.setAddress(address);
+            studentService.registerStudent(snStudent);
+            
             loginModel.setEmailAddress(this.nickNameSN);
             loginModel.setPassword(this.passwordSN);
         }
         
         return loginModel.login();
+    }
+    
+    /**
+     * JSF built-in enum converter for the dropdown box
+     * @return 
+     */
+    public Country[] getCountries() {
+        return Country.values();
     }
     
 }

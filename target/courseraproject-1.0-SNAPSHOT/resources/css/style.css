@@ -14,7 +14,7 @@ and open the template in the editor.
     border: none;
 }
 
-.sonja_header {
+.sonja-header {
     position: relative;
     float: left;
     font-size: 70px;
@@ -35,6 +35,17 @@ and open the template in the editor.
 .sonja-container {
     width: 350px;
     padding-top: 30px;
+}
+
+.sonja-user-button {
+    background-color: #B9F9C2 !important; 
+    border: none !important; 
+    width: 80px !important; 
+    height: 80px !important; 
+    border-radius: 50% !important; 
+    color: white !important; 
+    margin-bottom: 5px !important; 
+    text-align: center !important;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {

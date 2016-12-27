@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Sonjas Coursera</title>
         <h:outputStylesheet library="css" name="style.css"  />
@@ -77,7 +78,7 @@
                                              placeholder="street name"
                                              value="#{signUpModel.street}" />
                                 <b:inputText id="streetNumber"
-                                             placeholder="street name"
+                                             placeholder="street number"
                                              value="#{signUpModel.streetNumber}" />
                                 <b:inputText id="zipCode"
                                              placeholder="zip code"
@@ -85,11 +86,55 @@
                                 <b:inputText id="city"
                                              placeholder="city"
                                              value="#{signUpModel.city}" />
+                                <h:selectOneMenu value="#{signUpModel.country}" >
+                                    <f:selectItems value="#{signUpModel.countries}" />
+                                </h:selectOneMenu>
+                                <b:commandButton look="primary btn-block" 
+                                                value="OK" icon="glyphicon glyphicon-ok" 
+                                                size="lg" style=" margin-top: 20px;"
+                                                action="#{signUpModel.addressInfoOK()}" />
                             </b:container>
                         </b:tab>
                         
                         <b:tab title="Confirm" rendered="#{signUpModel.confirmRendered}">
-                            
+                            <b:container style="width: 400px;">
+                                <b:row>
+                                    <b:column col-md="2">Email:</b:column>
+                                    <b:column col-md="8">#{signUpModel.emailAddressSC}</b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column col-md="2">First Name:</b:column>
+                                    <b:column col-md="8">#{signUpModel.firstName}</b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column col-md="2">Name:</b:column>
+                                    <b:column col-md="8">#{signUpModel.name}</b:column>
+                                </b:row>
+                                
+                                <b:row>
+                                    <b:column col-md="2">Street:</b:column>
+                                    <b:column col-md="8">#{signUpModel.street} #{signUpModel.streetNumber}</b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column col-md="2">City:</b:column>
+                                    <b:column col-md="8">#{signUpModel.zipCode} #{signUpModel.city}</b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column col-md="2">Country</b:column>
+                                    <b:column col-md="8">#{signUpModel.country}</b:column>
+                                </b:row>  
+                                
+                                <b:row>
+                                    <b:column col-md="4"></b:column>
+                                    <b:column col-md="8"></b:column>
+                                </b:row>  
+                                 
+                                <b:commandButton look="primary btn-block" 
+                                                value="Create Account" 
+                                                icon="glyphicon glyphicon-user-add" 
+                                                size="lg" style=" margin-top: 20px;"
+                                                action="#{signUpModel.finalizeSignUp()}" />
+                            </b:container>
                         </b:tab>
                         
                     </b:tabView>

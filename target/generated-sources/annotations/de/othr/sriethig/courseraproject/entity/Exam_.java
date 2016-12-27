@@ -9,7 +9,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-12-27T13:03:23")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-12-27T13:49:36")
 @StaticMetamodel(Exam.class)
 public class Exam_ extends SingleIdEntity_ {
 
