@@ -42,7 +42,7 @@
                             <b:container style="width: 400px;">
                                 <h2>Sign Up With Nutwork:</h2>
                                 <b:inputText id="emailSN" 
-                                         placeholder="Nickname" 
+                                         placeholder="Nickname"
                                          value="#{signUpModel.nickNameSN}"/>
                                 <b:inputText id="passwordSN" 
                                              placeholder="Password" 
@@ -65,6 +65,8 @@
                                 <b:inputText id="name"
                                              placeholder="name"
                                              value="#{signUpModel.name}" />
+                                <h:outputText style="color: red;"
+                                              value="#{signUpModel.messagePersonalInfo}" />
                                 <b:commandButton look="primary btn-block" 
                                                 value="OK" icon="glyphicon glyphicon-ok" 
                                                 size="lg" style=" margin-top: 20px;"
@@ -89,6 +91,8 @@
                                 <h:selectOneMenu value="#{signUpModel.country}" >
                                     <f:selectItems value="#{signUpModel.countries}" />
                                 </h:selectOneMenu>
+                                <h:outputText style="color: red;"
+                                              value="#{signUpModel.messageAddressInfo}" />
                                 <b:commandButton look="primary btn-block" 
                                                 value="OK" icon="glyphicon glyphicon-ok" 
                                                 size="lg" style=" margin-top: 20px;"
@@ -97,30 +101,30 @@
                         </b:tab>
                         
                         <b:tab title="Confirm" rendered="#{signUpModel.confirmRendered}">
-                            <b:container style="width: 400px;">
+                            <b:container style="width: 600px;">
                                 <b:row>
-                                    <b:column col-md="2">Email:</b:column>
+                                    <b:column col-md="4">Email:</b:column>
                                     <b:column col-md="8">#{signUpModel.emailAddressSC}</b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column col-md="2">First Name:</b:column>
+                                    <b:column col-md="4">First Name:</b:column>
                                     <b:column col-md="8">#{signUpModel.firstName}</b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column col-md="2">Name:</b:column>
+                                    <b:column col-md="4">Name:</b:column>
                                     <b:column col-md="8">#{signUpModel.name}</b:column>
                                 </b:row>
                                 
                                 <b:row>
-                                    <b:column col-md="2">Street:</b:column>
+                                    <b:column col-md="4">Street:</b:column>
                                     <b:column col-md="8">#{signUpModel.street} #{signUpModel.streetNumber}</b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column col-md="2">City:</b:column>
+                                    <b:column col-md="4">City:</b:column>
                                     <b:column col-md="8">#{signUpModel.zipCode} #{signUpModel.city}</b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column col-md="2">Country</b:column>
+                                    <b:column col-md="4">Country</b:column>
                                     <b:column col-md="8">#{signUpModel.country}</b:column>
                                 </b:row>  
                                 
@@ -138,6 +142,10 @@
                         </b:tab>
                         
                     </b:tabView>
+                    
+                    <b:commandButton value="Cancel" 
+                                     icon="glyphicon glyphicon-remove"
+                                     action="login" />
                 </h:form>
                 
             </ui:define>

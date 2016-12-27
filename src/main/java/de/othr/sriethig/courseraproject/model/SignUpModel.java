@@ -37,6 +37,9 @@ public class SignUpModel implements Serializable {
     @Getter @Setter private String messageSC = "";
     @Getter @Setter private String messageSN = "";
     
+    @Getter @Setter private String messagePersonalInfo = "";
+    @Getter @Setter private String messageAddressInfo = "";
+    
     @Getter @Setter private boolean personalRendered = false;
     @Getter @Setter private boolean addressRendered = false;
     @Getter @Setter private boolean confirmRendered = false;
@@ -48,8 +51,8 @@ public class SignUpModel implements Serializable {
     @Getter @Setter private String name;
     
     @Getter @Setter private String street;
-    @Getter @Setter private int streetNumber;
-    @Getter @Setter private long zipCode;
+    @Getter @Setter private Integer streetNumber;
+    @Getter @Setter private Long zipCode;
     @Getter @Setter private String city;
     @Getter @Setter private Country country;
     
@@ -64,7 +67,6 @@ public class SignUpModel implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        System.out.println("SignUpModel::initialize " + loginModel.isAuthorized());
     }
     
     /**
@@ -72,6 +74,14 @@ public class SignUpModel implements Serializable {
      * @return 
      */
     public String loginInfoSC() {
+        if(this.emailAddressSC.equals("")) {
+            this.messageSC = "Email address required!";
+            return "sign_up";
+        }
+        if(this.passwordSC.equals("")) {
+            this.messageSC = "Please enter a password!";
+            return "sign_up";
+        }
         if(studentService.emailAlreadyInUse(this.emailAddressSC)) {
             this.messageSC = "Email is already in use!";
             return "sign_up";
@@ -89,7 +99,14 @@ public class SignUpModel implements Serializable {
      * @return 
      */
     public String loginInfoSN() {
-        System.out.println("SignUpModel::loginInfoOK " + this.nickNameSN + ", " + this.passwordSN);
+        if(this.nickNameSN.equals("")) {
+            this.messageSC = "Please enter your Nutwork nickname!";
+            return "sign_up";
+        }
+        if(this.passwordSN.equals("")) {
+            this.messageSC = "Please enter a password!";
+            return "sign_up";
+        }
         
         this.personalRendered = true;
         this.tabIndex = 1;
@@ -103,7 +120,11 @@ public class SignUpModel implements Serializable {
      * @return 
      */
     public String personalInfoOK() {
-        System.out.println("SignUpModel::personalInfo " + this.firstName + ", " + this.name);
+        if(this.firstName.equals("") || this.name.equals("")) {
+            this.messagePersonalInfo = "Please enter your first and last name!";
+            return "sign_up";            
+        }
+        
         this.addressRendered = true;
         this.tabIndex = 2;
         return "sign_up";
@@ -114,6 +135,14 @@ public class SignUpModel implements Serializable {
      * @return 
      */
     public String addressInfoOK() {
+        if(this.street.equals("") 
+                || this.streetNumber == 0
+                || this.zipCode == 0
+                || this.city.equals("")) {
+            this.messageAddressInfo = "Please enter your address information!";
+            return "sign_up";            
+        }
+        
         this.confirmRendered = true;
         this.tabIndex = 3;
         return "sign_up";
