@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Sonjas Coursera</title>
         <h:outputStylesheet library="css" name="style.css"  />
@@ -16,8 +17,26 @@
         
                 <!-- sign in using known email and password -->
                 <b:container style="width: 350px; padding-top: 30px;">
-                    <h:form styleClass="form-signin" prependId="false">
                         <h2 class="form-signin-heading">Please sign in</h2>
+                        
+                        <h:form>
+                            <h:selectOneMenu value="#{loginModel.selectedUser}"
+                                             valueChangeListener="#{loginModel.userChanged}"                                           
+                                             immediate="true">
+                                <f:converter binding="#{loginModel.userConverter}" />
+                                <f:selectItems value="#{loginModel.allUsers}" 
+                                               var="user" 
+                                               itemLabel="#{user.firstName} #{user.name}" />                                
+                            </h:selectOneMenu>
+                            <b:commandButton value="" class="btn-tertiary" 
+                                             style="margin: 2px;"
+                                             icon="glyphicon glyphicon-refresh">
+                                    <f:ajax execute="@form" render="loginForm" />
+                            </b:commandButton>
+                        </h:form>
+                         
+                        
+                    <h:form id="loginForm" styleClass="form-signin" prependId="false">
                         <b:inputText id="emailSC" 
                                      placeholder="Email address" 
                                      value="#{loginModel.emailAddress}"/>

@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
  */
 @SessionScoped
 @NoArgsConstructor
-@WebService
+@WebService(endpointInterface="de.othr.sriethig.courseraproject.service.IStudentService")
 public class StudentService implements Serializable, IStudentService  {
     
     @Inject

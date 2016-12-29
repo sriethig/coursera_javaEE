@@ -20,10 +20,13 @@ public abstract class AbstractConverter implements Converter {
         if(value == null) {
             return "";
         }
+        
         SingleIdEntity entity = find(Long.valueOf(value));
+        
         if(entity == null) {
             return "";   
         }
+        
         return entity;
     }
 

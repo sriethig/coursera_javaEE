@@ -7,14 +7,17 @@ package de.othr.sriethig.courseraproject.service;
 
 import de.othr.sriethig.courseraproject.entity.SNStudent;
 import java.util.List;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 /**
  *
  * @author sonja
  */
+@WebService
 public interface IStudentService {
     
-    public List<SNStudent> getStudentsInTheSameCourseAs(SNStudent SNStudent);
-    public List<SNStudent> getStudentsInTheSameCourseAs(String nickName);
+    @WebMethod public List<SNStudent> getStudentsInTheSameCourseAs(SNStudent SNStudent);
+    @WebMethod public List<SNStudent> getStudentsInTheSameCourseAs(String nickName);
     
 }

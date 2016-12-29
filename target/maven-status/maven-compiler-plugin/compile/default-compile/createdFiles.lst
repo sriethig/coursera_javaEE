@@ -36,6 +36,7 @@ services/impl/GeneratedIdEntity.class
 services/impl/Author.class
 de/othr/sriethig/courseraproject/model/StudentModel.class
 de/othr/sriethig/courseraproject/entity/SNStudent.class
+javax/faces/convert/UserConverter.class
 de/othr/sriethig/courseraproject/repository/base/AbstractUserRepository.class
 de/othr/sriethig/courseraproject/entity/Address.class
 de/othr/sriethig/courseraproject/control/LoginService.class
@@ -62,6 +63,7 @@ services/impl/FindAll.class
 de/othr/sriethig/courseraproject/repository/ProfessorRepository.class
 de/othr/sriethig/courseraproject/entity/Video.class
 de/othr/sriethig/courseraproject/service/ICourseService.class
+de/othr/sriethig/courseraproject/control/AbstractUserService.class
 services/impl/Person.class
 services/impl/FindAllResponse.class
 de/othr/sriethig/courseraproject/entity/base/AbstractUser_.class

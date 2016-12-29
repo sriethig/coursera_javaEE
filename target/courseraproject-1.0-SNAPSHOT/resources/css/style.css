@@ -60,6 +60,12 @@ and open the template in the editor.
     color: white !important;
 }
 
+.btn-tertiary, .btn-tertiary:hover, .btn-tertiary:active, .btn-tertiary:visited {
+    background-color: #A66F3E !important;
+    border-color: transparent !important;
+    color: white !important;
+}
+
 .modal-header {
     background-image: url("../resources/img/congruent_pentagon.png");
     background-repeat: repeat;
