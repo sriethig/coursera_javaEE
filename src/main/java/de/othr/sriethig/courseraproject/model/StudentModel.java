@@ -24,7 +24,7 @@ import lombok.Setter;
  * @author sonja
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class StudentModel implements Serializable {
     
     @Getter @Setter private AbstractStudent student;

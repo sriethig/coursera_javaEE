@@ -8,6 +8,8 @@ package de.othr.sriethig.courseraproject.entity;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -34,11 +36,18 @@ public class Course extends SingleIdEntity {
     @Getter @Setter private Professor professor;
     
     @ManyToMany(cascade={CascadeType.PERSIST})
-    @Getter @Setter private Collection<AbstractStudent> students;
+    @Setter private Collection<AbstractStudent> students;
     
     @OneToMany(mappedBy="course", cascade={CascadeType.PERSIST})
-    @Getter @Setter private Collection<Lesson> lessons;
+    @Setter private Collection<Lesson> lessons;
     
+    /**
+     * 
+     * @return 
+     */
+    public List<AbstractStudent> getStudents() {
+        return Collections.unmodifiableList((List<AbstractStudent>) this.students);
+    }
     /**
      * 
      * @param student
@@ -81,6 +90,14 @@ public class Course extends SingleIdEntity {
     public Course updateProfessor(Professor professor) {
         this.professor = professor;    
         return this;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Lesson> getLessons() {
+        return Collections.unmodifiableList((List<Lesson>) this.lessons);
     }
     
     /**

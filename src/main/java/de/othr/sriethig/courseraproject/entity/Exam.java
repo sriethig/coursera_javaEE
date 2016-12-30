@@ -7,6 +7,7 @@ package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,6 +34,14 @@ public class Exam extends SingleIdEntity {
     @Getter @Setter private Lesson lesson;
     
     @OneToMany(mappedBy="exam", cascade={CascadeType.PERSIST})
-    @Getter @Setter private Collection<ExamResult> results;
+    @Setter private Collection<ExamResult> results;
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<ExamResult> getResults() {
+        return Collections.unmodifiableList((List<ExamResult>) this.results);
+    }
     
 }

@@ -7,11 +7,12 @@ package de.othr.sriethig.courseraproject.entity;
 
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -25,7 +26,15 @@ import lombok.Setter;
 public class Professor extends AbstractUser {
 
     @OneToMany(mappedBy="professor", cascade={CascadeType.PERSIST})
-    @Getter @Setter private Collection<Course> courses;
+    @Setter private Collection<Course> courses;
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Course> getCourses() {
+        return Collections.unmodifiableList((List<Course>) this.courses);
+    }
     
     /**
      * 

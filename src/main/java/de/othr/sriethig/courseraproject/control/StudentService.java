@@ -15,7 +15,7 @@ import de.othr.sriethig.courseraproject.service.IStudentService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
  *
  * @author sonja
  */
-@SessionScoped
+@RequestScoped
 @NoArgsConstructor
 @WebService(endpointInterface="de.othr.sriethig.courseraproject.service.IStudentService")
 public class StudentService implements Serializable, IStudentService  {
