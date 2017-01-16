@@ -67,20 +67,4 @@ public class StudentRepository extends
             return abstractStudent;
         }   
     }
-    
-    /**
-     * 
-     * @param country
-     * @return 
-     */
-    //TODO: resolve country
-    public List<AbstractStudent> findStudentByCountry(Country country) {
-        TypedQuery<AbstractStudent> query = this.getEntityManager().createQuery("SELECT s FROM "
-            + "AbstractStudent AS s WHERE s.country = :paramertername",
-            this.getType()    
-        );
-        query.setParameter("parametername", country);
-        List<AbstractStudent> students = query.getResultList();
-        return students;
-    }
 }

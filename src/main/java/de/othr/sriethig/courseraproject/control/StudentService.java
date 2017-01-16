@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
  */
 @RequestScoped
 @NoArgsConstructor
-@WebService(endpointInterface="de.othr.sriethig.courseraproject.service.IStudentService")
+//@WebService(endpointInterface="de.othr.sriethig.courseraproject.service.IStudentService")
 public class StudentService implements Serializable, IStudentService  {
     
     @Inject
@@ -45,7 +45,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param emailAddress
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     public boolean emailAlreadyInUse(String emailAddress) {
         if(studentRepository.findStudentByEmail(emailAddress) == null) {
             return false;
@@ -58,7 +58,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param student
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent registerStudent(AbstractStudent student) {
         studentRepository.persist(student);
@@ -67,13 +67,15 @@ public class StudentService implements Serializable, IStudentService  {
     
     /**
      * 
+     * @param student
      * @return 
      */
     // TODO
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
-    public AbstractStudent registerSNStudent() {
-        return null;
+    public AbstractStudent registerSNStudent(SNStudent student) {
+        studentRepository.persist(student);
+        return student;
     }
     
     /**
@@ -82,7 +84,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param name
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     public AbstractStudent findStudentByFirstAndLastName(String firstName, 
             String name) {
         AbstractStudent student = 
@@ -95,7 +97,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param emailAddress
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     public AbstractStudent findStudentByEmail(String emailAddress) {
         AbstractStudent student = 
                 studentRepository.findStudentByEmail(emailAddress);
@@ -108,7 +110,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param firstName
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentFirstName(AbstractStudent student, 
             String firstName) {
@@ -123,7 +125,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param name
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentName(AbstractStudent student, 
             String name) {
@@ -138,7 +140,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param address
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentAddress(AbstractStudent student, 
             Address address) {
@@ -152,7 +154,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param student
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public List<Course> getEnrolledCourses(AbstractStudent student) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -166,7 +168,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param newCourse
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent enrollInCourse(AbstractStudent student,
             Course newCourse) {
@@ -187,7 +189,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param course
      * @return 
      */
-    @WebMethod(exclude = true)
+    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent unenrollFromCourse(AbstractStudent student,
             Course course) {
@@ -217,6 +219,7 @@ public class StudentService implements Serializable, IStudentService  {
         }
         
         List<SNStudent> students = new ArrayList<>();
+        students.add(snStudent);
         for(Course course : courses) {
             List<AbstractStudent> abstractStudents = 
                     (List<AbstractStudent>) course.getStudents();
@@ -240,7 +243,7 @@ public class StudentService implements Serializable, IStudentService  {
      * @param nickName
      * @return 
      */
-    @Override
+    /*@Override
     public List<SNStudent> getStudentsInTheSameCourseAs(String nickName) {
         SNStudent student = (SNStudent) findStudentByEmail(nickName);
         if(student == null) {
@@ -249,5 +252,5 @@ public class StudentService implements Serializable, IStudentService  {
             return null;
         }
         return getStudentsInTheSameCourseAs(student);
-    }
+    }*/
 }

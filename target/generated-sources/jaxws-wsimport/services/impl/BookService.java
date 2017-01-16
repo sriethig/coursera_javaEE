@@ -7,7 +7,6 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.ws.Action;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -34,7 +33,6 @@ public interface BookService {
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "findAll", targetNamespace = "http://Impl.Services/", className = "services.impl.FindAll")
     @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://Impl.Services/", className = "services.impl.FindAllResponse")
-    @Action(input = "http://Impl.Services/BookService/findAllRequest", output = "http://Impl.Services/BookService/findAllResponse")
     public List<AbstractBook> findAll();
 
     /**
@@ -47,7 +45,6 @@ public interface BookService {
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "searchBooks", targetNamespace = "http://Impl.Services/", className = "services.impl.SearchBooks")
     @ResponseWrapper(localName = "searchBooksResponse", targetNamespace = "http://Impl.Services/", className = "services.impl.SearchBooksResponse")
-    @Action(input = "http://Impl.Services/BookService/searchBooksRequest", output = "http://Impl.Services/BookService/searchBooksResponse")
     public List<AbstractBook> searchBooks(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);

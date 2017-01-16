@@ -29,10 +29,10 @@ public class AbstractUserRepository extends
      * @param id
      * @return 
      */
-    @Override
+    /*@Override
     public AbstractUser findById(Long id) {
-        return this.getEntityManager().find(AbstractUser.class, id.toString());
-    }
+        return this.getEntityManager().findById(id);
+    }*/
     
     /**
      * 

@@ -20,7 +20,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Video extends SingleIdEntity {
+public class Video extends SingleIdEntity<Long> {
 
     @Getter @Setter private String title;  
     @Getter @Setter private String description;

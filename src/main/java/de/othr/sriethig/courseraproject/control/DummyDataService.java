@@ -43,6 +43,12 @@ public class DummyDataService implements Serializable {
     private LessonService lessonService;
     
     @Inject
+    private VideoService videoService;
+    
+    @Inject
+    private ExamService examService;
+    
+    @Inject
     private ProfessorService professorService;
     
     /**
@@ -63,6 +69,7 @@ public class DummyDataService implements Serializable {
      * 
      * @return 
      */
+    @Transactional
     public List<SCStudent> seedStudents() {
         List<SCStudent> students = new ArrayList<>();
         
@@ -103,6 +110,7 @@ public class DummyDataService implements Serializable {
      * @param standardLesson
      * @return 
      */
+    @Transactional
     public List<Course> seedCourses() {
         List<Course> courses = new ArrayList<>();
         
@@ -134,12 +142,13 @@ public class DummyDataService implements Serializable {
                 Lesson lesson = seedLesson();
                 c = courseService.addLesson(c, lesson);
                 courses.add(c);
-                System.out.println("DummyDataService::seedCourses " + c.getTitle() + " " + c.getLessons().size());
             }
             
             return courses;
     }
     
+    
+    @Transactional
     public Lesson seedLesson() {
                 
         Lesson standardLesson = new Lesson();
@@ -152,6 +161,7 @@ public class DummyDataService implements Serializable {
         standardVideo.setTitle("Intro");
         standardVideo.setDescription("Watch carefully!");
         standardVideo.setUrl("https://www.youtube.com/embed/QH2-TGUlwu4");
+        standardVideo = videoService.createVideo(standardVideo);
         standardLesson.setVideo(standardVideo);
         
         Exam standardExam = new Exam();
@@ -159,6 +169,7 @@ public class DummyDataService implements Serializable {
         List<String> questions = new ArrayList<>();
         questions.add("Which animal is shown in the video?");
         standardExam.setQuestions(questions);
+        standardExam = examService.createExam(standardExam);
         standardLesson.setExam(standardExam);
         
         standardLesson = lessonService.createLesson(standardLesson);
@@ -171,6 +182,7 @@ public class DummyDataService implements Serializable {
      * @param courses
      * @return 
      */
+    @Transactional
     public List<Professor> seedProfessors(List<Course> courses) {
         List<Professor> professors = new ArrayList<>();
         

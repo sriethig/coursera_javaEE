@@ -12,11 +12,11 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -25,6 +25,7 @@ import lombok.Setter;
  */
 @Named
 @SessionScoped
+@NoArgsConstructor
 public class StudentModel implements Serializable {
     
     @Getter @Setter private AbstractStudent student;

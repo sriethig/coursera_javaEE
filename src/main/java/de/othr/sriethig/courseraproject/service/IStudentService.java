@@ -14,10 +14,10 @@ import javax.jws.WebService;
  *
  * @author sonja
  */
-@WebService
+//@WebService
 public interface IStudentService {
     
     @WebMethod public List<SNStudent> getStudentsInTheSameCourseAs(SNStudent SNStudent);
-    @WebMethod public List<SNStudent> getStudentsInTheSameCourseAs(String nickName);
+    //@WebMethod public List<SNStudent> getStudentsInTheSameCourseAs(String nickName);
     
 }

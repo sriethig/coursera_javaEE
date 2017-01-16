@@ -144,10 +144,10 @@ public class CourseService implements Serializable {
         course = (Course) courseRepository.merge(course);
         professor = (Professor) professorRepository.merge(professor);
         
-        course = course.addProfessor(professor);
-        professor = professor.addCourse(course);
+        /*course = */course.addProfessor(professor);
+        /*professor = professor.addCourse(course);
         professorRepository.getEntityManager().persist(professor);
-        courseRepository.persist(course); // TODO not needed?!
+        courseRepository.persist(course); // TODO not needed?! */
         return course;
     }
     
@@ -199,13 +199,13 @@ public class CourseService implements Serializable {
      */
     @Transactional
     public Course addLesson(Course course, Lesson lesson) {
-        course = (Course) courseRepository.merge(course);
-        lesson = (Lesson) lessonRepository.merge(lesson);
+        course = courseRepository.merge(course);
+        lesson = lessonRepository.merge(lesson);
         
-        lesson = lesson.addCourse(course);
-        course = course.addLesson(lesson);
-        lessonRepository.persist(lesson);
-        courseRepository.persist(course);
+        /*lesson = */lesson.addCourse(course);
+        /*course = course.addLesson(lesson)*/
+        /*lessonRepository.persist(lesson);
+        courseRepository.persist(course);*/
         return course;
     }
     
@@ -252,7 +252,7 @@ public class CourseService implements Serializable {
         Professor professor = course.getProfessor();
         professor = (Professor) professorRepository.merge(professor);       
         professor = professor.removeCourse(course);
-        professorRepository.persist(professor);
+        //professorRepository.persist(professor);
         
         // remove course from all students list of courses
         List<AbstractStudent> students = 
@@ -260,7 +260,7 @@ public class CourseService implements Serializable {
         for(AbstractStudent student : students) {
             student = (AbstractStudent) studentRepository.merge(student);
             student = student.removeCourse(course);
-            studentRepository.persist(student);
+            //studentRepository.persist(student);
         }
         
         // finally delete course from database

@@ -23,6 +23,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -31,6 +32,7 @@ import lombok.Setter;
  */
 @Named
 @SessionScoped
+@NoArgsConstructor
 public class LoginModel implements Serializable {
     
     @Getter @Setter private List<AbstractUser> allUsers;
@@ -78,7 +80,7 @@ public class LoginModel implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        //dummyDataService.insertDummyData();
+        dummyDataService.insertDummyData();
         
         this.allUsers = abstractUserService.findAll();
        

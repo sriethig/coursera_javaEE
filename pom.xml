@@ -137,16 +137,16 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/Florian.Fusseder.fuf31436.Softwareengineering.SS17.BookStore/BookServiceService.wsdl</wsdlFile>
+                                <wsdlFile>im-lamport_8080/TheOneBookstore.Florian.Fusseder/BookService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName></packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://localhost:8080/Florian.Fusseder.fuf31436.Softwareengineering.SS17.BookStore/BookServiceService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/BookServiceService.stale</staleFile>
+                            <wsdlLocation>http://im-lamport:8080/TheOneBookstore.Florian.Fusseder/BookService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/BookService.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-BookServiceService</id>
+                        <id>wsimport-generate-BookService</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

@@ -19,6 +19,7 @@ import javax.faces.convert.LessonConverter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -27,6 +28,7 @@ import lombok.Setter;
  */
 @Named
 @SessionScoped
+@NoArgsConstructor
 public class CourseModel implements Serializable {
     
     @Getter @Setter private Course course;
@@ -79,17 +81,6 @@ public class CourseModel implements Serializable {
         description = this.course.getDescription();
         lessons = (List<Lesson>) this.course.getLessons();
         books = courseService.getBooksForCourse("potter");
-        
-        // get books from flo's BookStore
-        /*
-         <!-- list of books recommended for this course -->
-        <div style="height: 15px"/>
-        <b:dataTable value="#{courseModel.books}" var="book" 
-                     rendered="#{!courseModel.enableEnrollInThisCourse()}">
-
-        </b:dataTable>
-        <!-- /list of books -->
-        */
     }
     
     /**

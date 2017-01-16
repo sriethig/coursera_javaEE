@@ -2,6 +2,7 @@ package de.othr.sriethig.courseraproject.entity.base;
 
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.ExamResult;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,11 +26,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public abstract class AbstractStudent extends AbstractUser {
     
-    @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @Getter @Setter private Collection<Course> courses;
+    @ManyToMany(mappedBy="students", cascade = {CascadeType.PERSIST})
+    @Getter @Setter private Collection<Course> courses = new ArrayList<>();
     
-    @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @Getter @Setter private Collection<ExamResult> results;
+    @OneToMany(mappedBy="student", cascade = {CascadeType.PERSIST})
+    @Getter @Setter private Collection<ExamResult> results = new ArrayList<>();
     
     /**
      * 

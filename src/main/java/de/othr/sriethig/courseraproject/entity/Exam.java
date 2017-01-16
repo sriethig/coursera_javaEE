@@ -10,7 +10,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -25,15 +27,16 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Exam extends SingleIdEntity {
+public class Exam extends SingleIdEntity<Long> {
 
-    @Getter @Setter private String title;    
+    @Getter @Setter private String title; 
+    @ElementCollection
     @Getter @Setter private List<String> questions;
     
     @OneToOne(mappedBy="exam", cascade={CascadeType.PERSIST})
     @Getter @Setter private Lesson lesson;
     
-    @OneToMany(mappedBy="exam", cascade={CascadeType.PERSIST})
+    @OneToMany(mappedBy="exam", cascade={CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Setter private Collection<ExamResult> results;
     
     /**

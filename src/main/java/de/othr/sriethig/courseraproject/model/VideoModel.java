@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -17,6 +18,7 @@ import lombok.Setter;
  */
 @Named
 @SessionScoped
+@NoArgsConstructor
 public class VideoModel implements Serializable {
     
     @Getter @Setter private String title;

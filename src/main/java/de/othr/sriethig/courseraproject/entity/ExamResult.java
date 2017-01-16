@@ -8,7 +8,10 @@ package de.othr.sriethig.courseraproject.entity;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.SingleIdEntity;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +25,9 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamResult extends SingleIdEntity {
+public class ExamResult extends SingleIdEntity<Long> {
     
+    @ElementCollection
     @Getter @Setter private List<String> answers;
     //score of the exam: can reach from 0 to 100 points
     //where 100 points is the best score

@@ -21,7 +21,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Lesson extends SingleIdEntity {
+public class Lesson extends SingleIdEntity<Long> {
 
     @Getter @Setter private String title;
     @Getter @Setter private String lessonContent;

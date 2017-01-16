@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Professor extends AbstractUser {
 
-    @OneToMany(mappedBy="professor", cascade={CascadeType.PERSIST})
+    @OneToMany(mappedBy="professor", cascade={CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Setter private Collection<Course> courses;
     
     /**

@@ -6,12 +6,11 @@
 package de.othr.sriethig.courseraproject.entity.base;
 
 import de.othr.sriethig.courseraproject.entity.Address;
-import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,12 +24,11 @@ import lombok.Setter;
 @Inheritance(strategy=InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class AbstractUser extends SingleIdEntity {
+public abstract class AbstractUser extends SingleIdEntity<Long> {
     
     @Getter @Setter private String firstName;
     @Getter @Setter private String name;
     
-    @Embedded
     @Getter @Setter private Address address;
     
     @Getter @Setter private String emailAddress;

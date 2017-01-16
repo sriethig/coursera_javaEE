@@ -25,7 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="release" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="bookReleaseDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="author" type="{http://Impl.Services/}author" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
  *       &lt;/sequence>
@@ -40,7 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "abstractBook", propOrder = {
     "name",
     "isbn",
-    "release",
+    "bookReleaseDate",
     "author",
     "price"
 })
@@ -55,7 +55,7 @@ public abstract class AbstractBook
     protected String name;
     protected String isbn;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar release;
+    protected XMLGregorianCalendar bookReleaseDate;
     @XmlElement(nillable = true)
     protected List<Author> author;
     protected BigDecimal price;
@@ -109,27 +109,27 @@ public abstract class AbstractBook
     }
 
     /**
-     * Gets the value of the release property.
+     * Gets the value of the bookReleaseDate property.
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getRelease() {
-        return release;
+    public XMLGregorianCalendar getBookReleaseDate() {
+        return bookReleaseDate;
     }
 
     /**
-     * Sets the value of the release property.
+     * Sets the value of the bookReleaseDate property.
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setRelease(XMLGregorianCalendar value) {
-        this.release = value;
+    public void setBookReleaseDate(XMLGregorianCalendar value) {
+        this.bookReleaseDate = value;
     }
 
     /**

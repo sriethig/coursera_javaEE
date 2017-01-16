@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course extends SingleIdEntity {
+public class Course extends SingleIdEntity<Long> {
 
     @Getter @Setter private String title;
     @Getter @Setter private String description;
@@ -38,7 +39,7 @@ public class Course extends SingleIdEntity {
     @ManyToMany(cascade={CascadeType.PERSIST})
     @Setter private Collection<AbstractStudent> students;
     
-    @OneToMany(mappedBy="course", cascade={CascadeType.PERSIST})
+    @OneToMany(mappedBy="course", cascade={CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Setter private Collection<Lesson> lessons;
     
     /**
