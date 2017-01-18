@@ -100,7 +100,6 @@ public class LessonService implements Serializable {
     @Transactional
     public Lesson removeLessonContent(Lesson lesson) {
         lesson = (Lesson) lessonRepository.merge(lesson);
-        String lessonContent = lesson.getLessonContent();
         lesson.setLessonContent("");
         return lesson;
     }
@@ -116,7 +115,6 @@ public class LessonService implements Serializable {
         lesson = (Lesson) lessonRepository.merge(lesson);
         video = (Video) videoRepository.merge(video);
         lesson.setVideo(video);
-        lessonRepository.persist(lesson);
         return lesson;
     }
     
@@ -131,8 +129,6 @@ public class LessonService implements Serializable {
         Video video = lesson.getVideo();
         lesson.setVideo(null);
         videoRepository.remove(video);
-        lessonRepository.persist(lesson);
-        videoRepository.persist(video);
         return lesson;
     }
     

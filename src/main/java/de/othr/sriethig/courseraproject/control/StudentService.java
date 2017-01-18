@@ -13,12 +13,11 @@ import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.StudentRepository;
 import de.othr.sriethig.courseraproject.service.IStudentService;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.jws.WebMethod;
-import javax.jws.WebService;
 import javax.transaction.Transactional;
 import lombok.NoArgsConstructor;
 
@@ -32,13 +31,16 @@ import lombok.NoArgsConstructor;
 public class StudentService implements Serializable, IStudentService  {
     
     @Inject
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
     
     @Inject
-    CourseRepository courseRepository;
+    private CourseRepository courseRepository;
     
     @Inject
-    CourseService courseService;
+    private CourseService courseService;
+    
+    @Inject
+    private Logger logger;
     
     /**
      * 
@@ -48,6 +50,7 @@ public class StudentService implements Serializable, IStudentService  {
     //@WebMethod(exclude = true)
     public boolean emailAlreadyInUse(String emailAddress) {
         if(studentRepository.findStudentByEmail(emailAddress) == null) {
+            logger.log(Level.WARNING, "StudentService::emailAlreadyInUse {0}", emailAddress);
             return false;
         } 
         return true;
@@ -62,6 +65,7 @@ public class StudentService implements Serializable, IStudentService  {
     @Transactional
     public AbstractStudent registerStudent(AbstractStudent student) {
         studentRepository.persist(student);
+        logger.log(Level.INFO, "StudentService::registerStudent {0}", student.getEmailAddress());
         return student;
     }
     
@@ -177,9 +181,6 @@ public class StudentService implements Serializable, IStudentService  {
         
         student = student.addCourse(newCourse);
         newCourse = newCourse.addStudent(student);
-        
-        courseRepository.persist(newCourse);
-        studentRepository.persist(student);
         return student;
     }
     
@@ -198,19 +199,17 @@ public class StudentService implements Serializable, IStudentService  {
         
         student = student.removeCourse(course);
         course = course.removeStudent(student);
-        
-        courseRepository.persist(course);
-        studentRepository.persist(student);
         return student;
     }
 
     /**
      * 
-     * @param SNStudent
+     * @param snStudentNickname
      * @return 
      */
     @Override
-    public List<SNStudent> getStudentsInTheSameCourseAs(SNStudent snStudent) {
+    public List<String> getStudentsInTheSameCourseAs(String snStudentNickname) {
+        /*SNStudent snStudent = findSNStudentByNickname(snStudentNickname);
         List<Course> courses = (List<Course>) snStudent.getCourses();
         if(courses == null || courses.isEmpty()) {
             System.err.print("StudentService::getStudentsInTheSameCourseAs"
@@ -218,15 +217,15 @@ public class StudentService implements Serializable, IStudentService  {
             return null;
         }
         
-        List<SNStudent> students = new ArrayList<>();
-        students.add(snStudent);
+        List<String> studentsNicknames = new ArrayList<>();
+        students.add(snStudent.getSocialMediaId());
         for(Course course : courses) {
             List<AbstractStudent> abstractStudents = 
                     (List<AbstractStudent>) course.getStudents();
             for(AbstractStudent abstractStudent : abstractStudents) {
                 if(abstractStudent.getClass() == SNStudent.class) {
-                    if (!students.contains(abstractStudent)) {
-                        students.add((SNStudent) abstractStudent);
+                    if (!students.contains(abstractStudent.getSocialMediaId())) {
+                        students.add(abstractStudent.getSocialMediaId());
                     }
                 }
             }
@@ -235,7 +234,8 @@ public class StudentService implements Serializable, IStudentService  {
         if(students.isEmpty()) {
             return null;
         }
-        return students;
+        return students;*/
+        return null;
     }
 
     /**

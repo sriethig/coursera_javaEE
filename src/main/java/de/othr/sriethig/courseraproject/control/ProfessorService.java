@@ -16,8 +16,6 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import lombok.NoArgsConstructor;
 
-//TODO: maybe add an abstract class for person (register, login, update params)
-
 /**
  *
  * @author sonja
@@ -46,7 +44,6 @@ public class ProfessorService implements Serializable {
      */
     public List<Professor> getProfessors() {
         List<Professor> professors = professorRepository.findAll();
-        //List<Professor> professors = professorRepository.getAllProfessors();
         return professors;
     }
      

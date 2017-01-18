@@ -43,6 +43,7 @@ de/othr/sriethig/courseraproject/control/LoginService.class
 services/impl/ElectronicBook.class
 de/othr/sriethig/courseraproject/control/DummyDataService.class
 services/impl/SearchBooks.class
+de/othr/sriethig/courseraproject/util/LoggingProvider.class
 services/impl/SearchBooksResponse.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class
 services/impl/BookServiceService.class

@@ -51,6 +51,10 @@ public class CourseService implements Serializable {
         return course;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Course> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
         return courses;
@@ -103,7 +107,6 @@ public class CourseService implements Serializable {
             String description) {
         course = (Course) courseRepository.merge(course);
         course.setDescription(description);
-        courseRepository.persist(course);
         return course;
     }
     
@@ -144,7 +147,7 @@ public class CourseService implements Serializable {
         course = (Course) courseRepository.merge(course);
         professor = (Professor) professorRepository.merge(professor);
         
-        /*course = */course.addProfessor(professor);
+        course = course.addProfessor(professor);
         /*professor = professor.addCourse(course);
         professorRepository.getEntityManager().persist(professor);
         courseRepository.persist(course); // TODO not needed?! */
@@ -165,9 +168,6 @@ public class CourseService implements Serializable {
         
         course = course.addStudent(student);
         student = student.addCourse(course);
-
-        studentRepository.persist(student);
-        courseRepository.persist(course); // TODO not needed?!
         return course;
     }
     
@@ -185,9 +185,6 @@ public class CourseService implements Serializable {
         
         course = course.removeStudent(student);
         student = student.removeCourse(course);
-              
-        studentRepository.persist(student);
-        courseRepository.persist(course); // not needed?!
         return course;
     } 
     
@@ -202,7 +199,7 @@ public class CourseService implements Serializable {
         course = courseRepository.merge(course);
         lesson = lessonRepository.merge(lesson);
         
-        /*lesson = */lesson.addCourse(course);
+        lesson = lesson.addCourse(course);
         /*course = course.addLesson(lesson)*/
         /*lessonRepository.persist(lesson);
         courseRepository.persist(course);*/
@@ -252,7 +249,6 @@ public class CourseService implements Serializable {
         Professor professor = course.getProfessor();
         professor = (Professor) professorRepository.merge(professor);       
         professor = professor.removeCourse(course);
-        //professorRepository.persist(professor);
         
         // remove course from all students list of courses
         List<AbstractStudent> students = 
@@ -260,7 +256,6 @@ public class CourseService implements Serializable {
         for(AbstractStudent student : students) {
             student = (AbstractStudent) studentRepository.merge(student);
             student = student.removeCourse(course);
-            //studentRepository.persist(student);
         }
         
         // finally delete course from database

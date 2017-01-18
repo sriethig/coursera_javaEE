@@ -9,6 +9,8 @@ import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import de.othr.sriethig.courseraproject.repository.StudentRepository;
 import de.othr.sriethig.courseraproject.repository.base.AbstractUserRepository;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -28,6 +30,9 @@ public class LoginService implements Serializable {
     @Inject
     StudentRepository studentRepository;
     
+    @Inject
+    private Logger logger;
+    
     /**
      * 
      * @param emailAddress
@@ -39,6 +44,7 @@ public class LoginService implements Serializable {
         AbstractUser abstractUser = abstractUserRepository.authenticateAbstractUser(
                     emailAddress, password
             );
+        logger.log(Level.INFO, "LoginService::authenticate successfull");
         return abstractUser;
     }
     
