@@ -10,6 +10,8 @@ import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Country;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
+import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
+import de.othr.sriethig.courseraproject.service.ISNUserService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -29,6 +31,8 @@ import lombok.Setter;
 public class SignUpModel implements Serializable {
     
     @Getter @Setter private int tabIndex = 0;
+    
+    @Getter @Setter private AbstractUser abstractUser;
     
     @Getter @Setter private String emailAddressSC;
     @Getter @Setter private String passwordSC;
@@ -59,10 +63,13 @@ public class SignUpModel implements Serializable {
     @Getter @Setter private Country country;
     
     @Inject
-    LoginModel loginModel;
+    private LoginModel loginModel;
     
     @Inject
-    StudentService studentService;
+    private StudentService studentService;
+    
+    @Inject
+    private ISNUserService SNUserService;
             
     /**
      * 
@@ -109,6 +116,9 @@ public class SignUpModel implements Serializable {
             this.messageSC = "Please enter a password!";
             return "sign_up";
         }
+        
+        SNStudent student = 
+                SNUserService.authenticateSNUser(this.nickNameSN, this.passwordSN);
         
         this.personalRendered = true;
         this.tabIndex = 1;
@@ -195,6 +205,37 @@ public class SignUpModel implements Serializable {
      */
     public Country[] getCountries() {
         return Country.values();
+    }
+    
+    public String cancelSignUp() {
+        this.tabIndex = 0;
+        this.emailAddressSC = "";
+        this.passwordSC = "";
+
+        this.nickNameSN = "";
+        this.passwordSN = "";
+
+        this.messageSC = "";
+        this.messageSN = "";
+
+        this.messagePersonalInfo = "";
+        this.messageAddressInfo = "";
+
+        this.personalRendered = false;
+        this.addressRendered = false;
+        this.confirmRendered = false;
+
+        this.signUpSC = false;
+        this.signUpSN = false;
+
+        this.firstName = "";
+        this.name = "";
+
+        this.street = "";
+        this.streetNumber = 0;
+        this.zipCode = Long.valueOf(0);
+        this.city = "";
+        return "login";
     }
     
 }

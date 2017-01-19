@@ -207,8 +207,9 @@ public class DummyDataService implements Serializable {
                 p.setEmailAddress(profFirstNames[i] + "." + profNames[i] +
                         "@oth-regensburg.de");
                 p.setPassword(profFirstNames[i]);
-                courseService.addProfessor(courses.get(i), p);
+                
                 p = professorService.registerProfessor(p); 
+                courseService.addProfessor(courses.get(i), p);
                 professors.add(p);
             }
             

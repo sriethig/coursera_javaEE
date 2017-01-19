@@ -71,19 +71,6 @@ public class StudentService implements Serializable, IStudentService  {
     
     /**
      * 
-     * @param student
-     * @return 
-     */
-    // TODO
-    //@WebMethod(exclude = true)
-    @Transactional
-    public AbstractStudent registerSNStudent(SNStudent student) {
-        studentRepository.persist(student);
-        return student;
-    }
-    
-    /**
-     * 
      * @param firstName
      * @param name
      * @return 

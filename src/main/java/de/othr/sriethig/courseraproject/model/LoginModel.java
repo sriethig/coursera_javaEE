@@ -80,16 +80,9 @@ public class LoginModel implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        dummyDataService.insertDummyData();
+        //dummyDataService.insertDummyData();
         
         this.allUsers = abstractUserService.findAll();
-       
-        /*if(this.emailAddress.equals("")) {
-            this.emailAddress = "Max.Mustermann@st.oth-regensburg.de";
-        }
-        if(this.password.equals("")) {
-            this.password = "Max";
-        }*/
     }
     
     public String userChanged(ValueChangeEvent e) {

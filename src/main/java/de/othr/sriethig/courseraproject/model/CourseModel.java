@@ -8,11 +8,14 @@ package de.othr.sriethig.courseraproject.model;
 import de.othr.sriethig.courseraproject.control.CourseService;
 import de.othr.sriethig.courseraproject.control.LessonService;
 import de.othr.sriethig.courseraproject.control.VideoService;
+import de.othr.sriethig.courseraproject.entity.BookProxy;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Video;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.convert.LessonConverter;
@@ -43,7 +46,7 @@ public class CourseModel implements Serializable {
     @Getter @Setter private String lessonVideoDescription;
     @Getter @Setter private String lessonVideoURL;
     
-    @Getter @Setter private List<services.impl.AbstractBook> books;
+    @Getter @Setter private List<BookProxy> books;
     
     @Inject
     private LoginModel loginModel;
@@ -68,14 +71,20 @@ public class CourseModel implements Serializable {
     @Setter
     private LessonConverter lessonConverter;
     
+    @Inject
+    private Logger logger;
+    
     /**
      * 
      */
     public void initialize() {
+        logger.log(Level.WARNING, "CourseModel::initialize");
         if(loginModel.isAuthorizedProfessor()) {
             this.course = professorModel.getDetailCourse();
+            logger.log(Level.WARNING, "CourseModel::initialize prof");
         } else if(loginModel.isAuthorizedStudent()) {
             this.course = studentModel.getDetailCourse();
+            logger.log(Level.WARNING, "CourseModel::initialize stud");
         }
         title = this.course.getTitle();
         description = this.course.getDescription();
@@ -170,13 +179,4 @@ public class CourseModel implements Serializable {
             return !studentModel.disableEnrollment(course);
         }
     }
-    
-    /**
-     * 
-     * @param authorList
-     * @return 
-     */
-    public String authorsAsString(List<services.impl.Author> authorList) {
-		return authorList.stream().map(a -> (a.getFirstName() + " " + a.getLastName())).collect(Collectors.joining(", "));
-	}
 }

@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.control;
 
+import de.othr.sriethig.courseraproject.entity.BookProxy;
 import de.othr.sriethig.courseraproject.entity.Course;
 import de.othr.sriethig.courseraproject.entity.Lesson;
 import de.othr.sriethig.courseraproject.entity.Professor;
@@ -13,8 +14,13 @@ import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.LessonRepository;
 import de.othr.sriethig.courseraproject.repository.ProfessorRepository;
 import de.othr.sriethig.courseraproject.repository.StudentRepository;
+import de.othr.sriethig.courseraproject.service.IBookService;
+import de.othr.sriethig.courseraproject.util.BookServiceProductiveAnnotation;
+import de.othr.sriethig.courseraproject.util.BookServiceTestAnnotation;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -29,16 +35,22 @@ import lombok.NoArgsConstructor;
 public class CourseService implements Serializable {
     
     @Inject
-    CourseRepository courseRepository;
+    private CourseRepository courseRepository;
     
     @Inject
-    ProfessorRepository professorRepository;
+    private ProfessorRepository professorRepository;
     
     @Inject
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     @Inject
-    LessonRepository lessonRepository;
+    private LessonRepository lessonRepository;
+    
+    @Inject @BookServiceTestAnnotation //@BookServiceProductiveAnnotation //
+    private IBookService bookService;
+    
+    @Inject
+    private Logger logger;
         
     /**
      * 
@@ -148,9 +160,6 @@ public class CourseService implements Serializable {
         professor = (Professor) professorRepository.merge(professor);
         
         course = course.addProfessor(professor);
-        /*professor = professor.addCourse(course);
-        professorRepository.getEntityManager().persist(professor);
-        courseRepository.persist(course); // TODO not needed?! */
         return course;
     }
     
@@ -200,9 +209,6 @@ public class CourseService implements Serializable {
         lesson = lessonRepository.merge(lesson);
         
         lesson = lesson.addCourse(course);
-        /*course = course.addLesson(lesson)*/
-        /*lessonRepository.persist(lesson);
-        courseRepository.persist(course);*/
         return course;
     }
     
@@ -269,25 +275,8 @@ public class CourseService implements Serializable {
      * @param tag
      * @return 
      */
-    public List<services.impl.AbstractBook> getBooksForCourse(String tag) {
-        
-        try { // Call Web Service Operation
-            services.impl.BookServiceService service = new services.impl.BookServiceService();
-            services.impl.BookService port = service.getBookServicePort();
-            
-            // TODO initialize WS operation arguments here
-            java.lang.String arg0 = tag;
-            // TODO process result here
-            java.util.List<services.impl.AbstractBook> result = port.searchBooks(arg0);
-            if(result.isEmpty()) {
-                result = null;
-            }
-
-            return result;
-            
-        } catch (Exception ex) {
-            // TODO handle custom exceptions here
-            return null;
-        }
+    public List<BookProxy> getBooksForCourse(String tag) {
+        logger.log(Level.WARNING, "CourseService::getBooksForCourse");
+        return bookService.getBooksForCourse(tag);
     }
 }
