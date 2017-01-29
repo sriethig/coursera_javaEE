@@ -16,7 +16,7 @@ public class SCConfig {
         Productive
     };
     
-    private static RunOption runOption = RunOption.Test;
+    private static RunOption runOption = RunOption.Productive;
     
     /**
      *

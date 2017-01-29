@@ -7,19 +7,17 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.SNStudent;
 import de.othr.sriethig.courseraproject.service.ISNUserService;
+import java.io.Serializable;
 
 /**
  *
  * @author sonja
  */
-public class SNUserServiceTest implements ISNUserService {
+public class SNUserServiceTest implements ISNUserService, Serializable {
 
     @Override
     public SNStudent authenticateSNUser(String nickname, String password) {
-        SNStudent testStudent = new SNStudent();
-        testStudent.setSocialMediaId(nickname);
-        testStudent.setPassword(password);
-        return testStudent;
+        return null;
     }
     
 }

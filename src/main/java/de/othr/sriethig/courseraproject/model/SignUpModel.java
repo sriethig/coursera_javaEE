@@ -55,6 +55,7 @@ public class SignUpModel implements Serializable {
     
     @Getter @Setter private String firstName;
     @Getter @Setter private String name;
+    private Long socialMediaId;
     
     @Getter @Setter private String street;
     @Getter @Setter private Integer streetNumber;
@@ -68,7 +69,7 @@ public class SignUpModel implements Serializable {
     @Inject
     private StudentService studentService;
     
-    @Inject
+    @Inject  
     private ISNUserService SNUserService;
             
     /**
@@ -109,16 +110,28 @@ public class SignUpModel implements Serializable {
      */
     public String loginInfoSN() {
         if(this.nickNameSN.equals("")) {
-            this.messageSC = "Please enter your Nutwork nickname!";
+            this.messageSN = "Please enter your Nutwork nickname!";
             return "sign_up";
         }
         if(this.passwordSN.equals("")) {
-            this.messageSC = "Please enter a password!";
+            this.messageSN = "Please enter a password!";
             return "sign_up";
         }
         
         SNStudent student = 
                 SNUserService.authenticateSNUser(this.nickNameSN, this.passwordSN);
+        if(student == null) {
+            this.messageSN = "Unable to authenticate, please check your login credentials";
+            return "sign_up";
+        }
+        if(studentService.emailAlreadyInUse(this.nickNameSN)) {
+            this.messageSN = "You already have an account at Sonja's Coursera.";
+            return "sign_up";
+        }
+        
+        this.firstName = student.getFirstName();
+        this.name = student.getName();
+        this.socialMediaId = student.getSocialMediaId();
         
         this.personalRendered = true;
         this.tabIndex = 1;
@@ -185,8 +198,9 @@ public class SignUpModel implements Serializable {
             loginModel.setPassword(this.passwordSC);
         } else {
             SNStudent snStudent = new SNStudent();
-            snStudent.setEmailAddress(this.emailAddressSC);
-            snStudent.setPassword(this.passwordSC);
+            snStudent.setEmailAddress(this.nickNameSN);
+            snStudent.setPassword(this.passwordSN);
+            snStudent.setSocialMediaId(this.socialMediaId);
             snStudent.setFirstName(this.firstName);
             snStudent.setName(this.name);
             snStudent.setAddress(address);

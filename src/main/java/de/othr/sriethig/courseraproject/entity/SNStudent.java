@@ -17,6 +17,6 @@ import lombok.Setter;
 @Entity
 public class SNStudent extends AbstractStudent {
     
-    @Getter @Setter private String socialMediaId;
+    @Getter @Setter private Long socialMediaId;
 
 }

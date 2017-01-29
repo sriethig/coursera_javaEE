@@ -20,7 +20,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-projectapi.jsf_2e_language>Facelets</org-netbeans-modules-projectapi.jsf_2e_language>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_BookServiceService>http://localhost:8080/Florian.Fusseder.fuf31436.Softwareengineering.SS17.BookStore/BookServiceService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_BookServiceService>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_BookService>http://im-lamport:8080/TheOneBookstore.Florian.Fusseder/BookService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_BookService>
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService>http://localhost:8080/nutworkproject/LoginService</org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService>http://im-lamport:8080/Nutwork/LoginService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService_5f_1>http://localhost:8080/nutworkproject/LoginService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService_5f_1>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService_5f_2>http://localhost:8080/nutworkproject/LoginService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_LoginService_5f_2>
     </properties>
