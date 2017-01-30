@@ -34,7 +34,7 @@ public class LoginService implements Serializable {
     private Logger logger;
     
     /**
-     * 
+     * check, if combination of email and password is valid
      * @param emailAddress
      * @param password
      * @return 
@@ -44,6 +44,10 @@ public class LoginService implements Serializable {
         AbstractUser abstractUser = abstractUserRepository.authenticateAbstractUser(
                     emailAddress, password
             );
+        if(abstractUser == null) {
+            logger.log(Level.SEVERE, "LoginService::authenticate "
+                    + "authentication failed");
+        }
         logger.log(Level.INFO, "LoginService::authenticate successfull");
         return abstractUser;
     }

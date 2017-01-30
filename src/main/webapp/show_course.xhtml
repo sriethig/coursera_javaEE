@@ -63,10 +63,11 @@
                     <!-- /list of lessons -->
                     
                     
-                    <p rendered="#{!courseModel.enableEnrollInThisCourse()}" >
+                    <h:panelGroup layout="block"
+                        rendered="#{!courseModel.enableEnrollInThisCourse()}" >
                         You can get all books in 
                         <a href="http://im-lamport:8080/TheOneBookstore.Florian.Fusseder">The One Bookstore</a>
-                    </p>
+                    </h:panelGroup>
                     <!-- list of books -->
                     <div style="height: 15px"/>
                     <b:panel id="panelBooks" class="panel"

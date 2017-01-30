@@ -17,6 +17,7 @@ import javax.enterprise.context.RequestScoped;
 /**
  *
  * @author sonja
+ * proxy for beta testing BookService
  */
 @BookServiceTestAnnotation
 @RequestScoped

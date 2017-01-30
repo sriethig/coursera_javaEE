@@ -35,6 +35,7 @@ services/impl/SearchBooks.class
 services/impl/SearchBooksResponse.class
 de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.class
 services/impl/BookServiceService.class
+de/othr/sriethig/courseraproject/control/SNGroupService.class
 de/othr/sriethig/courseraproject/model/CourseModel.class
 de/othr/sriethig/courseraproject/entity/Video_.class
 de/nutwork/webservices/ObjectFactory.class
@@ -49,6 +50,7 @@ de/othr/sriethig/courseraproject/util/SocialNutworkProvider.class
 de/othr/sriethig/courseraproject/control/SNUserServiceTest.class
 services/impl/Person.class
 services/impl/FindAllResponse.class
+de/othr/sriethig/courseraproject/service/ISNGroupService.class
 de/othr/sriethig/courseraproject/entity/SCStudent_.class
 de/othr/sriethig/courseraproject/entity/base/AbstractUser.class
 de/othr/sriethig/courseraproject/control/BookServiceProductive.class

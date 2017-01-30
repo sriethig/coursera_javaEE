@@ -12,6 +12,7 @@ import java.io.Serializable;
 /**
  *
  * @author sonja
+ * proxy for beta testing the SNUserService
  */
 public class SNUserServiceTest implements ISNUserService, Serializable {
 

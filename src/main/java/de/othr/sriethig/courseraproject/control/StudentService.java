@@ -7,11 +7,9 @@ package de.othr.sriethig.courseraproject.control;
 
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Course;
-import de.othr.sriethig.courseraproject.entity.SNStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.CourseRepository;
 import de.othr.sriethig.courseraproject.repository.StudentRepository;
-import de.othr.sriethig.courseraproject.service.IStudentService;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,11 +22,11 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author sonja
+ * Service for all operations on the SNStudents and SCStudents
  */
 @RequestScoped
 @NoArgsConstructor
-//@WebService(endpointInterface="de.othr.sriethig.courseraproject.service.IStudentService")
-public class StudentService implements Serializable, IStudentService  {
+public class StudentService implements Serializable  {
     
     @Inject
     private StudentRepository studentRepository;
@@ -43,11 +41,10 @@ public class StudentService implements Serializable, IStudentService  {
     private Logger logger;
     
     /**
-     * 
+     * Checks, if there already is an account with this email
      * @param emailAddress
      * @return 
      */
-    //@WebMethod(exclude = true)
     public boolean emailAlreadyInUse(String emailAddress) {
         if(studentRepository.findStudentByEmail(emailAddress) == null) {
             logger.log(Level.WARNING, "StudentService::emailAlreadyInUse {0}", emailAddress);
@@ -57,11 +54,10 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * persists an AbstractStudent object
      * @param student
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent registerStudent(AbstractStudent student) {
         studentRepository.persist(student);
@@ -70,12 +66,11 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * find student by personal information
      * @param firstName
      * @param name
      * @return 
      */
-    //@WebMethod(exclude = true)
     public AbstractStudent findStudentByFirstAndLastName(String firstName, 
             String name) {
         AbstractStudent student = 
@@ -84,11 +79,10 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * find AbstractStudent by email
      * @param emailAddress
      * @return 
      */
-    //@WebMethod(exclude = true)
     public AbstractStudent findStudentByEmail(String emailAddress) {
         AbstractStudent student = 
                 studentRepository.findStudentByEmail(emailAddress);
@@ -101,7 +95,6 @@ public class StudentService implements Serializable, IStudentService  {
      * @param firstName
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentFirstName(AbstractStudent student, 
             String firstName) {
@@ -116,7 +109,6 @@ public class StudentService implements Serializable, IStudentService  {
      * @param name
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentName(AbstractStudent student, 
             String name) {
@@ -131,7 +123,6 @@ public class StudentService implements Serializable, IStudentService  {
      * @param address
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent updateStudentAddress(AbstractStudent student, 
             Address address) {
@@ -141,11 +132,10 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * get a list of all courses the AbstractStudent is enrolled in
      * @param student
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public List<Course> getEnrolledCourses(AbstractStudent student) {
         student = (AbstractStudent) studentRepository.merge(student);
@@ -154,12 +144,11 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * connect an object of AbstractStudent with an object of Course
      * @param student
      * @param newCourse
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent enrollInCourse(AbstractStudent student,
             Course newCourse) {
@@ -172,12 +161,12 @@ public class StudentService implements Serializable, IStudentService  {
     }
     
     /**
-     * 
+     * disconnect an object of entity AbstractStudent from
+     * a specified object of Course
      * @param student
      * @param course
      * @return 
      */
-    //@WebMethod(exclude = true)
     @Transactional
     public AbstractStudent unenrollFromCourse(AbstractStudent student,
             Course course) {
@@ -189,55 +178,4 @@ public class StudentService implements Serializable, IStudentService  {
         return student;
     }
 
-    /**
-     * 
-     * @param snStudentNickname
-     * @return 
-     */
-    @Override
-    public List<String> getStudentsInTheSameCourseAs(String snStudentNickname) {
-        /*SNStudent snStudent = findSNStudentByNickname(snStudentNickname);
-        List<Course> courses = (List<Course>) snStudent.getCourses();
-        if(courses == null || courses.isEmpty()) {
-            System.err.print("StudentService::getStudentsInTheSameCourseAs"
-                    + " student is not enrolled in any courses");
-            return null;
-        }
-        
-        List<String> studentsNicknames = new ArrayList<>();
-        students.add(snStudent.getSocialMediaId());
-        for(Course course : courses) {
-            List<AbstractStudent> abstractStudents = 
-                    (List<AbstractStudent>) course.getStudents();
-            for(AbstractStudent abstractStudent : abstractStudents) {
-                if(abstractStudent.getClass() == SNStudent.class) {
-                    if (!students.contains(abstractStudent.getSocialMediaId())) {
-                        students.add(abstractStudent.getSocialMediaId());
-                    }
-                }
-            }
-        }
-        
-        if(students.isEmpty()) {
-            return null;
-        }
-        return students;*/
-        return null;
-    }
-
-    /**
-     * 
-     * @param nickName
-     * @return 
-     */
-    /*@Override
-    public List<SNStudent> getStudentsInTheSameCourseAs(String nickName) {
-        SNStudent student = (SNStudent) findStudentByEmail(nickName);
-        if(student == null) {
-            System.err.print("StudentService::getStudentsInTheSameCourseAs("
-                    + "nickName) student not found");
-            return null;
-        }
-        return getStudentsInTheSameCourseAs(student);
-    }*/
 }

@@ -29,6 +29,7 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author sonja
+ * Service for all operations on the entity Course
  */
 @SessionScoped
 @NoArgsConstructor
@@ -46,7 +47,7 @@ public class CourseService implements Serializable {
     @Inject
     private LessonRepository lessonRepository;
     
-    @Inject @BookServiceTestAnnotation //@BookServiceProductiveAnnotation //
+    @Inject @BookServiceProductiveAnnotation //@BookServiceTestAnnotation
     private IBookService bookService;
     
     @Inject
@@ -226,8 +227,6 @@ public class CourseService implements Serializable {
         List<Lesson> lessons = (List) course.getLessons();
         if(lessons.contains(lesson)) {
             lessons.remove(lesson);
-        } else {
-            //TODO ask about removing non-existent objects
         }
         return lessons;
     }

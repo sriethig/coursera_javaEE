@@ -210,7 +210,8 @@ public class SignUpModel implements Serializable {
             loginModel.setPassword(this.passwordSN);
         }
         
-        return loginModel.login();
+        resetAllValues();
+        return "login";
     }
     
     /**
@@ -221,7 +222,16 @@ public class SignUpModel implements Serializable {
         return Country.values();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String cancelSignUp() {
+        resetAllValues();
+        return "login";
+    }
+    
+    private void resetAllValues() {
         this.tabIndex = 0;
         this.emailAddressSC = "";
         this.passwordSC = "";
@@ -249,7 +259,6 @@ public class SignUpModel implements Serializable {
         this.streetNumber = 0;
         this.zipCode = Long.valueOf(0);
         this.city = "";
-        return "login";
     }
     
 }

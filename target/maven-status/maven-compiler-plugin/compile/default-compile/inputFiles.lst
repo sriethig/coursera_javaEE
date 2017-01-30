@@ -1,5 +1,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/javax/faces/convert/UserConverter.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/NotFoundException.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/ObjectFactory.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/Login.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/service/IBookService.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/BookService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/LessonService.java
@@ -10,6 +12,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/VideoService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Lesson.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/util/SCConfig.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/SnCountry.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/service/ICourseService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/util/BookServiceProductiveAnnotation.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/PaperBook.java
@@ -27,6 +30,7 @@
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/AbstractBook.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/DummyDataService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/base/SingleIdEntity.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/package-info.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/BookServiceProductive.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/StudentService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/util/SocialNutworkProvider.java
@@ -34,10 +38,13 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/SNUserServiceTest.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/base/AbstractStudent.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/BookProxy.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/NotFoundException_Exception.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Course.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/SCStudent.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/CourseModel.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/InvalidPasswordException.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/CourseService.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/SndtoUser.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/ExamResult.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/package-info.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/util/BookServiceTestAnnotation.java
@@ -52,6 +59,8 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/LoginModel.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/CourseRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/LoginService.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/InvalidPasswordException_Exception.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/ObjectFactory.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/BookServiceService.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/FindAllResponse.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/ProfessorService.java
@@ -61,15 +70,20 @@
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/repository/LessonRepository.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/javax/faces/convert/AbstractConverter.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Exam.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/LoginResponse.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/Author.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/SearchBooks.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Address.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/control/SNGroupService.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/RandomIdEntity.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/entity/Video.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/service/ILoginService.java
+/Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/service/ISNGroupService.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/Address.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/LoginService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/SignUpModel.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/Person.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/GeneratedIdEntity.java
+/Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/de/nutwork/webservices/NutworkLoginService.java
 /Users/sonja/NetBeansProjects/courseraproject/src/main/java/de/othr/sriethig/courseraproject/model/VideoModel.java
 /Users/sonja/NetBeansProjects/courseraproject/target/generated-sources/jaxws-wsimport/services/impl/SingleIdEntity.java

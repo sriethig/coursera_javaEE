@@ -17,11 +17,17 @@ import javax.enterprise.context.RequestScoped;
 /**
  *
  * @author sonja
+ * establishes connection to Flo's OneBookStore
  */
 @BookServiceProductiveAnnotation
 @RequestScoped
 public class BookServiceProductive implements IBookService, Serializable {
 
+    /**
+     * establish connection to Flo's OneBookStore and query for books
+     * @param tag
+     * @return 
+     */
     @Override
     public List<BookProxy> getBooksForCourse(String tag) {
         List<BookProxy> books = new ArrayList<>();
@@ -54,7 +60,7 @@ public class BookServiceProductive implements IBookService, Serializable {
     }
  
     /**
-     * 
+     * transform list of entities Author to a String variable for easier display
      * @param authorList
      * @return 
      */

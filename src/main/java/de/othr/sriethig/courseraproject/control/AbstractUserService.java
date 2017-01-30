@@ -18,6 +18,7 @@ import lombok.Setter;
 /**
  *
  * @author sonja
+ * Service for all operations on the entity AbstractUser
  */
 @RequestScoped
 @NoArgsConstructor

@@ -89,7 +89,7 @@ public class CourseModel implements Serializable {
         title = this.course.getTitle();
         description = this.course.getDescription();
         lessons = (List<Lesson>) this.course.getLessons();
-        books = courseService.getBooksForCourse("potter");
+        books = courseService.getBooksForCourse(this.title);
     }
     
     /**

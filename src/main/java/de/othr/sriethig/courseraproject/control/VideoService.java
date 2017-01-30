@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author sonja
+ * Service for all operations on the entity Video
  */
 @SessionScoped
 @NoArgsConstructor

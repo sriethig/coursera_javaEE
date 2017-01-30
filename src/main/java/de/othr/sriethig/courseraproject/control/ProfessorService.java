@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author sonja
+ * Service for all operations on the entity Professor
  */
 @SessionScoped
 @NoArgsConstructor
@@ -28,7 +29,7 @@ public class ProfessorService implements Serializable {
     ProfessorRepository professorRepository;
     
     /**
-     * 
+     * persist an object of Professor
      * @param professor
      * @return 
      */
@@ -39,7 +40,7 @@ public class ProfessorService implements Serializable {
     }    
     
     /**
-     * 
+     * get all the professors of Sonja's Coursera
      * @return 
      */
     public List<Professor> getProfessors() {
@@ -90,7 +91,7 @@ public class ProfessorService implements Serializable {
     }
     
     /**
-     * 
+     * get all the courses of an object of Professor
      * @param professor
      * @return 
      */
@@ -102,7 +103,7 @@ public class ProfessorService implements Serializable {
     }
     
     /**
-     * 
+     * delete Professor from database
      * @param professor 
      */
     @Transactional

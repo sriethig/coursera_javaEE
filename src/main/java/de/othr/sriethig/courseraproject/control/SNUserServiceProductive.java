@@ -17,6 +17,7 @@ import javax.inject.Inject;
 /**
  *
  * @author sonja
+ * SNUserServiceProductive establishes a connection to NutworkLoginService
  */
 public class SNUserServiceProductive implements ISNUserService, Serializable {
     
@@ -26,6 +27,12 @@ public class SNUserServiceProductive implements ISNUserService, Serializable {
     @Inject
     private Logger logger;
 
+    /**
+     * connect to Nutwork and receive the result of login
+     * @param nickname
+     * @param password
+     * @return 
+     */
     @Override
     public SNStudent authenticateSNUser(String nickname, String password) {
         
@@ -60,7 +67,7 @@ public class SNUserServiceProductive implements ISNUserService, Serializable {
             logger.log(Level.SEVERE, "Authentication with Nutwork failed: " + 
                     ex.getMessage());
             return null;
-        }
+        } 
 
     }
     

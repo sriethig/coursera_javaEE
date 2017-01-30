@@ -6,6 +6,7 @@
 package de.othr.sriethig.courseraproject.repository;
 
 import de.othr.sriethig.courseraproject.entity.Country;
+import de.othr.sriethig.courseraproject.entity.SNStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.repository.base.SingleIdEntityRepository;
 import java.io.Serializable;
@@ -66,5 +67,25 @@ public class StudentRepository extends
             AbstractStudent abstractStudent = abstractStudents.get(0);
             return abstractStudent;
         }   
+    }
+    
+    /**
+     * 
+     * @param socialMediaId
+     * @return 
+     */
+    public SNStudent findSNStudentBySocialMediaId(Long socialMediaId) {
+        TypedQuery<AbstractStudent> query = this.createTypedQuery(
+            "SELECT s From SNStudent s WHERE s.socialMediaId = "
+                    + ":parameter1" 
+        );
+        query.setParameter("parameter1", socialMediaId);
+        List<AbstractStudent> abstractStudents = query.getResultList();
+        if(abstractStudents.isEmpty()) {
+            return null;
+        } else {
+            AbstractStudent abstractStudent = abstractStudents.get(0);
+            return (SNStudent) abstractStudent;
+        }
     }
 }
