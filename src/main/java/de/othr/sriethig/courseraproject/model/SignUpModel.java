@@ -5,6 +5,7 @@
  */
 package de.othr.sriethig.courseraproject.model;
 
+import de.othr.sriethig.courseraproject.control.AbstractUserService;
 import de.othr.sriethig.courseraproject.control.StudentService;
 import de.othr.sriethig.courseraproject.entity.Address;
 import de.othr.sriethig.courseraproject.entity.Country;
@@ -13,6 +14,9 @@ import de.othr.sriethig.courseraproject.entity.SNStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import de.othr.sriethig.courseraproject.service.ISNUserService;
 import java.io.Serializable;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -67,10 +71,19 @@ public class SignUpModel implements Serializable {
     private LoginModel loginModel;
     
     @Inject
+    private StudentModel studentModel;
+    
+    @Inject
     private StudentService studentService;
     
     @Inject  
     private ISNUserService SNUserService;
+    
+    @Inject
+    private AbstractUserService abstractUserService;
+    
+    @Inject
+    private Logger logger;
             
     /**
      * 
@@ -161,12 +174,15 @@ public class SignUpModel implements Serializable {
      */
     public String addressInfoOK() {
         if(this.street.equals("") 
-                || this.streetNumber == 0
-                || this.zipCode == 0
-                || this.city.equals("")) {
+                || this.streetNumber == null
+                || this.zipCode == null
+                || this.city.equals("")
+                || this.country == null) {
+            logger.log(Level.WARNING, "SignUpModel::addressInfoOK -> some info is missing");
             this.messageAddressInfo = "Please enter your address information!";
             return "sign_up";            
         }
+        logger.log(Level.INFO, "SignUpModel::addressInfoOK -> everything ok");
         
         this.confirmRendered = true;
         this.tabIndex = 3;
@@ -196,6 +212,7 @@ public class SignUpModel implements Serializable {
             
             loginModel.setEmailAddress(this.emailAddressSC);
             loginModel.setPassword(this.passwordSC);
+            loginModel.setSelectedUser(scStudent);
         } else {
             SNStudent snStudent = new SNStudent();
             snStudent.setEmailAddress(this.nickNameSN);
@@ -208,8 +225,11 @@ public class SignUpModel implements Serializable {
             
             loginModel.setEmailAddress(this.nickNameSN);
             loginModel.setPassword(this.passwordSN);
+            loginModel.setSelectedUser(snStudent);
         }
         
+        loginModel.setAllUsers(abstractUserService.findAll());
+        studentModel.setStudent(null);
         resetAllValues();
         return "login";
     }

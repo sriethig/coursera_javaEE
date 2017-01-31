@@ -64,8 +64,6 @@ public class SNUserServiceProductive implements ISNUserService, Serializable {
             
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            logger.log(Level.SEVERE, "Authentication with Nutwork failed: " + 
-                    ex.getMessage());
             return null;
         } 
 

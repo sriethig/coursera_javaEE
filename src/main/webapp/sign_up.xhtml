@@ -53,7 +53,7 @@
                                 <b:commandButton look="primary btn-block" 
                                                 value="OK" icon="glyphicon glyphicon-ok" 
                                                 size="lg" style=" margin-top: 20px;"
-                                                action="#{signUpModel.loginInfoSN()}" />
+                                                action="#{signUpModel.loginInfoSN}" />
                             </b:container>
                         </b:tab>
                         
@@ -79,7 +79,7 @@
                                 <b:inputText id="streetName"
                                              placeholder="street name"
                                              value="#{signUpModel.street}" />
-                                <b:inputText id="streetNumber"
+                                <b:inputText id="streetNumber" 
                                              placeholder="street number"
                                              value="#{signUpModel.streetNumber}" />
                                 <b:inputText id="zipCode"

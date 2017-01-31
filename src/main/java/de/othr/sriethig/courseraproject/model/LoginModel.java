@@ -12,9 +12,12 @@ import de.othr.sriethig.courseraproject.control.ProfessorService;
 import de.othr.sriethig.courseraproject.entity.Professor;
 import de.othr.sriethig.courseraproject.entity.SCStudent;
 import de.othr.sriethig.courseraproject.entity.SNStudent;
+import de.othr.sriethig.courseraproject.entity.base.AbstractStudent;
 import de.othr.sriethig.courseraproject.entity.base.AbstractUser;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -75,6 +78,9 @@ public class LoginModel implements Serializable {
     @Getter @Setter
     private UserConverter userConverter;
     
+    @Inject
+    private Logger logger;
+    
     /**
      * 
      */
@@ -97,9 +103,11 @@ public class LoginModel implements Serializable {
      * @return 
      */
     public String login() {
+        logger.log(Level.INFO, "LoginModel::login -> " 
+                + this.emailAddress + " -> " + this.password);
         this.message = "";
                 
-        abstractUser = loginService.authenticate(
+        this.abstractUser = loginService.authenticate(
                 this.emailAddress, this.password
         );
         
@@ -109,16 +117,19 @@ public class LoginModel implements Serializable {
             this.authorizedProfessor = true;
             this.emailAddress = "";
             this.password = "";
+            professorModel.setProfessor((Professor) this.abstractUser);
             return "professor";
         } else if(abstractUser.getClass() == SCStudent.class) {
             this.authorizedStudent = true;
             this.emailAddress = "";
             this.password = "";
+            studentModel.setStudent((AbstractStudent) this.abstractUser);
             return "student";
         } else if(abstractUser.getClass() == SNStudent.class) {
             this.authorizedStudent = true;
             this.emailAddress = "";
             this.password = "";
+            studentModel.setStudent((AbstractStudent) this.abstractUser);
             return "student";
         }
         this.password = "";
@@ -143,6 +154,7 @@ public class LoginModel implements Serializable {
         this.abstractUser = null;
         this.authorizedProfessor = false;
         this.authorizedStudent = false;
+        this.abstractUser = null;
         return "login";
     }
     
