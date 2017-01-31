@@ -1,8 +1,5 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.22)  23 DEC 2016 15:21
-entering extended mode
+This is LuaTeX, Version beta-0.80.0 (TeX Live 2015) (rev 5238)  (format=lualatex 2016.3.22)  31 JAN 2017 11:15
  restricted \write18 enabled.
- file:line:error style messages enabled.
- %&-line parsing enabled.
 **Requirements_SonjaRiethig_UseCaseDiagram.tex
 (./Requirements_SonjaRiethig_UseCaseDiagram.tex
 LaTeX2e <2015/01/01>
@@ -63,7 +60,7 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \droptitle=\skip45
 )
 (./Requirements_SonjaRiethig_UseCaseDiagram.aux)
-\openout1 = `Requirements_SonjaRiethig_UseCaseDiagram.aux'.
+\openout1 = Requirements_SonjaRiethig_UseCaseDiagram.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -92,21 +89,26 @@ LaTeX Font Info:    ... okay on input line 12.
 \makeMPintoPDFobject=\count93
 \everyMPtoPDFconversion=\toks16
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+Package ifluatex Info: LuaTeX detected.
 )
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/luatex-loader.sty
+Package: luatex-loader 2010/03/09 v0.4 Lua module loader (HO)
+
+(/usr/local/texlive/2015/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua))
+\pdftexcmds@toks=\toks17
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -125,19 +127,14 @@ Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.png,.pdf,.jpg,.mps,.tif,.jpeg,.PNG,.PDF,.JPG,.JPEG,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 18.
@@ -153,12 +150,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 File: ../images/SonjasCoursera-UseCaseDiagram.png Graphic file (type png)
 
 <use ../images/SonjasCoursera-UseCaseDiagram.png>
-Package pdftex.def Info: ../images/SonjasCoursera-UseCaseDiagram.png used on in
-put line 30.
+Package pdftex.def Info: ../images/SonjasCoursera-UseCaseDiagram.png used on inp
+ut line 30.
 (pdftex.def)             Requested size: 426.79134pt x 236.76685pt.
 
 Overfull \hbox (81.79134pt too wide) in paragraph at lines 30--31
- [][] 
+ [][][] 
  []
 
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
@@ -167,30 +164,34 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
- [2 <../images/SonjasCoursera-UseCaseDiagram.png>] [3]
-(./Requirements_SonjaRiethig_UseCaseDiagram.aux) ) 
-Here is how much of TeX's memory you used:
- 1580 strings out of 493089
- 23182 string characters out of 6134842
- 79920 words of memory out of 5000000
- 5064 multiletter control sequences out of 15000+600000
- 8502 words of font info for 30 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 38i,6n,23p,266b,222s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Requirements_SonjaRiethig_UseCaseDiagram.pdf (3 pages, 120342
+ [2
+Missing character: There is no ö (U+00F6) in font cmr10!
+Missing character: There is no ö (U+00F6) in font cmr10!
+<../images/SonjasCoursera-UseCaseDiagram.png>] [3]
+(./Requirements_SonjaRiethig_UseCaseDiagram.aux))
+
+Here is how much of LuaTeX's memory you used:
+ 1733 strings out of 494693
+ 100000,89155 words of node,token memory allocated
+ 276 words of node memory still in use:
+   2 hlist, 1 vlist, 1 rule, 2 glue, 43 glue_spec, 1 write nodes
+   avail lists: 2:17,3:52,4:439,5:90,6:968,7:13,9:64,10:50
+ 5371 multiletter control sequences out of 65536+600000
+ 36 fonts using 1426115 bytes
+ 38i,6n,23p,248b,227s stack positions out of 5000i,500n,10000p,200000b,100000s
+<</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><<
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><</u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><</usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><</usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><</usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><</usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Requirements_SonjaRiethig_UseCaseDiagram.pdf (3 pages, 120238
  bytes).
-PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+
+PDF statistics: 48 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
