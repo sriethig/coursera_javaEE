@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.80.0 (TeX Live 2015) (rev 5238)  (format=lualatex 2016.3.22)  31 JAN 2017 11:15
+This is LuaTeX, Version beta-0.80.0 (TeX Live 2015) (rev 5238)  (format=lualatex 2016.3.22)  31 JAN 2017 11:25
  restricted \write18 enabled.
 **Requirements_SonjaRiethig_UseCaseDiagram.tex
 (./Requirements_SonjaRiethig_UseCaseDiagram.tex
@@ -164,10 +164,13 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
- [2
-Missing character: There is no ö (U+00F6) in font cmr10!
-Missing character: There is no ö (U+00F6) in font cmr10!
-<../images/SonjasCoursera-UseCaseDiagram.png>] [3]
+
+Overfull \hbox (9.4727pt too wide) in paragraph at lines 41--42
+[][]\OT1/cmr/m/n/10 ein User, der sich mit Email und Pass-wort reg-istri-ert, m
+uss seine personlichen
+ []
+
+[2<../images/SonjasCoursera-UseCaseDiagram.png>] [3]
 (./Requirements_SonjaRiethig_UseCaseDiagram.aux))
 
 Here is how much of LuaTeX's memory you used:
@@ -187,7 +190,7 @@ sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><</usr
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><</usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><</usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Requirements_SonjaRiethig_UseCaseDiagram.pdf (3 pages, 120238
+Output written on Requirements_SonjaRiethig_UseCaseDiagram.pdf (3 pages, 120250
  bytes).
 
 PDF statistics: 48 PDF objects out of 1000 (max. 8388607)
